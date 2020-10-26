@@ -1,6 +1,7 @@
 
 package api.login;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
@@ -18,6 +19,7 @@ public class Login extends javax.swing.JFrame {
         this.setContentPane(fondoPanel);
         initComponents();
         this.setLocationRelativeTo(null);
+        panelSesion.setBackground(new Color(255, 255, 255, 100));
         ImageIcon imIcon = new ImageIcon("src/api/login/imagenes/icono.png");
         Icon icono = new ImageIcon(imIcon.getImage().getScaledInstance(labelIcono.getWidth(), labelIcono.getHeight(), Image.SCALE_DEFAULT));
         labelIcono.setIcon(icono);
@@ -32,35 +34,22 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         panel = new FondoPanel();
-        labelIcono = new javax.swing.JLabel();
-        textFieldCorreo = new javax.swing.JTextField();
-        correo = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
         botonSalir = new javax.swing.JButton();
-        botonSingIn = new javax.swing.JButton();
-        botonSingUp = new javax.swing.JButton();
+        panelSesion = new javax.swing.JPanel();
+        correo = new javax.swing.JLabel();
+        textFieldCorreo = new javax.swing.JTextField();
+        jLabel28 = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
         checkBoxRecordar = new javax.swing.JCheckBox();
+        botonSingIn = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        botonSingUp = new javax.swing.JButton();
+        labelIcono = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setUndecorated(true);
         setResizable(false);
-
-        textFieldCorreo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldCorreojTextField2ActionPerformed(evt);
-            }
-        });
-
-        correo.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        correo.setForeground(new java.awt.Color(255, 255, 255));
-        correo.setText("Correo");
-
-        jLabel28.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel28.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel28.setText("Contraseña");
 
         botonSalir.setBackground(new java.awt.Color(255, 255, 255));
         botonSalir.setForeground(new java.awt.Color(255, 255, 255));
@@ -70,17 +59,19 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        botonSingIn.setBackground(new java.awt.Color(247, 228, 22));
-        botonSingIn.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        botonSingIn.setText("SING IN");
-        botonSingIn.addActionListener(new java.awt.event.ActionListener() {
+        correo.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        correo.setForeground(new java.awt.Color(255, 255, 255));
+        correo.setText("Correo");
+
+        textFieldCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonSingInActionPerformed(evt);
+                textFieldCorreojTextField2ActionPerformed(evt);
             }
         });
 
-        botonSingUp.setBackground(new java.awt.Color(158, 247, 22));
-        botonSingUp.setText("SING UP");
+        jLabel28.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel28.setText("Contraseña");
 
         jPasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -98,64 +89,91 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        botonSingIn.setBackground(new java.awt.Color(247, 228, 22));
+        botonSingIn.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        botonSingIn.setText("SING IN");
+        botonSingIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSingInActionPerformed(evt);
+            }
+        });
+
         jSeparator1.setBackground(new java.awt.Color(247, 228, 22));
+
+        botonSingUp.setBackground(new java.awt.Color(158, 247, 22));
+        botonSingUp.setText("SING UP");
+
+        javax.swing.GroupLayout panelSesionLayout = new javax.swing.GroupLayout(panelSesion);
+        panelSesion.setLayout(panelSesionLayout);
+        panelSesionLayout.setHorizontalGroup(
+            panelSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSesionLayout.createSequentialGroup()
+                .addGroup(panelSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelSesionLayout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addComponent(correo))
+                    .addGroup(panelSesionLayout.createSequentialGroup()
+                        .addGap(141, 141, 141)
+                        .addComponent(labelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelSesionLayout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addGroup(panelSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(panelSesionLayout.createSequentialGroup()
+                                    .addComponent(checkBoxRecordar)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                                    .addComponent(botonSingIn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(textFieldCorreo, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel28, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(botonSingUp))))
+                .addContainerGap(54, Short.MAX_VALUE))
+        );
+        panelSesionLayout.setVerticalGroup(
+            panelSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSesionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
+                .addComponent(correo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(textFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(panelSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(checkBoxRecordar)
+                    .addComponent(botonSingIn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(botonSingUp, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLayout.createSequentialGroup()
-                .addContainerGap(209, Short.MAX_VALUE)
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(textFieldCorreo)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel28)
-                    .addComponent(correo)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                        .addComponent(checkBoxRecordar)
-                        .addGap(65, 65, 65)
-                        .addComponent(botonSingIn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 204, Short.MAX_VALUE))
-            .addGroup(panelLayout.createSequentialGroup()
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelLayout.createSequentialGroup()
-                        .addGap(217, 217, 217)
-                        .addComponent(botonSingUp)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(panelLayout.createSequentialGroup()
-                .addGap(268, 268, 268)
-                .addComponent(labelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(196, 196, 196))
+                        .addGap(106, 106, 106)
+                        .addComponent(panelSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addComponent(labelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
-                .addComponent(correo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel28)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(checkBoxRecordar)
-                    .addComponent(botonSingIn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonSingUp, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
+                .addContainerGap(54, Short.MAX_VALUE)
+                .addComponent(panelSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
                 .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -201,6 +219,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel labelIcono;
     private javax.swing.JPanel panel;
+    private javax.swing.JPanel panelSesion;
     private javax.swing.JTextField textFieldCorreo;
     // End of variables declaration//GEN-END:variables
     

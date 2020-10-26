@@ -5,6 +5,8 @@
  */
 package principal;
 
+import api.login.Login;
+
 /**
  *
  * @author luisGonzalez
@@ -16,5 +18,7 @@ public class main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Login logeo = new Login();
+        logeo.setVisible(true);
     }
 }
