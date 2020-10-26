@@ -5,6 +5,8 @@
  */
 package principal.frontend.gui.calendari_cholquij;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author bryangmz
@@ -16,6 +18,7 @@ public class FrameCalendario extends javax.swing.JFrame {
      */
     public FrameCalendario() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -27,183 +30,155 @@ public class FrameCalendario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblCalendario = new javax.swing.JLabel();
-        panelCalendario = new javax.swing.JPanel();
-        lblCalendarioImg = new javax.swing.JLabel();
-        btnCruz = new javax.swing.JButton();
-        btnCosmo = new javax.swing.JButton();
+        lblTitulo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        btnCosmo1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        btnCosmo2 = new javax.swing.JButton();
-        lblIcon = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
+        jMenu6 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblCalendario.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        lblCalendario.setText("Calendario Cholq'ij");
+        lblTitulo.setBackground(new java.awt.Color(0, 0, 0));
+        lblTitulo.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitulo.setText("CALENDARIO CHOLQ'IJ");
+        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 470, 70));
 
-        lblCalendarioImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pruebas/Cholquij.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/principal/frontend/gui/calendari_cholquij/Portada.png"))); // NOI18N
+        jLabel1.setText(" ");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));
 
-        btnCruz.setText("CRUZ MAYA");
+        jMenuBar1.setForeground(new java.awt.Color(51, 51, 51));
+        jMenuBar1.setFont(new java.awt.Font("DejaVu Serif", 1, 18)); // NOI18N
 
-        btnCosmo.setText("COSMO VISION");
+        jMenu1.setText("Calendario Lunar");
+        jMenu1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu1);
 
-        jLabel1.setText("El Cholq’ij (Tzolkin) o Calendario Sagrado Maya ");
+        jMenu3.setText("Cholq'ij");
+        jMenu3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Etimologia", "El Cholq’ij (Tzolkin)" }));
+        jMenu4.setText("Forma de Contar");
+        jMenu4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu4MouseClicked(evt);
+            }
+        });
+        jMenu4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu4ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenu4);
 
-        btnCosmo1.setText("VISUALIZAR");
+        jMenu5.setText("Días");
+        jMenu5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu5MouseClicked(evt);
+            }
+        });
+        jMenu3.add(jMenu5);
 
-        jLabel2.setText("Las Ciencias y el Cholq´ij ");
+        jMenu6.setText("Calendario");
+        jMenu6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu6MouseClicked(evt);
+            }
+        });
+        jMenu3.add(jMenu6);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Astronomia", "Matematica", "Fisica", "Psicología" }));
+        jMenuBar1.add(jMenu3);
 
-        btnCosmo2.setText("VISUALIZAR");
-
-        javax.swing.GroupLayout panelCalendarioLayout = new javax.swing.GroupLayout(panelCalendario);
-        panelCalendario.setLayout(panelCalendarioLayout);
-        panelCalendarioLayout.setHorizontalGroup(
-            panelCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelCalendarioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblCalendarioImg)
-                .addGap(38, 38, 38)
-                .addGroup(panelCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelCalendarioLayout.createSequentialGroup()
-                        .addComponent(btnCruz, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCosmo, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29))
-                    .addGroup(panelCalendarioLayout.createSequentialGroup()
-                        .addGroup(panelCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panelCalendarioLayout.createSequentialGroup()
-                                .addGap(79, 79, 79)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(panelCalendarioLayout.createSequentialGroup()
-                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnCosmo2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(panelCalendarioLayout.createSequentialGroup()
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(27, 27, 27)
-                                    .addComponent(btnCosmo1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        panelCalendarioLayout.setVerticalGroup(
-            panelCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelCalendarioLayout.createSequentialGroup()
-                .addGroup(panelCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelCalendarioLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(panelCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCruz)
-                            .addComponent(btnCosmo))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCosmo1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCosmo2)))
-                    .addGroup(panelCalendarioLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblCalendarioImg, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/principal/frontend/gui/calendari_cholquij/Cholquij.jpg"))); // NOI18N
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblIcon)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(panelCalendario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblCalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(lblCalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(panelCalendario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(20, 20, 20))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblIcon)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
+        setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrameCalendario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrameCalendario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrameCalendario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrameCalendario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+        // TODO add your handling code here:
+        String mensaje = "Calendario Lunar"
+                + "\nAl Cholq’ij también se le denomina calendario lunar y marca \n"
+                + "nueve lunas llenas, período en el que se gesta un ser humano. \n"
+                + "De acuerdo con la cosmovisión maya, la lectura de los signos\n"
+                + "y numerales mayas descritos en este calendario espiritual y\n"
+                + "material le permite al ajq’ij orientar la vida de \n"
+                + "las personas, según su fecha de nacimiento; y también es \n"
+                + "utilizado por la Iyom para programar el recibimiento de una\n"
+                + "nueva criatura";
+        JOptionPane.showMessageDialog(null, mensaje, "Calendario Lunar", JOptionPane.INFORMATION_MESSAGE, new javax.swing.ImageIcon(getClass().getResource("/principal/frontend/gui/calendari_cholquij/calendario-maya-lunar.png")));
+    }//GEN-LAST:event_jMenu1MouseClicked
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrameCalendario().setVisible(true);
-            }
-        });
-    }
+    private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jMenu4ActionPerformed
+
+    private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
+        // TODO add your handling code here:
+        String mensaje = "Forma de contar el Cholq’ij\n\n"
+                + "Una manera de contar el Cholq’ij para los maya k’iche’ de la actualidad es iniciar el conteo\n"
+                + "en Waqxaqib’ B’atz’ (8 B’atz’), repitiendo así cada 260 días ese número y fecha \n"
+                + "(Aj Xol Ch’ok, 2008). Cada día del calendario se combina con un numeral que va del 1 al 13, \n"
+                + "hasta completar 260 días. El mismo día en que inicia la cuenta vuelve a repetirse cada \n"
+                + "260 días. En la antigüedad se acostumbraba a empezar el calendario en 1 Imox y se seguía el \n"
+                + "mismo proceso de multiplicación de los numerales con los días para alcanzar el total de 260 \n"
+                + "(Aj Xol Ch’ok, 2008). La construcción del ciclo de 260 días del calendario Cholq’ij tiene \n"
+                + "como base la disciplina vigesimal maya (13X20); “esta relación organiza una frecuencia matemática \n"
+                + "del movimiento natural lunar de 13:20 que se determina en base a las gravitaciones, \n"
+                + "principalmente de la Luna–Tierra, las cualidades del ser en la madre Tierra de acuerdo a su \n"
+                + "día de engendración, día del nacimiento y su proyección o misión en la vida” (García, Curruchiche \n"
+                + "& Taquirá, 2009, p. 234). Los días de este calendario “son representados también en los 10 \n"
+                + "dedos superiores de las manos, más los 10 dedos inferiores de los pies, lo que suma 20, que \n"
+                + "representa los días del Cholq’ij”, pues la construcción matemática del sistema vigesimal \n"
+                + "maya “se fundamenta en el Jun Winaq de 20 dedos”";
+        JOptionPane.showMessageDialog(null, mensaje, "Formas de Contar", JOptionPane.INFORMATION_MESSAGE, new javax.swing.ImageIcon(getClass().getResource("/principal/frontend/gui/calendari_cholquij/300px-Cholq'ij.jpg")));
+    }//GEN-LAST:event_jMenu4MouseClicked
+
+    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
+        // TODO add your handling code here:
+        String mensaje = "Días del Cholq’ij\n"
+                + "En maya k’iche’, los veinte días del Cholq’ij reciben los siguientes \n"
+                + "nombres: B’atz’, E, Aj, I’x, Tz’ikin, Ajmaq, No’j, Tijax, \n"
+                + "Kawoq, Ajpu, Imox, Iq’, Aq’ab’al, K’at, Kan, Kame, Kej, Q’anil, \n"
+                + "Toj, Tz’i’. Estos nombres corresponden al de los 20 nahuales o signos \n"
+                + "de los días del calendario, los cuales simbolizan ciertas \n"
+                + "particularidades que se asocian a las personas según la fecha de su \n"
+                + "nacimiento (Barrios, 2004; León, 1999; Aj Xol Ch’ok, 2008; Rupflin, 1999).";
+        JOptionPane.showMessageDialog(null, mensaje, "Dias del Calendario", JOptionPane.INFORMATION_MESSAGE, new javax.swing.ImageIcon(getClass().getResource("/principal/frontend/gui/calendari_cholquij/dias.jpg")));
+    }//GEN-LAST:event_jMenu5MouseClicked
+
+    private void jMenu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6MouseClicked
+        // TODO add your handling code here:
+        String mensaje = "Calendario Cholquij\n"
+                + "El Cholq’ij (término maya kaqchikel) es un calendario sagrado \n"
+                + "del pueblo Maya, compuesto por 260 días divididos en 13 meses\n"
+                + "También recibe el nombre de calendario ritual o calendario \n"
+                + "sagrado o Tzolkin";
+        JOptionPane.showMessageDialog(null, mensaje, "Calendario", JOptionPane.INFORMATION_MESSAGE, new javax.swing.ImageIcon(getClass().getResource("/principal/frontend/gui/calendari_cholquij/Cholquij.jpg")));
+    }//GEN-LAST:event_jMenu6MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCosmo;
-    private javax.swing.JButton btnCosmo1;
-    private javax.swing.JButton btnCosmo2;
-    private javax.swing.JButton btnCruz;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel lblCalendario;
-    private javax.swing.JLabel lblCalendarioImg;
-    private javax.swing.JLabel lblIcon;
-    private javax.swing.JPanel panelCalendario;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel lblTitulo;
     // End of variables declaration//GEN-END:variables
 }

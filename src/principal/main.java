@@ -5,6 +5,9 @@
  */
 package principal;
 
+import javax.swing.JFrame;
+import principal.frontend.gui.calendari_cholquij.FrameCalendario;
+
 /**
  *
  * @author luisGonzalez
@@ -16,5 +19,7 @@ public class main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        FrameCalendario calendarioCholquij = new FrameCalendario();
+        calendarioCholquij.setVisible(true);
     }
 }
