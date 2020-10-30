@@ -1,5 +1,5 @@
-CREATE DATABASE LineaTiempo;
-USE LineaTiempo;
+CREATE DATABASE CalendarioMaya;
+USE CalendarioMaya;
 
 CREATE TABLE Categoria (
 	idCategoria INT NOT NULL AUTO_INCREMENT,
@@ -97,7 +97,7 @@ CREATE TABLE RuedaCalendarica (
     CONSTRAINT FK_R3 FOREIGN KEY(idRueda3) REFERENCES Rueda3(idRueda)
 );
 
-CREATE TABLE DiasCholqij (
+CREATE TABLE DiaCholqij (
 	dia INT NOT NULL,
 	idNahual INT NOT NULL,
 	CONSTRAINT PK_ID_RUEDA_CALENDARICA PRIMARY KEY(dia),
