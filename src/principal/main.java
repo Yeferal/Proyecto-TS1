@@ -25,7 +25,7 @@ public class main {
             // TODO code application logic here
             javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-            JOptionPane.showMessageDialog(null, "No se encuentra el estilo, por lo tanto se utlizara por defecto..");
+            JOptionPane.showMessageDialog(null, "No se encuentra el estilo, por lo tanto se utlizara por defecto...");
         }        
         FrameCalendario calendarioCholquij = new FrameCalendario();
         calendarioCholquij.setVisible(true);

@@ -24,11 +24,11 @@ public class ManejadorDeCalendarioCholqij {
      * @return 
      */
     public KinCholqij verDiaSiguiente() {
-        if(numeroDeNahual==20){
-            numeroDeNahual=1;
-            if(numeroDeEnergia==13){
-                numeroDeEnergia=1;
-            }else{
+        if(numeroDeNahual == 20){
+            numeroDeNahual = 1;
+            if(numeroDeEnergia == 13){
+                numeroDeEnergia = 1;
+            } else {
                 numeroDeEnergia++;
             }
         }else{

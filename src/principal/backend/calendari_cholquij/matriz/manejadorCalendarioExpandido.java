@@ -33,26 +33,26 @@ public class manejadorCalendarioExpandido {
        private static Integer i=1,j=1;
        private static int filas = 0, columnas=0;
        //info energias
-       public static String energiaUno = "--HUN\nPrincipio de Unidad.\n Propósito, Atraer, Unificar.\n El principio y origen, el ser humano como un todo.";
-       public static String energiaDos = "--KA\nPrincipio de Polaridad.\nDesafío, Estabilizar, Polarizar.\nEsqueleto y esencia, Masculino y femenino;";
-       public static String energiaTres = "--OX\nPrincipio del ritmo o compensación.\nServicio, Unir, Activar.\nFlujo y reflujo, ascenso y descenso, acción y relación; ";
-       public static String energiaCuatro = "--KAN\nPrincipio de la medida.\nForma, Medir, Definir.\nEl cuatro como medida de todas las estructuras materiales (la pirámide),";
-       public static String energiaCinco = "--HO\nPrincipio de lo nuclear.\nEsplendor, Mandar, Dar poder.\nLa capacidad de realización, la movilidad de los dedos, percibir la belleza de la naturaleza";
-       public static String energiaSeis = "--UAK\nPrincipio del equilibrio orgánico\nIgualdad, Equilibrar, Organizo.\nLa polaridad del ritmo genera el principio orgánico, la ley del ordenamiento Hexagonal de las estructuras cristalinas y celulares.";
-       public static String energiaSiete = "--UUK\nPrincipio de unificación mental. (Poder místico)\nArmonización, Inspirar, Canalizo.\nLos hombres somos unidades resonantes dentro de un todo Mental";
-       public static String energiaOcho = "--UAXAC\nPrincipio de Resonancia armónica. (Octavas resonantes)\nIntegridad, Modelar, Armonizar.\nAsí como en música, las escalas se suceden en octavas, las energías vibratorias contactan y resuenan con \nsus respectivas equisonantes en los niveles superiores e inferiores de manifestación, como también con los \narmónicos secundarios derivados de la vibración.";
-       public static String energiaNueve = "--BOLON\nPrincipio de la Periodicidad cíclica.\nIntención, Realizar, Pulso.\nTodo cuanto se mueve lo hace de acuerdo a la Ley Cósmica; la periodicidad cíclica, no la repetición de los sucesos";
-       public static String energiaDiez = "--LAHUN\nPrincipio de la Manifestación.\nManifestar, Producir, Perfecciono.\nEl movimiento como energía se manifiesta en cada nivel u octava de vibración (dimensión)";
-       public static String energiaOnce = "--BULUC\nPrincipio de las Estructuras disonantes.\nLiberación, Divulgar, Disolver.\nTodas las estructuras, cualquiera sea su naturaleza, tienden a ingresar a nuevas realidades";
-       public static String energiaDoce = "--LAHAT\nPrincipio de la Estabilidad compleja: 2x6.\nCooperación, Universalizar, Dedicación.\nEs la polarización del equilibrio orgánico, mediante el cual cada especie gana su propio nivel de frecuencia armónica";
-       public static String energiaTrece = "--OXLAHUN\nPrincipio del movimiento universal o principio de vibración.\nPresencia, Trascender, Perdurar.\nTodo cuanto existe está en perpetuo movimiento, desde lo mas sutil con las vibraciones, \nhasta lo mas denso y pesado como expresión de las bajas frecuencias,\n a tal punto que estos extremos parecen en reposo. ";
+       public static String energiaUno = "--HUN \nPrincipio de Unidad.\n Propósito, Atraer, Unificar. \nEl principio y origen, el ser humano como un todo.";
+       public static String energiaDos = "--KA \nPrincipio de Polaridad.\n Desafío, Estabilizar, Polarizar. \nEsqueleto y esencia, Masculino y femenino;";
+       public static String energiaTres = "--OX \nPrincipio del ritmo o compensación.\nServicio, Unir, Activar. \nFlujo y reflujo, ascenso y descenso, acción y relación; ";
+       public static String energiaCuatro = "--KAN \nPrincipio de la medida. \nForma, Medir, Definir. \nEl cuatro como medida de todas las estructuras materiales (la pirámide),";
+       public static String energiaCinco = "--HO \nPrincipio de lo nuclear. \nEsplendor, Mandar, Dar poder. \nLa capacidad de realización, la movilidad de los dedos, percibir la belleza de la naturaleza";
+       public static String energiaSeis = "--UAK \nPrincipio del equilibrio orgánico \nIgualdad, Equilibrar, Organizo. \nLa polaridad del ritmo genera el principio orgánico, la ley del ordenamiento Hexagonal de las estructuras cristalinas y celulares.";
+       public static String energiaSiete = "--UUK \nPrincipio de unificación mental. (Poder místico) \nArmonización, Inspirar, Canalizo. \nLos hombres somos unidades resonantes dentro de un todo Mental";
+       public static String energiaOcho = "--UAXAC \nPrincipio de Resonancia armónica. (Octavas resonantes) \nIntegridad, Modelar, Armonizar. \nAsí como en música, las escalas se suceden en octavas, las energías vibratorias contactan y resuenan con \nsus respectivas equisonantes en los niveles superiores e inferiores de manifestación, como también con los \narmónicos secundarios derivados de la vibración.";
+       public static String energiaNueve = "--BOLON \nPrincipio de la Periodicidad cíclica. \nIntención, Realizar, Pulso. \nTodo cuanto se mueve lo hace de acuerdo a la Ley Cósmica; la periodicidad cíclica, no la repetición de los sucesos";
+       public static String energiaDiez = "--LAHUN \nPrincipio de la Manifestación. \nManifestar, Producir, Perfecciono. \nEl movimiento como energía se manifiesta en cada nivel u octava de vibración (dimensión)";
+       public static String energiaOnce = "--BULUC \nPrincipio de las Estructuras disonantes. \nLiberación, Divulgar, Disolver. \nTodas las estructuras, cualquiera sea su naturaleza, tienden a ingresar a nuevas realidades";
+       public static String energiaDoce = "--LAHAT \nPrincipio de la Estabilidad compleja: 2x6. \nCooperación, Universalizar, Dedicación. \nEs la polarización del equilibrio orgánico, mediante el cual cada especie gana su propio nivel de frecuencia armónica";
+       public static String energiaTrece = "--OXLAHUN \nPrincipio del movimiento universal o principio de vibración. \nPresencia, Trascender, Perdurar. \nTodo cuanto existe está en perpetuo movimiento, desde lo mas sutil con las vibraciones, \nhasta lo mas denso y pesado como expresión de las bajas frecuencias,\n a tal punto que estos extremos parecen en reposo. ";
 
        //Constantes de url
         private static final String INCIO_URL_DE_NUMERO = "/com/imagenesNumerosMayas/numero";
         private static final String INCIO_URL_DE_NAHUAL = "/com/imagenesNahualesMayas/Nahual";
 
 //creacion de cuadricula  
-public void cuadricula(JPanel cuadroPanel, JTextArea infoText,JLabel nahual, JLabel energia){
+public void cuadricula(JPanel cuadroPanel, JTextArea infoText, JLabel nahual, JLabel energia){
         try{
                 filas=21;
                 columnas=14;
@@ -337,7 +337,7 @@ private void cargarImagen(String path, JLabel label){
     }
 }
 
-private void verInformacion(JLabel label, int filaA, int columnaA, JTextArea infoText,JLabel nahual, JLabel energia){
+private void verInformacion(JLabel label, int filaA, int columnaA, JTextArea infoText, JLabel nahual, JLabel energia){
         int fila = filaA - 1;
         int columna = columnaA - 1;
        
@@ -345,9 +345,9 @@ private void verInformacion(JLabel label, int filaA, int columnaA, JTextArea inf
             public void mouseClicked(MouseEvent arg) {
                 infoText.setText("");
                 infoText.append("NAHUAL\n");
-                infoText.append(obtenerNahual(fila));
-                infoText.append("\nENERGIA");
-                infoText.append(obtenerEnergia(columna));
+                infoText.append(contarTexto(obtenerNahual(fila)));
+                infoText.append("\n\nENERGIA\n");
+                infoText.append(contarTexto(obtenerEnergia(columna)));
                 imagenNahual(fila,nahual);
                 imagenEnergia(columna, energia);  
             }
@@ -362,6 +362,30 @@ private void verInformacion(JLabel label, int filaA, int columnaA, JTextArea inf
             public void mousePressed(MouseEvent arg0) {}
             public void mouseReleased(MouseEvent arg0) {}
            });
-       
+    }
+
+    private String contarTexto(String text){
+        String retornar = "";
+        String[] split = text.split(" ");
+        if (split.length > 0) {
+            int contador = 0;
+            String cadena;
+            for (int a = 0; a < split.length; a++) {
+                cadena = split[a].replaceAll("\n", "");
+                cadena = cadena.replaceAll(" ", "");
+                cadena = cadena.replaceAll("\t", "");
+                if (a == 1) {
+                    retornar += "\n";
+                }
+                if (contador == 3) {
+                    retornar += cadena + "\n";
+                    contador = 0;
+                } else{
+                    retornar += cadena + " ";
+                    contador++;
+                }
+            } return retornar;
+        } return "";
+        
     }
 }
