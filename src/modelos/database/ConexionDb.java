@@ -5,10 +5,13 @@
  */
 package modelos.database;
 
+import java.sql.Connection;
+
 /**
  *
  * @author jose_
  */
-public class ConexionDb {
+public class ConexionDb {//Aquí la conexion a la base de datos
     
+    public static Connection conexion;
 }

@@ -9,6 +9,7 @@ package modelos.objetos;
  *
  * @author jose_
  */
+
 public class Cargador {
  
     private String nombre, descripcion;
