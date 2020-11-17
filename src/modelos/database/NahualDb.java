@@ -7,7 +7,10 @@ package modelos.database;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import modelos.objetos.Nahual;
 
 /**
@@ -56,5 +59,40 @@ public class NahualDb {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
+    
+    public List<Nahual> getNahuales(){
+        List<Nahual> nahuales = new ArrayList();
+        try {
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM Nahual;");
+            ResultSet resultado = statement.executeQuery();
+            while(resultado.next()) nahuales.add(instanciarNahual(resultado));
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return nahuales;
+    }
+    
+    public Nahual getNahual(int id){
+        try {
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM Nahual;");
+            ResultSet resultado = statement.executeQuery();
+            if(resultado.next()) return instanciarNahual(resultado);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+    
+    public Nahual instanciarNahual(ResultSet resultado) throws SQLException{
+        return new Nahual(
+                resultado.getInt("id"),
+                resultado.getString("nombre"),
+                resultado.getString("rutaImagen"),
+                resultado.getString("significado"),
+                resultado.getString("descripcion"),
+                resultado.getDate("fechaInicio"),
+                resultado.getDate("fechaFinalizacion")
+        );
     }
 }
