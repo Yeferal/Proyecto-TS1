@@ -46,7 +46,6 @@ public class FrameCalendario extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -223,8 +222,10 @@ public class FrameCalendario extends javax.swing.JFrame {
 
     private void btnMatrizCalendarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMatrizCalendarioActionPerformed
         // TODO add your handling code here:
-        matrizCholquijFrame cholquijFrame = new matrizCholquijFrame();
-        cholquijFrame.setVisible(true);
+        if (frame == null) {
+            frame = new matrizCholquijFrame();
+        }
+        frame.setVisible(true);
     }//GEN-LAST:event_btnMatrizCalendarioActionPerformed
 
     private void btnMatrizCalendario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMatrizCalendario2ActionPerformed

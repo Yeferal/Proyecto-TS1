@@ -37,7 +37,6 @@ public class matrizCholquijFrame extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         infoTextArea = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         cuadroPanel.setFont(new java.awt.Font("Waree", 0, 14)); // NOI18N
