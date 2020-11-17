@@ -14,7 +14,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UnsupportedLookAndFeelException;
+import modelos.objetos.Usuario;
+import principal.backend.perfil_usuario.Informacion;
 import principal.frontend.gui.calendari_cholquij.FrameCalendario;
+import principal.frontend.gui.perfil_usuario.FramePerfil;
 
 /**
  *
@@ -23,6 +26,7 @@ import principal.frontend.gui.calendari_cholquij.FrameCalendario;
 public class MenuPrincipal extends javax.swing.JFrame {
 
     FondoPanel fondoPanel = new FondoPanel();
+    private Informacion info = new Informacion();
     
     /**
      * Creates new form MenuPrincipal
@@ -45,20 +49,34 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         panelPerfil = new javax.swing.JPanel();
+        btnPerfil = new javax.swing.JButton();
         panelFondo = new javax.swing.JPanel();
         btnCholqij = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        btnPerfil.setText("...");
+        btnPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPerfilActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelPerfilLayout = new javax.swing.GroupLayout(panelPerfil);
         panelPerfil.setLayout(panelPerfilLayout);
         panelPerfilLayout.setHorizontalGroup(
             panelPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPerfilLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnPerfil)
+                .addGap(38, 38, 38))
         );
         panelPerfilLayout.setVerticalGroup(
             panelPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(panelPerfilLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(btnPerfil)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         btnCholqij.setText("Calendario Cholqij");
@@ -121,11 +139,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnCholqijActionPerformed
 
+    private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
+        //cambiar el parametro nombre por el indicado
+        Usuario user = info.buscarDatos("nombre");
+        if(user != null){
+            FramePerfil perfil = new FramePerfil(null, true, user);
+            perfil.setVisible(true);
+        } 
+    }//GEN-LAST:event_btnPerfilActionPerformed
+
     class FondoPanel extends JPanel {
         private Image imagen;
         
         @Override
-        public void paint(Graphics g){
+        public void paint(Graphics g){  
             imagen = new ImageIcon(getClass().getResource("imagenes/fondoPrincipal.jpg")).getImage();
             g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
             setOpaque(false);
@@ -135,6 +162,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCholqij;
+    private javax.swing.JButton btnPerfil;
     private javax.swing.JPanel panelFondo;
     private javax.swing.JPanel panelPerfil;
     // End of variables declaration//GEN-END:variables
