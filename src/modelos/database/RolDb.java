@@ -4,6 +4,13 @@
  * and open the template in the editor.
  */
 package modelos.database;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.LinkedList;
+import javax.swing.JOptionPane;
+import modelos.objetos.Rol;
+
 
 /**
  *
