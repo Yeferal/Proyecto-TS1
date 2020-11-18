@@ -94,5 +94,10 @@ public class Usuario {
     public void setRol(int rol) {
         this.rol = rol;
     }
+        @Override
+    public String toString() {
+        return "\n Usuario{" + "username=" + username + ", password=" + password + ", email=" + email + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + ", nacimiento=" + nacimiento + ", rol=" + rol + '}';
+    }
+
     
 }

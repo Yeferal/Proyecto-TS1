@@ -6,7 +6,10 @@
 package modelos.database;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import modelos.objetos.Informacion;
 
 /**
@@ -48,5 +51,49 @@ public class InformacionDb {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
+    
+    public List<Informacion> getInformaciones(){
+        List<Informacion> informaciones = new ArrayList();
+        try {
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM Informacion;");
+            ResultSet resultado = statement.executeQuery();
+            while(resultado.next()) informaciones.add(instanciarDeResultSet(resultado));
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return informaciones;
+    }
+    
+    public Informacion getInformacion(String titulo){
+        try {
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM Informacion WHERE titulo=?;");
+            statement.setString(1, titulo);
+            ResultSet resultado = statement.executeQuery();
+            if(resultado.next()) return instanciarDeResultSet(resultado);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+    
+    public Informacion getInformacion(int id){
+        try {
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM Informacion WHERE id=?;");
+            statement.setInt(1, id);
+            ResultSet resultado = statement.executeQuery();
+            if(resultado.next()) return instanciarDeResultSet(resultado);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+    
+    private Informacion instanciarDeResultSet(ResultSet resultado) throws SQLException{
+        return new Informacion(
+                resultado.getInt("id"),
+                resultado.getString("titulo"),
+                resultado.getString("descripcion")
+        );
     }
 }
