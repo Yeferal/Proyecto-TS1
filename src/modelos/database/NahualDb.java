@@ -5,7 +5,6 @@
  */
 package modelos.database;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -66,7 +65,7 @@ public class NahualDb {
         try {
             PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM Nahual;");
             ResultSet resultado = statement.executeQuery();
-            while(resultado.next()) nahuales.add(instanciarNahual(resultado));
+            while(resultado.next()) nahuales.add(instanciarDeResultSet(resultado));
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -75,16 +74,17 @@ public class NahualDb {
     
     public Nahual getNahual(int id){
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM Nahual;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM Nahual WHERE id=?;");
+            statement.setInt(1, id);
             ResultSet resultado = statement.executeQuery();
-            if(resultado.next()) return instanciarNahual(resultado);
+            if(resultado.next()) return instanciarDeResultSet(resultado);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return null;
     }
     
-    public Nahual instanciarNahual(ResultSet resultado) throws SQLException{
+    private Nahual instanciarDeResultSet(ResultSet resultado) throws SQLException{
         return new Nahual(
                 resultado.getInt("id"),
                 resultado.getString("nombre"),
