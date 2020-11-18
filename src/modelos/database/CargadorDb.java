@@ -6,7 +6,10 @@
 package modelos.database;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import modelos.objetos.Cargador;
 
 /**
@@ -48,5 +51,36 @@ public class CargadorDb {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
+    
+    public List<Cargador> getCargadores(){
+        List<Cargador> cargadores = new ArrayList();
+        try {
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM Cargador;");
+            ResultSet resultado = statement.executeQuery();
+            while(resultado.next()) cargadores.add(instanciarDeResultSet(resultado));
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return cargadores;
+    }
+    
+    public Cargador getCargador(String nombre){
+        try {
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM Cargador WHERE nombre=?;");
+            statement.setString(1, nombre);
+            ResultSet resultado = statement.executeQuery();
+            if(resultado.next()) return instanciarDeResultSet(resultado);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+    
+    private Cargador instanciarDeResultSet(ResultSet resultado) throws SQLException{
+        return new Cargador(
+                resultado.getString("nombre"),
+                resultado.getString("descripcion")
+        );
     }
 }
