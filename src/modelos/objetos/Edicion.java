@@ -15,17 +15,17 @@ public class Edicion {
     
     private int id;
     private String usuario;
-    private HechoHistorico hechoHistorico;
+    private int idHechoHIstorico;
     private Date fecha;
     private boolean creacion;
 
     public Edicion() {
     }
 
-    public Edicion(int id, String usuario, HechoHistorico hechoHistorico, Date fecha, boolean creacion) {
+    public Edicion(int id, String usuario, int idHechoHistorico, Date fecha, boolean creacion) {
         this.id = id;
         this.usuario = usuario;
-        this.hechoHistorico = hechoHistorico;
+        this.idHechoHIstorico = idHechoHistorico;
         this.fecha = fecha;
         this.creacion = creacion;
     }
@@ -46,12 +46,12 @@ public class Edicion {
         this.usuario = usuario;
     }
 
-    public HechoHistorico getHechoHistorico() {
-        return hechoHistorico;
+    public int getIdHechoHIstorico() {
+        return idHechoHIstorico;
     }
 
-    public void setHechoHistorico(HechoHistorico hechoHistorico) {
-        this.hechoHistorico = hechoHistorico;
+    public void setIdHechoHIstorico(int idHechoHIstorico) {
+        this.idHechoHIstorico = idHechoHIstorico;
     }
 
     public Date getFecha() {
@@ -69,5 +69,10 @@ public class Edicion {
     public void setCreacion(boolean creacion) {
         this.creacion = creacion;
     }
-    
+
+    @Override
+    public String toString() {
+        return "\n Edicion{" + "id=" + id + ", usuario=" + usuario + ", idHechoHIstorico=" + idHechoHIstorico + ", fecha=" + fecha + ", creacion=" + creacion + '}';
+    }
+
 }
