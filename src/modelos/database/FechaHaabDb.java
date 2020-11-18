@@ -6,7 +6,10 @@
 package modelos.database;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import modelos.objetos.FechaHaab;
 
 /**
@@ -54,5 +57,42 @@ public class FechaHaabDb {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
+    
+    public List<FechaHaab> getFechas(){
+        List<FechaHaab> fechas = new ArrayList();
+        try {
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM CalendarioHaab;");
+            ResultSet resultado = statement.executeQuery();
+            while(resultado.next()) fechas.add(instanciarDeResultSet(resultado));
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return fechas;
+    }
+    
+    public FechaHaab getFecha(int id){
+        try {
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM CalendarioHaab WHERE id=?;");
+            statement.setInt(1, id);
+            ResultSet resultado = statement.executeQuery();
+            if(resultado.next()) return instanciarDeResultSet(resultado);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+    
+    private FechaHaab instanciarDeResultSet(ResultSet resultado) throws SQLException{
+        NahualDb accesoNahual = new NahualDb();
+        WinalDb accesoWinal = new WinalDb();
+        return new FechaHaab(
+                resultado.getInt("id"),
+                accesoNahual.getNahual(resultado.getInt("idNahual")),
+                accesoWinal.getWinal(resultado.getInt("idWinal")),
+                resultado.getString("nombre"),
+                resultado.getString("descripcion"),
+                resultado.getDate("fecha")
+        );
     }
 }
