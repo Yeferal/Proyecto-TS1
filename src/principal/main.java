@@ -16,5 +16,13 @@ public class main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+                //INICIAMOS CONECTANDO  DB
+        ConexionDb.obtenerConexion();
+
+        
+                //CERRAMOS CONEXION DB
+        ConexionDb.cerrar();
+
     }
 }
