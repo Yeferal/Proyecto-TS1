@@ -6,7 +6,10 @@
 package modelos.database;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import modelos.objetos.FechaRuedaCalendarica;
 
 /**
@@ -50,5 +53,40 @@ public class FechaRuedaCalendaricaDb {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
+    
+    public List<FechaRuedaCalendarica> getFechas(){
+        List<FechaRuedaCalendarica> fechas = new ArrayList();
+        try {
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM RuedaCalendarica;");
+            ResultSet resultado = statement.executeQuery();
+            while(resultado.next()) fechas.add(instanciarDeResultSet(resultado));
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return fechas;
+    }
+    
+    public FechaRuedaCalendarica getFecha(int id){
+        try {
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM RuedaCalendarica WHERE id=?;");
+            statement.setInt(1, id);
+            ResultSet resultado = statement.executeQuery();
+            if(resultado.next()) return instanciarDeResultSet(resultado);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+    
+    private FechaRuedaCalendarica instanciarDeResultSet(ResultSet resultado) throws SQLException{
+        FechaHaabDb accesoHaab = new FechaHaabDb();
+        FechaCholqijDb accesoCholqij = new FechaCholqijDb();
+        return new FechaRuedaCalendarica(
+                resultado.getInt("id"),
+                accesoHaab.getFecha(resultado.getInt("idFechaHaab")),
+                accesoCholqij.getFecha(resultado.getInt("idFechaCholqij")),
+                resultado.getString("descripcion")
+        );
     }
 }
