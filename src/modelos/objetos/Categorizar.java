@@ -5,28 +5,38 @@ package modelos.objetos;
  * @author esmeralda
  */
 public class Categorizar {
-    Categoria categoria1;
-    HechoHistorico hecho;
+    int idHecho;
+    int idCategoria1;
 
-    public Categorizar(Categoria categoria1, HechoHistorico hecho) {
-        this.categoria1 = categoria1;
-        this.hecho = hecho;
+    public Categorizar(int idHecho, int idCategoria1) {
+        this.idHecho = idHecho;
+        this.idCategoria1 = idCategoria1;
+    }
+    
+
+    public int getIdCategoria1() {
+        return idCategoria1;
     }
 
-    public Categoria getCategoria1() {
-        return categoria1;
+    public void setIdCategoria1(int idCategoria1) {
+        this.idCategoria1 = idCategoria1;
     }
 
-    public void setCategoria1(Categoria categoria1) {
-        this.categoria1 = categoria1;
+    public int getIdHecho() {
+        return idHecho;
     }
 
-    public HechoHistorico getHecho() {
-        return hecho;
+    public void setIdHecho(int idHecho) {
+        this.idHecho = idHecho;
     }
 
-    public void setHecho(HechoHistorico hecho) {
-        this.hecho = hecho;
+    
+
+    @Override
+    public String toString() {
+        return "\n Categorizar{" + "idCategoria1=" + idCategoria1 + ", idHecho=" + idHecho + '}';
     }
+
+
     
 }
