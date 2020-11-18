@@ -37,5 +37,10 @@ public class Rol {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+        @Override
+    public String toString() {
+        return "\nRol{" + "id=" + id + ", tipo=" + tipo + '}';
+    }
+
     
 }
