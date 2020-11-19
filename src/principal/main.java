@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelos.database.ConexionDb;
+import api.login.Login;
 
 /**
  *
@@ -42,5 +43,8 @@ public class main {
             Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        // TODO code application logic here
+        Login logeo = new Login();
+        logeo.setVisible(true);
     }
 }
