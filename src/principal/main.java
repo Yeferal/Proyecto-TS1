@@ -45,7 +45,8 @@ public class main {
 */
 
             Login logeo = new Login();
-            logeo.setVisible(true);
+            logeo.iniciar();
+            //logeo.setVisible(true);
             
         } catch (SQLException ex) {
             Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
