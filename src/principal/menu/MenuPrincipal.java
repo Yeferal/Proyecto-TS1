@@ -11,6 +11,7 @@ import java.awt.Image;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -25,20 +26,22 @@ import principal.frontend.gui.perfil_usuario.FramePerfil;
  */
 public class MenuPrincipal extends javax.swing.JFrame {
 
-    FondoPanel fondoPanel = new FondoPanel();
     private Informacion info = new Informacion();
+    public final static ImageIcon BG = new ImageIcon("Imagenes/BackGroundMainMenu.jpg");
     
     /**
      * Creates new form MenuPrincipal
      */
     public MenuPrincipal() {
-        this.setContentPane(fondoPanel);
+        
         initComponents();
         setLocationRelativeTo(null);       
-        panelFondo.setBackground(new Color(255, 255, 255, 100));
-        panelPerfil.setBackground(new Color(255, 255, 255, 100));
+        
+        setBackground();
+        
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,37 +51,31 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelPerfil = new javax.swing.JPanel();
-        btnPerfil = new javax.swing.JButton();
-        panelFondo = new javax.swing.JPanel();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        pnlMenu = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         btnCholqij = new javax.swing.JButton();
+        btnCholqij1 = new javax.swing.JButton();
+        btnCholqij2 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        btnPerfil = new javax.swing.JButton();
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu Principal");
+        setResizable(false);
 
-        btnPerfil.setText("...");
-        btnPerfil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPerfilActionPerformed(evt);
-            }
-        });
+        pnlMenu.setBackground(new java.awt.Color(51, 153, 255));
 
-        javax.swing.GroupLayout panelPerfilLayout = new javax.swing.GroupLayout(panelPerfil);
-        panelPerfil.setLayout(panelPerfilLayout);
-        panelPerfilLayout.setHorizontalGroup(
-            panelPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPerfilLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnPerfil)
-                .addGap(38, 38, 38))
-        );
-        panelPerfilLayout.setVerticalGroup(
-            panelPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelPerfilLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(btnPerfil)
-                .addContainerGap(43, Short.MAX_VALUE))
-        );
+        jButton1.setBackground(new java.awt.Color(204, 204, 204));
+        jButton1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
+        jButton1.setText("Calendario Maya");
 
+        btnCholqij.setBackground(new java.awt.Color(204, 204, 204));
+        btnCholqij.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btnCholqij.setForeground(new java.awt.Color(0, 0, 0));
         btnCholqij.setText("Calendario Cholqij");
         btnCholqij.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,42 +83,85 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout panelFondoLayout = new javax.swing.GroupLayout(panelFondo);
-        panelFondo.setLayout(panelFondoLayout);
-        panelFondoLayout.setHorizontalGroup(
-            panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelFondoLayout.createSequentialGroup()
-                .addGap(264, 264, 264)
-                .addComponent(btnCholqij, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(270, Short.MAX_VALUE))
-        );
-        panelFondoLayout.setVerticalGroup(
-            panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelFondoLayout.createSequentialGroup()
-                .addGap(59, 59, 59)
+        btnCholqij1.setBackground(new java.awt.Color(204, 204, 204));
+        btnCholqij1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btnCholqij1.setForeground(new java.awt.Color(0, 0, 0));
+        btnCholqij1.setText("Calendario Haab");
+        btnCholqij1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCholqij1ActionPerformed(evt);
+            }
+        });
+
+        btnCholqij2.setBackground(new java.awt.Color(204, 204, 204));
+        btnCholqij2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btnCholqij2.setForeground(new java.awt.Color(0, 0, 0));
+        btnCholqij2.setText("Rueda Calendarica");
+        btnCholqij2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCholqij2ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setBackground(new java.awt.Color(204, 204, 204));
+        jButton2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(0, 0, 0));
+        jButton2.setText("Nahuales");
+
+        btnPerfil.setBackground(new java.awt.Color(204, 204, 204));
+        btnPerfil.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btnPerfil.setForeground(new java.awt.Color(0, 0, 0));
+        btnPerfil.setText("Perfil");
+        btnPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPerfilActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
+        pnlMenu.setLayout(pnlMenuLayout);
+        pnlMenuLayout.setHorizontalGroup(
+            pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlMenuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCholqij)
-                .addContainerGap(276, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCholqij1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCholqij2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE)
+                .addComponent(btnPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        pnlMenuLayout.setVerticalGroup(
+            pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlMenuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(btnCholqij)
+                    .addComponent(btnCholqij1)
+                    .addComponent(btnCholqij2)
+                    .addComponent(jButton2)
+                    .addComponent(btnPerfil))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panelPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(43, Short.MAX_VALUE))
+            .addComponent(pnlMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(panelPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 490, Short.MAX_VALUE))
         );
 
         pack();
@@ -147,23 +187,33 @@ public class MenuPrincipal extends javax.swing.JFrame {
             perfil.setVisible(true);
         } 
     }//GEN-LAST:event_btnPerfilActionPerformed
-
-    class FondoPanel extends JPanel {
-        private Image imagen;
+    private void setBackground() {
         
-        @Override
-        public void paint(Graphics g){  
-            imagen = new ImageIcon(getClass().getResource("imagenes/fondoPrincipal.jpg")).getImage();
-            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
-            setOpaque(false);
-            super.paint(g);
-        }
+        JLabel backgroundLbl = new JLabel();
+        backgroundLbl.setSize(996, 559);
+        backgroundLbl.setLocation(0, 0);
+        backgroundLbl.setIcon(BG);
+        this.add(backgroundLbl);
+        backgroundLbl.setVisible(true);
+
     }
+    private void btnCholqij1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCholqij1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCholqij1ActionPerformed
+
+    private void btnCholqij2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCholqij2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCholqij2ActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCholqij;
+    private javax.swing.JButton btnCholqij1;
+    private javax.swing.JButton btnCholqij2;
     private javax.swing.JButton btnPerfil;
-    private javax.swing.JPanel panelFondo;
-    private javax.swing.JPanel panelPerfil;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JPanel pnlMenu;
     // End of variables declaration//GEN-END:variables
 }
