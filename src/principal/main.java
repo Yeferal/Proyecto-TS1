@@ -31,20 +31,23 @@ public class main {
             
             //INICIAMOS CONECTANDO  DB  
             ConexionDb.obtenerConexion();
-        MenuPrincipal menu = new MenuPrincipal();
-        menu.setVisible(true);
             
+            MenuPrincipal menu = new MenuPrincipal();
+            menu.setVisible(true);
             
-            //CERRAMOS CONEXION DB
-            ConexionDb.cerrar();
+/*
+            Comenté el login dado que entiendo, se usa para realizar ciertas actividades (aceptar hechos
+            agregarlos) pero la funcionalidad del sistema en sí es abierto, habría que agregar una opcion
+            pero no obligar a iniciar sesion ¿no? xd
+*/
+
+//            Login logeo = new Login();
+//            logeo.setVisible(true);
+            
         } catch (SQLException ex) {
             Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        // TODO code application logic here
-        Login logeo = new Login();
-        logeo.setVisible(true);
     }
 }

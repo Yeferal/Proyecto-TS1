@@ -21,7 +21,7 @@ public class FechaCholqijDb {
     public void crear(FechaCholqij fecha){
         try {
             PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO CalendarioCholqij "
-                    + "(idNahual,idEnergia,fecha,descripcion) VALUES (?,?,?,?);");
+                    + "(nahual,energia,fecha,descripcion) VALUES (?,?,?,?);");
             statement.setInt(1,fecha.getNahual().getId());
             statement.setInt(2, fecha.getEnergia().getId());
             statement.setDate(3, fecha.getFecha());
@@ -35,7 +35,7 @@ public class FechaCholqijDb {
     public void modificar(FechaCholqij fecha){
         try {
             PreparedStatement statement = ConexionDb.conexion.prepareStatement("UPDATE CalendarioCholqij "
-                    + "SET idNahual=?, idEnergia=?, fecha=?, descripcion=? WHERE id=?;");
+                    + "SET nahual=?, energia=?, fecha=?, descripcion=? WHERE id=?;");
             statement.setInt(1,fecha.getNahual().getId());
             statement.setInt(2, fecha.getEnergia().getId());
             statement.setDate(3, fecha.getFecha());
@@ -86,8 +86,8 @@ public class FechaCholqijDb {
         EnergiaDb accesoEnergia = new EnergiaDb();
         return new FechaCholqij(
                 resultado.getInt("id"),
-                accesoNahual.getNahual(resultado.getInt("idNahual")),
-                accesoEnergia.getEnergia(resultado.getInt("idEnergia")),
+                accesoNahual.getNahual(resultado.getInt("nahual")),
+                accesoEnergia.getEnergia(resultado.getInt("energia")),
                 resultado.getDate("fecha"),
                 resultado.getString("descripcion")
         );

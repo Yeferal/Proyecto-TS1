@@ -5,14 +5,14 @@
  */
 package frontend.gui;
 
-import db.AccesoDB;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.time.LocalDate;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import modelos.database.FechaHaabDb;
+import modelos.objetos.FechaHaab;
 
 /**
  *
@@ -20,94 +20,65 @@ import javax.swing.JPanel;
  */
 public class CalendarioHaab extends javax.swing.JFrame {
 
-    private int dia = 1;
-    private int mes = 0;
-    private String[] meses = {"pop","Wo'","Sip","Sotz'","Sek","Xul","Yaxk'in","Mol","Ch'en","Yax","Sak'","Keh","Mak","K'ank'in","Muwan","Pax","K'ayab'","Kumk'u","Wayeb'"};
+    private FechaHaab fechaActual;
     
     /**
      * Creates new form CalendarioHaab
      */
     public CalendarioHaab() {
         initComponents();
-        try {
-            AccesoDB acceso = new AccesoDB();
-            acceso.iniciarSesion("root", "root");
-            System.out.println(acceso.getConexion().getMetaData().toString());
-            escribirFecha();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
+        FechaHaabDb acceso = new FechaHaabDb();
+        fechaActual = acceso.getFecha(1);
+        escribirFecha();
     }
     
     public void escribirFecha(){
-        diaHaab.setText(String.valueOf(dia));
-        mesHaab.setText(meses[mes]);
+        diaHaab.setText(fechaActual.getNahual().getNombre());
+        mesHaab.setText(fechaActual.getWinal().getNombre());
     }
     
     public void fechaSiguiente(){
-        if(mes == 18){
-            if(dia == 5){
-                dia = 1;
-                mes = 0;
-            }else{
-                dia++;
-            }
+        FechaHaabDb acceso = new FechaHaabDb();
+        if(fechaActual.getId()==365){
+            fechaActual = acceso.getFecha(1);
         }else{
-            if(dia == 20){
-                dia = 1;
-                mes++;
-            }else{
-                dia++;
-            }
+            fechaActual = acceso.getFecha(fechaActual.getId()+1);
         }
         escribirFecha();
     }
     
     public void fechaAnterior(){
-        if(mes == 0){
-            if(dia == 1){
-                dia = 5;
-                mes = 18;
-            }else{
-                dia--;
-            }
+        FechaHaabDb acceso = new FechaHaabDb();
+        if(fechaActual.getId()==1){
+            fechaActual = acceso.getFecha(365);
         }else{
-            if(dia == 1){
-                dia = 20;
-                mes--;
-            }else{
-                dia--;
-            }
+            fechaActual = acceso.getFecha(fechaActual.getId()-1);
         }
         escribirFecha();
     }
     
     public void mesSiguiente(){
-        if(mes == 17){
-            if(dia >= 5){
-                mes = 18;
-                dia = 5;
-            }else{
-                mes++;
-            }
+        FechaHaabDb acceso = new FechaHaabDb();
+        if(fechaActual.getId()>=345 && fechaActual.getId() <=360){
+            fechaActual = acceso.getFecha(365);
+        }else if(fechaActual.getId()>360){
+            int resto = fechaActual.getId()-360;
+            fechaActual = acceso.getFecha(resto);
         }else{
-            if(mes == 18){
-                mes = 0;
-            }else{
-                mes++;
-            }
+            fechaActual = acceso.getFecha(fechaActual.getId()+20);
         }
         escribirFecha();
     }
     
     public void mesAnterior(){
-        if(mes == 0){
-            mes = 18;
-            if(dia >= 5){
-                dia = 5;
-            }
+        FechaHaabDb acceso = new FechaHaabDb();
+        if(fechaActual.getId()>=5 && fechaActual.getId() <=20){
+            fechaActual = acceso.getFecha(365);
+        }else if(fechaActual.getId()<5){
+            int resto = fechaActual.getId()+360;
+            fechaActual = acceso.getFecha(resto);
         }else{
-            mes--;
+            fechaActual = acceso.getFecha(fechaActual.getId()-20);
         }
         escribirFecha();
     }
@@ -124,9 +95,10 @@ public class CalendarioHaab extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         DiaComboBox = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        MesComboBox = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
@@ -142,20 +114,27 @@ public class CalendarioHaab extends javax.swing.JFrame {
 
         jLabel8.setText("Seleccion de dia en especifico:");
 
-        DiaComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19" }));
+        DiaComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pop", "Wo'", "Sip", "Sotz'", "Sek", "Xul", "Yaxk'in", "Mol", "Ch'en", "Yax", "Sak'", "Keh", "Mak", "K'ank'in", "Muwan", "Pax", "K'ayab'", "Kumk'u", "Wayeb'" }));
+        MesComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
 
         jLabel9.setText("Dia:");
 
         jLabel10.setText("Mes:");
+
+        jButton7.setText("Buscar");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(79, Short.MAX_VALUE)
+                .addContainerGap(73, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jLabel8)
@@ -163,17 +142,19 @@ public class CalendarioHaab extends javax.swing.JFrame {
                             .addComponent(jLabel9)
                             .addGap(77, 77, 77)))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(DiaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
                             .addComponent(jLabel10)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(46, 46, 46))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(DiaComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(MesComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addGap(52, 52, 52))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addContainerGap()
                 .addComponent(jLabel8)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -182,8 +163,10 @@ public class CalendarioHaab extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(38, Short.MAX_VALUE))
+                    .addComponent(MesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton7)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Mes"));
@@ -202,30 +185,29 @@ public class CalendarioHaab extends javax.swing.JFrame {
             }
         });
 
-        mesHaab.setText("  Imagen Mes");
+        mesHaab.setText(".");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(mesHaab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(mesHaab, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButton5)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(mesHaab, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(mesHaab)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton6)
                     .addComponent(jButton5)))
@@ -247,29 +229,28 @@ public class CalendarioHaab extends javax.swing.JFrame {
             }
         });
 
-        diaHaab.setText("   Imagen Dia");
+        diaHaab.setText(".");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(diaHaab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(diaHaab, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButton2)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(diaHaab, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(diaHaab)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -320,15 +301,23 @@ public class CalendarioHaab extends javax.swing.JFrame {
         mesAnterior();
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        LocalDate date = LocalDate.of(2020,MesComboBox.getSelectedIndex()+1,DiaComboBox.getSelectedIndex()+1);
+        FechaHaabDb acceso = new FechaHaabDb();
+        fechaActual = acceso.getFechaEspecifica(date);
+        escribirFecha();
+    }//GEN-LAST:event_jButton7ActionPerformed
+
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> DiaComboBox;
+    private javax.swing.JComboBox<String> MesComboBox;
     private javax.swing.JLabel diaHaab;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

@@ -5,9 +5,11 @@
  */
 package modelos.database;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import modelos.objetos.FechaHaab;
@@ -21,7 +23,7 @@ public class FechaHaabDb {
     public void crear(FechaHaab fecha){
         try {
             PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO CalendarioHaab "
-                    + "(idNahual,idWinal,nombre,descripcion,fecha) VALUES (?,?,?,?,?);");
+                    + "(nahual,winal,nombre,descripcion,fecha) VALUES (?,?,?,?,?);");
             statement.setInt(1,fecha.getNahual().getId());
             statement.setInt(2, fecha.getWinal().getId());
             statement.setString(3, fecha.getNombre());
@@ -36,7 +38,7 @@ public class FechaHaabDb {
     public void modificar(FechaHaab fecha){
         try {
             PreparedStatement statement = ConexionDb.conexion.prepareStatement("UPDATE "
-                    + "Cargador SET idNahual=?, idWinal=?, nombre=?, descripcion=?, fecha=? WHERE id=?;");
+                    + "Cargador SET nahual=?, winal=?, nombre=?, descripcion=?, fecha=? WHERE id=?;");
             statement.setInt(1, fecha.getNahual().getId());
             statement.setInt(2, fecha.getWinal().getId());
             statement.setString(3, fecha.getNombre());
@@ -82,14 +84,26 @@ public class FechaHaabDb {
         }
         return null;
     }
+
+    public FechaHaab getFechaEspecifica(LocalDate fecha) {
+        try {
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM CalendarioHaab WHERE fecha=?;");
+            statement.setDate(1, Date.valueOf(fecha));
+            ResultSet resultado = statement.executeQuery();
+            if(resultado.next()) return instanciarDeResultSet(resultado);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }   
     
     private FechaHaab instanciarDeResultSet(ResultSet resultado) throws SQLException{
         NahualDb accesoNahual = new NahualDb();
         WinalDb accesoWinal = new WinalDb();
         return new FechaHaab(
                 resultado.getInt("id"),
-                accesoNahual.getNahual(resultado.getInt("idNahual")),
-                accesoWinal.getWinal(resultado.getInt("idWinal")),
+                accesoNahual.getNahual(resultado.getInt("nahual")),
+                accesoWinal.getWinal(resultado.getInt("winal")),
                 resultado.getString("nombre"),
                 resultado.getString("descripcion"),
                 resultado.getDate("fecha")

@@ -5,6 +5,7 @@
  */
 package principal.menu;
 
+import frontend.gui.CalendarioHaab;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -198,7 +199,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     }
     private void btnCholqij1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCholqij1ActionPerformed
-        // TODO add your handling code here:
+        CalendarioHaab calendario = new CalendarioHaab();
+        this.dispose();
+        calendario.setVisible(true);
     }//GEN-LAST:event_btnCholqij1ActionPerformed
 
     private void btnCholqij2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCholqij2ActionPerformed
