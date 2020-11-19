@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 public class Login extends javax.swing.JFrame {
 
     FondoPanel fondoPanel = new FondoPanel();
+    SingUp singUp = new SingUp(this);
     
     public Login() {
         this.setContentPane(fondoPanel);
@@ -92,16 +93,16 @@ public class Login extends javax.swing.JFrame {
         botonSingIn.setBackground(new java.awt.Color(247, 228, 22));
         botonSingIn.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         botonSingIn.setText("SING IN");
-        botonSingIn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonSingInActionPerformed(evt);
-            }
-        });
 
         jSeparator1.setBackground(new java.awt.Color(247, 228, 22));
 
         botonSingUp.setBackground(new java.awt.Color(158, 247, 22));
         botonSingUp.setText("SING UP");
+        botonSingUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSingUpActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelSesionLayout = new javax.swing.GroupLayout(panelSesion);
         panelSesion.setLayout(panelSesionLayout);
@@ -164,16 +165,16 @@ public class Login extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelLayout.createSequentialGroup()
-                        .addGap(106, 106, 106)
+                        .addGap(130, 130, 130)
                         .addComponent(panelSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                .addContainerGap(54, Short.MAX_VALUE)
+                .addContainerGap(60, Short.MAX_VALUE)
                 .addComponent(panelSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addGap(43, 43, 43)
                 .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -202,9 +203,11 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jPasswordField1KeyReleased
 
-    private void botonSingInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSingInActionPerformed
-        JOptionPane.showMessageDialog(null, "Hola");
-    }//GEN-LAST:event_botonSingInActionPerformed
+    private void botonSingUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSingUpActionPerformed
+        singUp.limpiar();
+        singUp.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_botonSingUpActionPerformed
 
     
 
