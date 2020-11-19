@@ -93,16 +93,6 @@ public class Login extends javax.swing.JFrame {
         botonSingIn.setBackground(new java.awt.Color(247, 228, 22));
         botonSingIn.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         botonSingIn.setText("SING IN");
-        botonSingIn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonSingInMouseClicked(evt);
-            }
-        });
-        botonSingIn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonSingInActionPerformed(evt);
-            }
-        });
 
         jSeparator1.setBackground(new java.awt.Color(247, 228, 22));
 
@@ -212,14 +202,6 @@ public class Login extends javax.swing.JFrame {
             botonSingIn.doClick();
         }
     }//GEN-LAST:event_jPasswordField1KeyReleased
-
-    private void botonSingInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSingInActionPerformed
-        
-    }//GEN-LAST:event_botonSingInActionPerformed
-
-    private void botonSingInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSingInMouseClicked
-        
-    }//GEN-LAST:event_botonSingInMouseClicked
 
     private void botonSingUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSingUpActionPerformed
         singUp.limpiar();

@@ -36,14 +36,14 @@ public class SingUp extends javax.swing.JFrame {
         if(verificarCampos()){
             if (isContraseniaIgual()) {
                 //Aquie se enviaria los datos del Usuario para ser Registrado
-                Usuario usuarioNuevo = new Usuario(textFieldUserName.getText()
-                                                , textFieldContrasenia.getText()
-                                                , textFieldCorreo.getText()
-                                                , textFieldNombre.getText()
-                                                , textFieldApellido.getText()
-                                                , textFieldTelefono.getText()
-                                                , fecha
-                                                , comboBoxRol.getSelectedIndex());
+                Usuario usuarioNuevo = new Usuario(textFieldUserName.getText(),
+                                                    textFieldContrasenia.getText(),
+                                                    textFieldCorreo.getText(),
+                                                    textFieldNombre.getText(),
+                                                    textFieldApellido.getText(),
+                                                    textFieldTelefono.getText(),
+                                                    fecha,
+                                                    comboBoxRol.getSelectedIndex());
                 //Aqui irian los metodos o lo que sea para registrar
                 //se enviaria este -> usuarioNuevo,
                 
@@ -56,7 +56,7 @@ public class SingUp extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Todos los campos deben de ser LLenados\n(Todos los campos son obligatorios)*");
         }
     }
-    
+    //limpia cada uno de los campos
     public void limpiar(){
         textFieldNombre.setText("");
         textFieldApellido.setText("");
@@ -81,7 +81,7 @@ public class SingUp extends javax.swing.JFrame {
         
         return false;
     }
-    
+    //verifica que ambas contrasenias sean iguales
     private boolean isContraseniaIgual(){
         String contrasenia1 = textFieldContrasenia.getText();
         String contrasenia2 = textFieldConfirme.getText();
