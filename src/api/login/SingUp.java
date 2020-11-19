@@ -8,10 +8,14 @@ package api.login;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import modelos.database.RolDb;
 import modelos.database.UsuarioDb;
+import modelos.objetos.Rol;
 import modelos.objetos.Usuario;
 
 /**
@@ -22,6 +26,9 @@ public class SingUp extends javax.swing.JFrame {
 
     private FondoPanel fondoPanel = new FondoPanel();
     private Login login;
+    private LinkedList<Rol> listaRoles = new LinkedList<>();
+    private UsuarioDb usuarioDb = new UsuarioDb();
+    private RolDb rolDb = new RolDb();
     
     public SingUp(Login login) {
         this.login = login;
@@ -31,10 +38,11 @@ public class SingUp extends javax.swing.JFrame {
     }
     
     private void verificarDatosCorrectos(){
-        Date fecha = new Date(dateChoserFecha.getDate().getYear(), dateChoserFecha.getDate().getMonth(), dateChoserFecha.getDate().getDay());
+        
         
         if(verificarCampos()){
             if (isContraseniaIgual()) {
+                Date fecha = new Date(dateChoserFecha.getDate().getYear(), dateChoserFecha.getDate().getMonth(), dateChoserFecha.getDate().getDay());
                 //Aquie se enviaria los datos del Usuario para ser Registrado
                 Usuario usuarioNuevo = new Usuario(textFieldUserName.getText(),
                                                     textFieldContrasenia.getText(),
@@ -43,10 +51,10 @@ public class SingUp extends javax.swing.JFrame {
                                                     textFieldApellido.getText(),
                                                     textFieldTelefono.getText(),
                                                     fecha,
-                                                    comboBoxRol.getSelectedIndex());
+                                                    listaRoles.get(comboBoxRol.getSelectedIndex()).getId());
                 //Aqui irian los metodos o lo que sea para registrar
                 //se enviaria este -> usuarioNuevo,
-                
+                usuarioDb.crearUsuario(usuarioNuevo);
                 
                 
             }else{
@@ -65,6 +73,15 @@ public class SingUp extends javax.swing.JFrame {
         textFieldConfirme.setText("");
         textFieldContrasenia.setText("");
         dateChoserFecha.setDate(null);
+        agregarRol();
+    }
+    
+    private void agregarRol(){
+        comboBoxRol.removeAllItems();
+        listaRoles = rolDb.leerRoles();
+        for (int i = 0; i < listaRoles.size(); i++) {
+            comboBoxRol.addItem(listaRoles.get(i).getTipo());
+        }
     }
     //este se encargar de ver si estan llenos los campos y si no correctos
     private boolean verificarCampos(){

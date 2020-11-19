@@ -9,12 +9,18 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import modelos.database.UsuarioDb;
+import modelos.objetos.Usuario;
+import principal.menu.MenuPrincipal;
 
 
 public class Login extends javax.swing.JFrame {
 
-    FondoPanel fondoPanel = new FondoPanel();
-    SingUp singUp = new SingUp(this);
+    private FondoPanel fondoPanel = new FondoPanel();
+    private SingUp singUp = new SingUp(this);
+    private UsuarioDb usuarioDb = new UsuarioDb();
+    private MenuPrincipal menu;
+            
     
     public Login() {
         this.setContentPane(fondoPanel);
@@ -28,7 +34,27 @@ public class Login extends javax.swing.JFrame {
         Icon iconoExit = new ImageIcon(imIconExit.getImage().getScaledInstance(botonSalir.getWidth(), botonSalir.getHeight(), Image.SCALE_DEFAULT));
         botonSalir.setIcon(iconoExit);
     }
+    //logue al usuario
+    public void loguear(){
+        Usuario usuario = usuarioDb.validacionUsuario(textFieldCorreo.getText(), passFieldContrasenia.getText());
+        if(usuario!=null){
+            System.out.println("Se logueo xD");
+            menu = new MenuPrincipal(usuario);
+            menu.setVisible(true);
+            this.setVisible(false);
+        }else{
+            System.out.println("NO Se logueo xD");
+            JOptionPane.showMessageDialog(null, "El Correo o Contraseña son Incorrectos");
+        }
+    }
 
+    private void verificarCampos(){
+        if (!textFieldCorreo.getText().isEmpty() && !passFieldContrasenia.getText().isEmpty()){
+            loguear();
+        }else{
+            JOptionPane.showMessageDialog(null, "Uno de los campos deben de ser LLenados\n(Todos los campos son obligatorios)*");
+        }
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -40,7 +66,7 @@ public class Login extends javax.swing.JFrame {
         correo = new javax.swing.JLabel();
         textFieldCorreo = new javax.swing.JTextField();
         jLabel28 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        passFieldContrasenia = new javax.swing.JPasswordField();
         checkBoxRecordar = new javax.swing.JCheckBox();
         botonSingIn = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -74,9 +100,9 @@ public class Login extends javax.swing.JFrame {
         jLabel28.setForeground(new java.awt.Color(255, 255, 255));
         jLabel28.setText("Contraseña");
 
-        jPasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        passFieldContrasenia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jPasswordField1KeyReleased(evt);
+                passFieldContraseniaKeyReleased(evt);
             }
         });
 
@@ -132,7 +158,7 @@ public class Login extends javax.swing.JFrame {
                                     .addComponent(botonSingIn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(textFieldCorreo, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel28, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addComponent(passFieldContrasenia, javax.swing.GroupLayout.Alignment.LEADING))
                             .addComponent(botonSingUp))))
                 .addContainerGap(54, Short.MAX_VALUE))
         );
@@ -148,7 +174,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel28)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(passFieldContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(panelSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(checkBoxRecordar)
@@ -201,12 +227,12 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_checkBoxRecordarActionPerformed
 
-    private void jPasswordField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyReleased
+    private void passFieldContraseniaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passFieldContraseniaKeyReleased
         if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
             //LOGUEAR
             botonSingIn.doClick();
         }
-    }//GEN-LAST:event_jPasswordField1KeyReleased
+    }//GEN-LAST:event_passFieldContraseniaKeyReleased
 
     private void botonSingUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSingUpActionPerformed
         singUp.limpiar();
@@ -215,7 +241,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_botonSingUpActionPerformed
 
     private void botonSingInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSingInActionPerformed
-        // TODO add your handling code here:
+        verificarCampos();
     }//GEN-LAST:event_botonSingInActionPerformed
 
     
@@ -227,11 +253,11 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JCheckBox checkBoxRecordar;
     private javax.swing.JLabel correo;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel labelIcono;
     private javax.swing.JPanel panel;
     private javax.swing.JPanel panelSesion;
+    private javax.swing.JPasswordField passFieldContrasenia;
     private javax.swing.JTextField textFieldCorreo;
     // End of variables declaration//GEN-END:variables
     
