@@ -20,7 +20,7 @@ public class Login extends javax.swing.JFrame {
     private SingUp singUp = new SingUp(this);
     private UsuarioDb usuarioDb = new UsuarioDb();
     private MenuPrincipal menu;
-            
+    private ArchivoLogin archivoLogin = new ArchivoLogin();
     
     public Login() {
         this.setContentPane(fondoPanel);
@@ -39,6 +39,7 @@ public class Login extends javax.swing.JFrame {
         Usuario usuario = usuarioDb.validacionUsuario(textFieldCorreo.getText(), passFieldContrasenia.getText());
         if(usuario!=null){
             System.out.println("Se logueo xD");
+            recordarSesion(usuario);
             menu = new MenuPrincipal(usuario);
             menu.setVisible(true);
             this.setVisible(false);
@@ -47,12 +48,40 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "El Correo o Contraseña son Incorrectos");
         }
     }
+    
+    private void recordarSesion(Usuario usuarioGuardar){
+        if(checkBoxRecordar.isSelected()){
+            archivoLogin.escribirArchivo(new UsuarioLogueo(usuarioGuardar.getEmail(), usuarioGuardar.getPassword()));
+        }else{
+            archivoLogin.escribirArchivo(null);
+        }
+    }
 
     private void verificarCampos(){
         if (!textFieldCorreo.getText().isEmpty() && !passFieldContrasenia.getText().isEmpty()){
             loguear();
         }else{
             JOptionPane.showMessageDialog(null, "Uno de los campos deben de ser LLenados\n(Todos los campos son obligatorios)*");
+        }
+    }
+    
+    public void iniciar(){
+        archivoLogin.verificarExitenciaArchivo();
+        UsuarioLogueo usuarioLogueo = archivoLogin.leerLogueo();
+        
+        if(usuarioLogueo!=null){
+            Usuario usuario = usuarioDb.validacionUsuario(usuarioLogueo.getCorreo(), usuarioLogueo.getContrasenia());
+            if(usuario!=null){
+                System.out.println("Se logueo xD");
+                menu = new MenuPrincipal(usuario);
+                menu.setVisible(true);
+                this.setVisible(false);
+            }else{
+                System.out.println("NO Se logueo xD");
+                this.setVisible(true);
+        }
+        }else{
+            this.setVisible(true);
         }
     }
     

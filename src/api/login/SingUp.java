@@ -28,7 +28,6 @@ public class SingUp extends javax.swing.JFrame {
     private Login login;
     private LinkedList<Rol> listaRoles = new LinkedList<>();
     private UsuarioDb usuarioDb = new UsuarioDb();
-    private RolDb rolDb = new RolDb();
     
     public SingUp(Login login) {
         this.login = login;
@@ -51,7 +50,7 @@ public class SingUp extends javax.swing.JFrame {
                                                     textFieldApellido.getText(),
                                                     textFieldTelefono.getText(),
                                                     fecha,
-                                                    listaRoles.get(comboBoxRol.getSelectedIndex()).getId());
+                                                    2);
                 //Aqui irian los metodos o lo que sea para registrar
                 //se enviaria este -> usuarioNuevo,
                 usuarioDb.crearUsuario(usuarioNuevo);
@@ -73,16 +72,9 @@ public class SingUp extends javax.swing.JFrame {
         textFieldConfirme.setText("");
         textFieldContrasenia.setText("");
         dateChoserFecha.setDate(null);
-        agregarRol();
+        
     }
     
-    private void agregarRol(){
-        comboBoxRol.removeAllItems();
-        listaRoles = rolDb.leerRoles();
-        for (int i = 0; i < listaRoles.size(); i++) {
-            comboBoxRol.addItem(listaRoles.get(i).getTipo());
-        }
-    }
     //este se encargar de ver si estan llenos los campos y si no correctos
     private boolean verificarCampos(){
         boolean datosLlenos = (!textFieldNombre.getText().isEmpty() && !textFieldNombre.getText().equals("")) && 
@@ -124,8 +116,6 @@ public class SingUp extends javax.swing.JFrame {
         labelConfirmar = new javax.swing.JLabel();
         labelFecha = new javax.swing.JLabel();
         labelTelefono = new javax.swing.JLabel();
-        comboBoxRol = new javax.swing.JComboBox<>();
-        labelRol = new javax.swing.JLabel();
         dateChoserFecha = new com.toedter.calendar.JDateChooser();
         textFieldNombre = new javax.swing.JTextField();
         textFieldApellido = new javax.swing.JTextField();
@@ -194,13 +184,6 @@ public class SingUp extends javax.swing.JFrame {
         labelTelefono.setText("Telefono:");
         labelTelefono.setOpaque(true);
 
-        comboBoxRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Invitado" }));
-
-        labelRol.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        labelRol.setForeground(new java.awt.Color(153, 0, 0));
-        labelRol.setText("Rol: ");
-        labelRol.setOpaque(true);
-
         textFieldCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldCorreoActionPerformed(evt);
@@ -267,13 +250,9 @@ public class SingUp extends javax.swing.JFrame {
                                     .addComponent(textFieldUserName, javax.swing.GroupLayout.Alignment.TRAILING)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(93, 93, 93)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(labelTelefono)
-                            .addComponent(labelRol))
+                        .addComponent(labelTelefono)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboBoxRol, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(textFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(100, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -316,11 +295,7 @@ public class SingUp extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelTelefono))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboBoxRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelRol))
-                .addGap(18, 18, 18)
+                .addGap(62, 62, 62)
                 .addComponent(botonRegistrarse)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
                 .addComponent(botonRegresar)
@@ -351,7 +326,6 @@ public class SingUp extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonRegistrarse;
     private javax.swing.JButton botonRegresar;
-    private javax.swing.JComboBox<String> comboBoxRol;
     private com.toedter.calendar.JDateChooser dateChoserFecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
@@ -361,7 +335,6 @@ public class SingUp extends javax.swing.JFrame {
     private javax.swing.JLabel labelContreseña;
     private javax.swing.JLabel labelFecha;
     private javax.swing.JLabel labelNombre;
-    private javax.swing.JLabel labelRol;
     private javax.swing.JLabel labelTelefono;
     private javax.swing.JLabel labelUserName;
     private javax.swing.JTextField textFieldApellido;
