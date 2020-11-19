@@ -5,6 +5,7 @@
  */
 package principal.menu;
 
+import api.login.ArchivoLogin;
 import frontend.gui.CalendarioHaab;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -33,7 +34,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private Informacion info = new Informacion();
     public final static ImageIcon BG = new ImageIcon("Imagenes/BackGroundMainMenu.jpg");
     private Usuario user;
-    
+    private ArchivoLogin archivoLogin = new ArchivoLogin();
     /**
      * Creates new form MenuPrincipal
      */
@@ -65,6 +66,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         btnPerfil = new javax.swing.JButton();
         btnLinea = new javax.swing.JButton();
+        btnCerrarSesion = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -175,17 +177,33 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addGap(0, 12, Short.MAX_VALUE))
         );
 
+        btnCerrarSesion.setBackground(new java.awt.Color(204, 204, 204));
+        btnCerrarSesion.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btnCerrarSesion.setForeground(new java.awt.Color(0, 0, 0));
+        btnCerrarSesion.setText("Cerrar Sesion");
+        btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarSesionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCerrarSesion)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 490, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 452, Short.MAX_VALUE)
+                .addComponent(btnCerrarSesion)
+                .addContainerGap())
         );
 
         pack();
@@ -240,8 +258,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         linea.setVisible(true);
     }//GEN-LAST:event_btnLineaActionPerformed
 
+    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
+        archivoLogin.escribirArchivo(null);
+        System.exit(0);
+    }//GEN-LAST:event_btnCerrarSesionActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnCholqij;
     private javax.swing.JButton btnCholqij1;
     private javax.swing.JButton btnCholqij2;
