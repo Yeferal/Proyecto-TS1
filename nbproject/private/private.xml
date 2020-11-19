@@ -4,6 +4,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <file>file:/home/luisitopapurey/Escritorio/Teoria%20de%20Sistemas/ProyectoTS1/src/modelos/database/ConexionDb.java</file>
             <file>file:/home/luisitopapurey/Escritorio/Teoria%20de%20Sistemas/ProyectoTS1/src/principal/main.java</file>
             <file>file:/home/luisitopapurey/Escritorio/Teoria%20de%20Sistemas/ProyectoTS1/src/principal/frontend/gui/calendari_cholquij/FrameCalendario.java</file>
@@ -25,6 +26,9 @@
             <file>file:/C:/Users/jose_/Desktop/Universidad/Teoria%20de%20sistemas/Proyecto-TS1/src/db/NahualDB.java</file>
             <file>file:/C:/Users/jose_/Desktop/Universidad/Teoria%20de%20sistemas/Proyecto-TS1/src/db/HechoHistoricoDB.java</file>
 >>>>>>> rueda_calendarica
+=======
+            <file>file:/home/luisitopapurey/Escritorio/Teoria%20de%20Sistemas/ProyectoTS1/src/principal/main.java</file>
+>>>>>>> linea_de_tiempo
         </group>
     </open-files>
 </project-private>

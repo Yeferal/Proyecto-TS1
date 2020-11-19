@@ -29,7 +29,7 @@ public class main {
         try {
             // TODO code application logic here
             
-            //INICIAMOS CONECTANDO  DB
+            //INICIAMOS CONECTANDO  DB  
             ConexionDb.obtenerConexion();
         MenuPrincipal menu = new MenuPrincipal();
         menu.setVisible(true);
