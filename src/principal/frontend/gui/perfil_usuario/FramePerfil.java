@@ -37,7 +37,7 @@ public class FramePerfil extends javax.swing.JDialog {
         lblEmail.setText(user.getEmail());
         lblNombres.setText(user.getNombre());
         lblApellidos.setText(user.getApellido());
-        lblNacimiento.setText(user.getNacimiento().toString());
+        if(user.getNacimiento() != null) lblNacimiento.setText(user.getNacimiento().toString());
         lblTelefono.setText(user.getTelefono());
     }
 

@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelos.objetos.Usuario;
 
@@ -17,7 +19,10 @@ import modelos.objetos.Usuario;
  * @author jose_
  */
 public class UsuarioDb {
-        public void crearUsuario(Usuario usuarioACrear) {//creamos un nuevo usuario
+    
+    public static String VALIDACION_LOGEO = "SELECT * FROM Usuario WHERE email = ? AND password = ?";
+    
+    public void crearUsuario(Usuario usuarioACrear) {//creamos un nuevo usuario
         try {
             PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO Usuario "
                     + "(username,password,email,nombre,apellido,nacimiento,telefono,rol) "
@@ -112,5 +117,22 @@ public class UsuarioDb {
             System.out.println("error en conversion de usuario");
         }
         return usuarioDevolver;
+    }
+    
+    //Verificacion durante logeo de un usuario
+    public Usuario validacionUsuario(String correo, String password){
+        Usuario aDevolver = null;
+        try {
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement(VALIDACION_LOGEO);
+            statement.setString(1, correo);
+            statement.setString(2, password);
+            ResultSet result = statement.executeQuery();
+            while(result.next()){
+                aDevolver = convertirAUsuario(result);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDb.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return aDevolver;
     }
 }

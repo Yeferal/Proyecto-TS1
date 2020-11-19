@@ -41,8 +41,8 @@ public class main {
             pero no obligar a iniciar sesion ¿no? xd
 */
 
-//            Login logeo = new Login();
-//            logeo.setVisible(true);
+            Login logeo = new Login();
+            logeo.setVisible(true);
             
         } catch (SQLException ex) {
             Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
