@@ -3,9 +3,28 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/home/luisitopapurey/Escritorio/Teoria%20de%20Sistemas/ProyectoTS1/src/modelos/database/ConexionDb.java</file>
             <file>file:/home/luisitopapurey/Escritorio/Teoria%20de%20Sistemas/ProyectoTS1/src/principal/main.java</file>
             <file>file:/home/luisitopapurey/Escritorio/Teoria%20de%20Sistemas/ProyectoTS1/src/principal/frontend/gui/calendari_cholquij/FrameCalendario.java</file>
+=======
+            <file>file:/C:/Users/jose_/Desktop/Universidad/Teoria%20de%20sistemas/Proyecto-TS1/src/db/AccesoDB.java</file>
+            <file>file:/C:/Users/jose_/Desktop/Universidad/Teoria%20de%20sistemas/Proyecto-TS1/src/db/RolDB.java</file>
+            <file>file:/C:/Users/jose_/Desktop/Universidad/Teoria%20de%20sistemas/Proyecto-TS1/src/db/CategorizarDB.java</file>
+            <file>file:/C:/Users/jose_/Desktop/Universidad/Teoria%20de%20sistemas/Proyecto-TS1/src/db/WinalDB.java</file>
+            <file>file:/C:/Users/jose_/Desktop/Universidad/Teoria%20de%20sistemas/Proyecto-TS1/src/db/EdicionDB.java</file>
+            <file>file:/C:/Users/jose_/Desktop/Universidad/Teoria%20de%20sistemas/Proyecto-TS1/src/db/RuedaCalendaricaDB.java</file>
+            <file>file:/C:/Users/jose_/Desktop/Universidad/Teoria%20de%20sistemas/Proyecto-TS1/src/db/CategoriaDB.java</file>
+            <file>file:/C:/Users/jose_/Desktop/Universidad/Teoria%20de%20sistemas/Proyecto-TS1/src/db/DiaCholqijDB.java</file>
+            <file>file:/C:/Users/jose_/Desktop/Universidad/Teoria%20de%20sistemas/Proyecto-TS1/src/db/Rueda3DB.java</file>
+            <file>file:/C:/Users/jose_/Desktop/Universidad/Teoria%20de%20sistemas/Proyecto-TS1/src/db/Rueda1DB.java</file>
+            <file>file:/C:/Users/jose_/Desktop/Universidad/Teoria%20de%20sistemas/Proyecto-TS1/src/db/Rueda2DB.java</file>
+            <file>file:/C:/Users/jose_/Desktop/Universidad/Teoria%20de%20sistemas/Proyecto-TS1/src/db/CargadorDB.java</file>
+            <file>file:/C:/Users/jose_/Desktop/Universidad/Teoria%20de%20sistemas/Proyecto-TS1/src/db/UsuarioDB.java</file>
+            <file>file:/C:/Users/jose_/Desktop/Universidad/Teoria%20de%20sistemas/Proyecto-TS1/src/db/src/db_maya.sql</file>
+            <file>file:/C:/Users/jose_/Desktop/Universidad/Teoria%20de%20sistemas/Proyecto-TS1/src/db/NahualDB.java</file>
+            <file>file:/C:/Users/jose_/Desktop/Universidad/Teoria%20de%20sistemas/Proyecto-TS1/src/db/HechoHistoricoDB.java</file>
+>>>>>>> rueda_calendarica
         </group>
     </open-files>
 </project-private>
