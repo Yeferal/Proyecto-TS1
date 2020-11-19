@@ -6,7 +6,7 @@
 package principal.ui;
 
 import java.util.ArrayList;
-import principal.usuario.Usuario;
+import modelos.objetos.Usuario;
 
 
 /**
@@ -19,8 +19,9 @@ public class LineaDeTiempo extends javax.swing.JFrame {
     /**
      * Creates new form LineaDeTiempo
      */
-    public LineaDeTiempo(ArrayList<EventoDeTiempo> eventos,Usuario usuario) {
+    public LineaDeTiempo(Usuario usuario) {
         initComponents();
+        setLocationRelativeTo(null);
         this.usuario=usuario;
         this.eventos=eventos;
         verificarUsuario();
@@ -129,7 +130,7 @@ public class LineaDeTiempo extends javax.swing.JFrame {
      */
 
     private void verificarUsuario(){
-        if (usuario.getRole()==Usuario.ADMIN_ROLE) {
+        if (usuario.getRol() == 1) {
             navMenu.setVisible(true);
         }else{
             navMenu.setVisible(false);

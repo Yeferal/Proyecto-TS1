@@ -9,6 +9,7 @@ import frontend.gui.CalendarioHaab;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -20,6 +21,8 @@ import modelos.objetos.Usuario;
 import principal.backend.perfil_usuario.Informacion;
 import principal.frontend.gui.calendari_cholquij.FrameCalendario;
 import principal.frontend.gui.perfil_usuario.FramePerfil;
+import principal.ui.EventoDeTiempo;
+import principal.ui.LineaDeTiempo;
 
 /**
  *
@@ -29,12 +32,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private Informacion info = new Informacion();
     public final static ImageIcon BG = new ImageIcon("Imagenes/BackGroundMainMenu.jpg");
+    private Usuario user;
     
     /**
      * Creates new form MenuPrincipal
      */
-    public MenuPrincipal() {
-        
+    public MenuPrincipal(Usuario user) {
+        this.user = user;
         initComponents();
         setLocationRelativeTo(null);       
         
@@ -60,6 +64,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btnCholqij2 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         btnPerfil = new javax.swing.JButton();
+        btnLinea = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -108,6 +113,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setText("Nahuales");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         btnPerfil.setBackground(new java.awt.Color(204, 204, 204));
         btnPerfil.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
@@ -116,6 +126,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btnPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPerfilActionPerformed(evt);
+            }
+        });
+
+        btnLinea.setBackground(new java.awt.Color(204, 204, 204));
+        btnLinea.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btnLinea.setForeground(new java.awt.Color(0, 0, 0));
+        btnLinea.setText("Linea de Tiempo");
+        btnLinea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLineaActionPerformed(evt);
             }
         });
 
@@ -134,7 +154,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addComponent(btnCholqij2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnLinea)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(btnPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -148,7 +170,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     .addComponent(btnCholqij1)
                     .addComponent(btnCholqij2)
                     .addComponent(jButton2)
-                    .addComponent(btnPerfil))
+                    .addComponent(btnPerfil)
+                    .addComponent(btnLinea))
                 .addGap(0, 12, Short.MAX_VALUE))
         );
 
@@ -208,11 +231,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCholqij2ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnLineaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLineaActionPerformed
+        LineaDeTiempo linea = new LineaDeTiempo(user);
+        linea.setVisible(true);
+    }//GEN-LAST:event_btnLineaActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCholqij;
     private javax.swing.JButton btnCholqij1;
     private javax.swing.JButton btnCholqij2;
+    private javax.swing.JButton btnLinea;
     private javax.swing.JButton btnPerfil;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
