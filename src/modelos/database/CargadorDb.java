@@ -21,7 +21,7 @@ public class CargadorDb {
     
     public void crear(Cargador cargador){
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO Cargador "
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO cargador "
                     + "(nombre,descripcion) VALUES (?,?);");
             statement.setString(1, cargador.getNombre());
             statement.setString(2, cargador.getDescripcion());
@@ -33,7 +33,7 @@ public class CargadorDb {
     
     public void modificar(Cargador cargador){
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("UPDATE Cargador SET "
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("UPDATE cargador SET "
                     + "descripcion=? WHERE nombre=?;");
             statement.setString(1, cargador.getNombre());
             statement.setString(2, cargador.getDescripcion());
@@ -45,7 +45,7 @@ public class CargadorDb {
     
     public void eliminar(Cargador cargador){
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("DELETE FROM Cargador WHERE nombre=?");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("DELETE FROM cargador WHERE nombre=?");
             statement.setString(1, cargador.getNombre());
             statement.executeUpdate();
         } catch (SQLException ex) {
@@ -56,7 +56,7 @@ public class CargadorDb {
     public List<Cargador> getCargadores(){
         List<Cargador> cargadores = new ArrayList();
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM Cargador;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM cargador;");
             ResultSet resultado = statement.executeQuery();
             while(resultado.next()) cargadores.add(instanciarDeResultSet(resultado));
         } catch (SQLException ex) {
@@ -67,7 +67,7 @@ public class CargadorDb {
     
     public Cargador getCargador(String nombre){
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM Cargador WHERE nombre=?;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM cargador WHERE nombre=?;");
             statement.setString(1, nombre);
             ResultSet resultado = statement.executeQuery();
             if(resultado.next()) return instanciarDeResultSet(resultado);

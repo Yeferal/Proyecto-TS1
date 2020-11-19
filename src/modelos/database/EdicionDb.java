@@ -20,7 +20,7 @@ public class EdicionDb {
     
     public void crearEdicion(Edicion edicionCrear) {//agregamos edicion
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO Edicion "
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO edicion "
                     + "(id, username,idHechoHistorico, fecha, creacion) "
                     + "VALUES (?,?,?,?,?);");
             statement.setInt(1, edicionCrear.getId());
@@ -36,7 +36,7 @@ public class EdicionDb {
 
     public void actualizarEdicion(Edicion edicionActualizar) {//actualizamos edicion
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("UPDATE Edicion SET "
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("UPDATE edicion SET "
                     + "  username=?, idHechoHistorico=?, "
                     + "fecha=?, creacion=?  "
                     + "WHERE id=?;");
@@ -55,7 +55,7 @@ public class EdicionDb {
 
     public void eliminarEdicion(Edicion edicionEliminar) {//eliminamos edicion
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("DELETE FROM Edicion WHERE id=?;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("DELETE FROM edicion WHERE id=?;");
             statement.setInt(1, edicionEliminar.getId());
             statement.executeUpdate();
         } catch (SQLException ex) {
@@ -66,7 +66,7 @@ public class EdicionDb {
     public LinkedList<Edicion> leerEdiciones() { //mostramos todas las edicciones  y devolvemos en una lista
         LinkedList<Edicion> listaEdiciones = new LinkedList<>();
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM Edicion;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM edicion;");
             ResultSet resultado = statement.executeQuery();
             while (resultado.next()) {
                 Edicion e = convertirEdicion(resultado);
@@ -82,7 +82,7 @@ public class EdicionDb {
         Edicion e = null;
 
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM Edicion WHERE id= ? ;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM edicion WHERE id= ? ;");
             statement.setInt(1, edicionBuscar.getId());
             ResultSet resultado = statement.executeQuery();
 

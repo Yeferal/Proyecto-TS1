@@ -20,7 +20,7 @@ public class WinalDb {
 
     public void crear(Winal winal){
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO Winal "
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO winal "
                     + "(nombre,descripcion) VALUES (?,?);");
             statement.setString(1, winal.getNombre());
             statement.setString(2, winal.getDescripcion());
@@ -32,7 +32,7 @@ public class WinalDb {
     
     public void modificar(Winal winal){
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("UPDATE Winal "
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("UPDATE winal "
                     + "SET nombre=?, descripcion=? WHERE id=?;");
             statement.setString(1, winal.getNombre());
             statement.setString(2, winal.getDescripcion());
@@ -45,7 +45,7 @@ public class WinalDb {
     
     public void eliminar(Winal winal){
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("DELETE FROM Winal WHERE id=?;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("DELETE FROM winal WHERE id=?;");
             statement.setInt(1, winal.getId());
             statement.executeUpdate();
         } catch (SQLException ex) {
@@ -55,7 +55,7 @@ public class WinalDb {
     
     public Winal getWinal(int id) {
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM Winal WHERE id=?;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM winal WHERE id=?;");
             statement.setInt(1, id);
             ResultSet resultado = statement.executeQuery();
             if(resultado.next()) return instanciarDeResultSet(resultado);
@@ -68,7 +68,7 @@ public class WinalDb {
     public List<Winal> getWinales(){
         List<Winal> winales = new ArrayList();
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM Winal;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM winal;");
             ResultSet resultado = statement.executeQuery();
             while(resultado.next()) winales.add(instanciarDeResultSet(resultado));
         } catch (SQLException ex) {

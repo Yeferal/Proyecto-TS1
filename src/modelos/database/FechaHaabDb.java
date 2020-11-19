@@ -22,7 +22,7 @@ public class FechaHaabDb {
     
     public void crear(FechaHaab fecha){
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO CalendarioHaab "
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO calendariohaab "
                     + "(nahual,winal,nombre,descripcion,fecha) VALUES (?,?,?,?,?);");
             statement.setInt(1,fecha.getNahual().getId());
             statement.setInt(2, fecha.getWinal().getId());
@@ -37,8 +37,8 @@ public class FechaHaabDb {
     
     public void modificar(FechaHaab fecha){
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("UPDATE "
-                    + "Cargador SET nahual=?, winal=?, nombre=?, descripcion=?, fecha=? WHERE id=?;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("UPDATE calendariohaab"
+                    + "SET nahual=?, winal=?, nombre=?, descripcion=?, fecha=? WHERE id=?;");
             statement.setInt(1, fecha.getNahual().getId());
             statement.setInt(2, fecha.getWinal().getId());
             statement.setString(3, fecha.getNombre());
@@ -53,7 +53,7 @@ public class FechaHaabDb {
     
     public void eliminar(FechaHaab fecha){
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("DELETE FROM CalendarioHaab WHERE id=?;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("DELETE FROM calendariohaab WHERE id=?;");
             statement.setInt(1, fecha.getId());
             statement.executeUpdate();
         } catch (SQLException ex) {
@@ -64,7 +64,7 @@ public class FechaHaabDb {
     public List<FechaHaab> getFechas(){
         List<FechaHaab> fechas = new ArrayList();
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM CalendarioHaab;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM calendariohaab;");
             ResultSet resultado = statement.executeQuery();
             while(resultado.next()) fechas.add(instanciarDeResultSet(resultado));
         } catch (SQLException ex) {
@@ -75,7 +75,7 @@ public class FechaHaabDb {
     
     public FechaHaab getFecha(int id){
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM CalendarioHaab WHERE id=?;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM calendariohaab WHERE id=?;");
             statement.setInt(1, id);
             ResultSet resultado = statement.executeQuery();
             if(resultado.next()) return instanciarDeResultSet(resultado);
@@ -87,7 +87,7 @@ public class FechaHaabDb {
 
     public FechaHaab getFechaEspecifica(LocalDate fecha) {
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM CalendarioHaab WHERE fecha=?;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM calendariohaab WHERE fecha=?;");
             statement.setDate(1, Date.valueOf(fecha));
             ResultSet resultado = statement.executeQuery();
             if(resultado.next()) return instanciarDeResultSet(resultado);

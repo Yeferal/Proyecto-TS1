@@ -20,7 +20,7 @@ public class NahualDb {
     
     public void crear(Nahual nahual){
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO Nahual "
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO nahual "
                     + "(nombre,rutaImagen,signficado,descripcion,fechaInicio,fechaFinalizacion) VALUES (?,?,?,?,?,?)");
             statement.setString(1, nahual.getNombre());
             statement.setString(2, nahual.getRutaImagen());
@@ -36,7 +36,7 @@ public class NahualDb {
     
     public void modificar(Nahual nahual){
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("UPDATE Nahual SET "
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("UPDATE nahual SET "
                     + "nombre=?, rutaImagen=?, significado=?, descripcion=?, fechaInicio=?, fechaFinalizacion=? WHERE id=?;");
             statement.setString(1, nahual.getNombre());
             statement.setString(2, nahual.getRutaImagen());
@@ -52,7 +52,7 @@ public class NahualDb {
     
     public void eliminar(Nahual nahual){
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("DELETE FROM Nahual WHERE id=?;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("DELETE FROM nahual WHERE id=?;");
             statement.setInt(1, nahual.getId());
             statement.executeUpdate();
         } catch (SQLException ex) {
@@ -63,7 +63,7 @@ public class NahualDb {
     public List<Nahual> getNahuales(){
         List<Nahual> nahuales = new ArrayList();
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM Nahual;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM nahual;");
             ResultSet resultado = statement.executeQuery();
             while(resultado.next()) nahuales.add(instanciarDeResultSet(resultado));
         } catch (SQLException ex) {
@@ -74,7 +74,7 @@ public class NahualDb {
     
     public Nahual getNahual(int id){
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM Nahual WHERE id=?;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM nahual WHERE id=?;");
             statement.setInt(1, id);
             ResultSet resultado = statement.executeQuery();
             if(resultado.next()) return instanciarDeResultSet(resultado);

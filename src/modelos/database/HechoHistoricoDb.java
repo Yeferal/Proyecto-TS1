@@ -17,9 +17,12 @@ import modelos.objetos.HechoHistorico;
  * @author jose_
  */
 public class HechoHistoricoDb {
+    
+    private Mensaje mensajes = new Mensaje();
+    
      public void crearHH(HechoHistorico hhACrear) {//creamos un nuevo hecho historico
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO HechoHistorico "
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO hechohistorico "
                     + "(id, fechaInicio,fechaFinalizacion, titulo, descripcion) "
                     + "VALUES (?,?,?,?,?);");
             statement.setInt(1, hhACrear.getId());
@@ -28,14 +31,15 @@ public class HechoHistoricoDb {
             statement.setString(4, hhACrear.getTitulo());
             statement.setString(5, hhACrear.getDescripcion());
             statement.executeUpdate();
+            mensajes.informacion("Se ha creado el hecho historico con éxito.");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "ERROR: \n Ingrese otro hecho historico. ");
+            mensajes.error("No se pudo guardar el hecho historico. Ingrese otro hecho historico. ");
         }
     }
 
     public void actualizarHechoHistorico(HechoHistorico hhActualizar) {//actualizamos hecho historico
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("UPDATE HechoHistorico SET "
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("UPDATE hechohistorico SET "
                     + " fechaInicio =? , fechaFinalizacion=?,  "
                     + "titulo=? ,  descripcion=? "
                     + "WHERE id=?;");
@@ -44,35 +48,36 @@ public class HechoHistoricoDb {
             statement.setString(3, hhActualizar.getTitulo());
             statement.setString(4, hhActualizar.getDescripcion());
              statement.setInt(5, hhActualizar.getId());
-
             statement.executeUpdate();
+            mensajes.informacion("Se ha actualizado el hecho historico con exito.");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "ERROR: \n NO se actualizo el hechoHistorico. Asegurese que  exista");
+            mensajes.error("NO se actualizo el hechoHistorico. Asegurese que  exista");
         }
 
     }
 
     public void eliminarHechoHistorico(HechoHistorico hhAEliminar) {//eliminamos hecho historico
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("DELETE FROM HechoHistorico WHERE id=?;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("DELETE FROM hechohistorico WHERE id=?;");
             statement.setInt(1, hhAEliminar.getId());
             statement.executeUpdate();
+            mensajes.informacion("Se eliminó el hecho historico con exito.");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "ERROR: \n No se elimino el hechoHistorico .. Asegurese que el hechoHistorico exista");
+            mensajes.error("No se elimino el hechoHistorico .. Asegurese que el hechoHistorico exista");
         }
     }
 
     public LinkedList<HechoHistorico> leerHechosHistoricos() { //mostramos todos los hechos historicos y devolvemos en una lista
         LinkedList<HechoHistorico> listaHechosHistoricos = new LinkedList<>();
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM HechoHistorico;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM hechohistorico;");
             ResultSet resultado = statement.executeQuery();
             while (resultado.next()) {
                 HechoHistorico usuario = convertirAHH(resultado);
                 listaHechosHistoricos.add(usuario);
             }
         } catch (SQLException ex) {
-            System.out.println("No se leyeron los hechosHistoricos de la DB");
+            mensajes.error("No se leyeron los hechosHistoricos de la DB");
         }
         return listaHechosHistoricos;
     }
@@ -81,7 +86,7 @@ public class HechoHistoricoDb {
         HechoHistorico hh = null;
 
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM HechoHistorico WHERE id= ? ;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM hechohistorico WHERE id= ? ;");
             statement.setInt(1, hhBuscar.getId());
             ResultSet resultado = statement.executeQuery();
 
@@ -89,7 +94,7 @@ public class HechoHistoricoDb {
                 hh = convertirAHH(resultado);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "ERROR: \n no se encontro el hechoHistorico");
+            mensajes.error("No se encontro el hechoHistorico");
         }
         return hh;
     }
@@ -100,7 +105,7 @@ public class HechoHistoricoDb {
             hhDevolver = new  HechoHistorico(resultado.getInt(1), resultado.getDate(2),resultado.getDate(3),
                     resultado.getString(4), resultado.getString(5));
         } catch (SQLException ex) {
-            System.out.println("error en conversion de hechoHistorico");
+            mensajes.error("error en conversion de hechoHistorico");
         }
         return hhDevolver;
     }

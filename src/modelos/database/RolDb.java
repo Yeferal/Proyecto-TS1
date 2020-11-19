@@ -20,7 +20,7 @@ public class RolDb {
     
     public void crearRol(Rol rolACrear) {//creamos un nuevo rol
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO Rol "
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO rol "
                     + "(id, tipo) VALUES (?,?);");
             statement.setInt(1, rolACrear.getId());
             statement.setString(2, rolACrear.getTipo());
@@ -32,7 +32,7 @@ public class RolDb {
 
     public void actualizarRol(Rol rolActualizar) {//actualizamos rol
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("UPDATE Rol SET "
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("UPDATE rol SET "
                     + "tipo=? WHERE id=?;");
             statement.setString(1, rolActualizar.getTipo());
             statement.setInt(2, rolActualizar.getId());
@@ -45,7 +45,7 @@ public class RolDb {
 
     public void eliminarRol(Rol rolAEliminar) {//eliminamos rol
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("DELETE FROM Rol WHERE id=?;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("DELETE FROM rol WHERE id=?;");
             statement.setInt(1, rolAEliminar.getId());
             statement.executeUpdate();
         } catch (SQLException ex) {
@@ -56,7 +56,7 @@ public class RolDb {
     public LinkedList<Rol> leerRoles() { //mostramos todos los roles y devolvemos en una lista
         LinkedList<Rol> listaRoles = new LinkedList<>();
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM Rol;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM rol;");
             ResultSet resultado = statement.executeQuery();
             while (resultado.next()) {
                 Rol rolUsuario = convertirARol(resultado);
@@ -72,7 +72,7 @@ public class RolDb {
         Rol rolUsuario = null;
 
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM Rol WHERE id= ? ;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM rol WHERE id= ? ;");
             statement.setInt(1, rolABuscar.getId());
             ResultSet resultado = statement.executeQuery();
 

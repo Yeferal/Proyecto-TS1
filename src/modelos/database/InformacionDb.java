@@ -18,45 +18,50 @@ import modelos.objetos.Informacion;
  */
 public class InformacionDb {
     
+    private Mensaje mensajes = new Mensaje();
+    
     public void crear(Informacion informacion){
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO Informacion "
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO informacion "
                     + "(titulo,descripcion) VALUES (?,?);");
             statement.setString(1, informacion.getTitulo());
             statement.setString(2, informacion.getDescripcion());
             statement.executeUpdate();
+            mensajes.informacion("Se ha creado la informacion con exito.");
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            mensajes.error("No se ha creado la informacion con exito, intentelo de nuevo.");
         }
     }
     
     public void modificar(Informacion informacion){
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("UPDATE Informacion SET "
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("UPDATE informacion SET "
                     + "titulo=?, descripcion=? WHERE id=?;");
             statement.setString(1, informacion.getTitulo());
             statement.setString(2, informacion.getDescripcion());
             statement.setInt(3, informacion.getId());
             statement.executeUpdate();
+            mensajes.informacion("Se ha modificado la informacion con exito.");
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            mensajes.error("No se ha modificado la informacion con exito, intentelo de nuevo.");
         }
     }
     
     public void eliminar(Informacion informacion){
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("DELTE FROM Informacion WHERE id=?;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("DELTE FROM informacion WHERE id=?;");
             statement.setInt(1, informacion.getId());
             statement.executeUpdate();
+            mensajes.informacion("Se ha eliminado la informacion con exito.");
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            mensajes.error("No se ha eliminado la informacion con exito, intentelo de nuevo");
         }
     }
     
     public List<Informacion> getInformaciones(){
         List<Informacion> informaciones = new ArrayList();
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM Informacion;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM informacion;");
             ResultSet resultado = statement.executeQuery();
             while(resultado.next()) informaciones.add(instanciarDeResultSet(resultado));
         } catch (SQLException ex) {
@@ -67,7 +72,7 @@ public class InformacionDb {
     
     public Informacion getInformacion(String titulo){
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM Informacion WHERE titulo=?;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM informacion WHERE titulo=?;");
             statement.setString(1, titulo);
             ResultSet resultado = statement.executeQuery();
             if(resultado.next()) return instanciarDeResultSet(resultado);
@@ -79,7 +84,7 @@ public class InformacionDb {
     
     public Informacion getInformacion(int id){
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM Informacion WHERE id=?;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM informacion WHERE id=?;");
             statement.setInt(1, id);
             ResultSet resultado = statement.executeQuery();
             if(resultado.next()) return instanciarDeResultSet(resultado);

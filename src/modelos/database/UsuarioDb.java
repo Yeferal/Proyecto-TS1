@@ -20,11 +20,12 @@ import modelos.objetos.Usuario;
  */
 public class UsuarioDb {
     
-    public static String VALIDACION_LOGEO = "SELECT * FROM Usuario WHERE email = ? AND password = ?";
+    public static String VALIDACION_LOGEO = "SELECT * FROM usuario WHERE email = ? AND password = ?";
+    private Mensaje mensajes = new Mensaje();
     
     public void crearUsuario(Usuario usuarioACrear) {//creamos un nuevo usuario
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO Usuario "
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO usuario "
                     + "(username,password,email,nombre,apellido,nacimiento,telefono,rol) "
                     + "VALUES (?,?,?,?,?,?,?,?);");
             statement.setString(1, usuarioACrear.getUsername());
@@ -36,14 +37,15 @@ public class UsuarioDb {
             statement.setString(7, usuarioACrear.getTelefono());
             statement.setInt(8, usuarioACrear.getRol());
             statement.executeUpdate();
+            mensajes.informacion("Se ha creado el usuario con exito.");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "ERROR: \n Ingrese otro usuario, asegurese que el nombre de usuario '" + usuarioACrear.getUsername() + "' no se repita");
+            mensajes.error("Ingrese otro usuario, asegurese que el nombre de usuario '" + usuarioACrear.getUsername() + "' no se repita");
         }
     }
 
     public void actualizarUsuario(Usuario usuarioActualizar, String userNameAntiguo) {//actualizamos usuario
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("UPDATE Usuario SET "
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("UPDATE usuario SET "
                     + "userName=? , password =? , email=?,  "
                     + "nombre=? ,  apellido=? , nacimiento= ? , "
                     + "telefono = ? , rol=?  "
@@ -59,26 +61,28 @@ public class UsuarioDb {
 
             statement.setString(9, userNameAntiguo);
             statement.executeUpdate();
+            mensajes.informacion("Se ha modificado el usuario con exito.");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "ERROR: \n NO se actualizo el usuario. Asegurese que el usuario '" + userNameAntiguo + "' exista");
+            mensajes.error("No se actualizo el usuario. Asegurese que el usuario '" + userNameAntiguo + "' exista");
         }
 
     }
 
     public void eliminarUsuario(Usuario usuarioAEliminar) {//eliminamos usuario
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("DELETE FROM Usuario WHERE username=?;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("DELETE FROM usuario WHERE username=?;");
             statement.setString(1, usuarioAEliminar.getUsername());
             statement.executeUpdate();
+            mensajes.informacion("Se ha eliminado el usuario con exito.");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "ERROR: \n No se elimino el usuario " + usuarioAEliminar.getUsername() + " . Asegurese que el usuario exista");
+            mensajes.error("No se elimino el usuario " + usuarioAEliminar.getUsername() + " . Asegurese que el usuario exista");
         }
     }
 
     public LinkedList<Usuario> leerUsuarios() { //mostramos todos los usuarios y devolvemos en una lista
         LinkedList<Usuario> listaUsuarios = new LinkedList<>();
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM Usuario;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM usuario;");
             ResultSet resultado = statement.executeQuery();
             while (resultado.next()) {
                 Usuario usuario = convertirAUsuario(resultado);
@@ -94,7 +98,7 @@ public class UsuarioDb {
         Usuario usuario = null;
 
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM Usuario WHERE username= ? ;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM usuario WHERE username= ? ;");
             statement.setString(1, usuarioABuscar.getUsername());
             ResultSet resultado = statement.executeQuery();
 

@@ -20,7 +20,7 @@ public class FechaCholqijDb {
 
     public void crear(FechaCholqij fecha){
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO CalendarioCholqij "
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO calendariocholqij "
                     + "(nahual,energia,fecha,descripcion) VALUES (?,?,?,?);");
             statement.setInt(1,fecha.getNahual().getId());
             statement.setInt(2, fecha.getEnergia().getId());
@@ -34,7 +34,7 @@ public class FechaCholqijDb {
     
     public void modificar(FechaCholqij fecha){
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("UPDATE CalendarioCholqij "
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("UPDATE calendariocholqij "
                     + "SET nahual=?, energia=?, fecha=?, descripcion=? WHERE id=?;");
             statement.setInt(1,fecha.getNahual().getId());
             statement.setInt(2, fecha.getEnergia().getId());
@@ -49,7 +49,7 @@ public class FechaCholqijDb {
     
     public void eliminar(FechaCholqij fecha){
         try{
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("DELETE FROM CalendarioCholqij WHERE id=?;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("DELETE FROM calendariocholqij WHERE id=?;");
             statement.setInt(1, fecha.getId());
             statement.executeUpdate();
         } catch(SQLException ex){
@@ -59,7 +59,7 @@ public class FechaCholqijDb {
     
     public FechaCholqij getFecha(int id) {
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM CalendarioCholqij WHERE id=?;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM calendariocholqij WHERE id=?;");
             statement.setInt(1, id);
             ResultSet resultado = statement.executeQuery();
             if(resultado.next()) return instanciarDeResultSet(resultado);
@@ -72,7 +72,7 @@ public class FechaCholqijDb {
     public List<FechaCholqij> getFechas(){
         List<FechaCholqij> fechas = new ArrayList();
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM CalendarioCholqij;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM calendariocholqij;");
             ResultSet resultado = statement.executeQuery();
             while(resultado.next()) fechas.add(instanciarDeResultSet(resultado));
         } catch (SQLException ex) {

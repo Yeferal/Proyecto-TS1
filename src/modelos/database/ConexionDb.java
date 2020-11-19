@@ -33,11 +33,10 @@ public class ConexionDb {//Aquí la conexion a la base de datos
                 
             }//en caso de que no se encuentre la base de datos 
             catch (SQLException ex) {
-                throw new SQLException(ex);
+                ex.printStackTrace();
             }//en caso de que no encuentre la libreria 
             catch (ClassNotFoundException ex) {
-              throw new ClassCastException(ex.getMessage());
-       
+              ex.printStackTrace();
             }
         }
         return conexion;

@@ -20,7 +20,7 @@ public class EnergiaDb {
 
     public void crear(Energia energia){
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO Energia "
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO energia "
                     + "(nombre) VALUES (?);");
             statement.setString(1, energia.getNombre());
             statement.executeUpdate();
@@ -31,7 +31,7 @@ public class EnergiaDb {
     
     public void modificar(Energia energia){
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("UPDATE Energia SET "
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("UPDATE energia SET "
                     + "nombre=? WHERE id=?;");
             statement.setString(1, energia.getNombre());
             statement.setInt(2, energia.getId());
@@ -43,7 +43,7 @@ public class EnergiaDb {
     
     public void eliminar (Energia energia){
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("DELETE FROM Energia WHERE id=?;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("DELETE FROM energia WHERE id=?;");
             statement.setInt(1, energia.getId());
             statement.executeUpdate();
         } catch (SQLException ex) {
@@ -54,7 +54,7 @@ public class EnergiaDb {
     public List<Energia> getEnergias(){
         List<Energia> energias = new ArrayList();
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM Energia;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM energia;");
             ResultSet resultado = statement.executeQuery();
             while(resultado.next()) energias.add(instanciarDeResultSet(resultado));
         } catch (SQLException ex) {
@@ -65,7 +65,7 @@ public class EnergiaDb {
     
     public Energia getEnergia(int id) {
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM Energia WHERE id=?;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM energia WHERE id=?;");
             statement.setInt(1, id);
             ResultSet resultado = statement.executeQuery();
             if(resultado.next()) return instanciarDeResultSet(resultado);
