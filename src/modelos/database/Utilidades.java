@@ -11,6 +11,14 @@ package modelos.database;
  */
 public class Utilidades {
     
+    public static java.time.LocalDate SqlDateToJavaLocalDate(java.sql.Date fecha){
+        return java.time.LocalDate.parse(fecha.toString());
+    }
+    
+    public static java.sql.Date JavaLocalDateToSqlDate(java.time.LocalDate fecha){
+        return java.sql.Date.valueOf(fecha);
+    }
+    
     public static java.sql.Date JavaDateToSqlDate(java.util.Date fecha){
         return new java.sql.Date(fecha.getTime());
     }
