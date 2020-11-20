@@ -7,6 +7,7 @@ package principal.menu;
 
 import api.login.ArchivoLogin;
 import frontend.gui.CalendarioHaab;
+import gui.infonahuales.VentanaInfoNahuales;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -63,7 +64,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btnCholqij = new javax.swing.JButton();
         btnCholqij1 = new javax.swing.JButton();
         btnCholqij2 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnNahuales = new javax.swing.JButton();
         btnPerfil = new javax.swing.JButton();
         btnLinea = new javax.swing.JButton();
         btnCerrarSesion = new javax.swing.JButton();
@@ -111,13 +112,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(204, 204, 204));
-        jButton2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jButton2.setText("Nahuales");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnNahuales.setBackground(new java.awt.Color(204, 204, 204));
+        btnNahuales.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btnNahuales.setForeground(new java.awt.Color(0, 0, 0));
+        btnNahuales.setText("Nahuales");
+        btnNahuales.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnNahualesActionPerformed(evt);
             }
         });
 
@@ -155,7 +156,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCholqij2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(btnNahuales)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLinea)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
@@ -171,7 +172,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     .addComponent(btnCholqij)
                     .addComponent(btnCholqij1)
                     .addComponent(btnCholqij2)
-                    .addComponent(jButton2)
+                    .addComponent(btnNahuales)
                     .addComponent(btnPerfil)
                     .addComponent(btnLinea))
                 .addGap(0, 12, Short.MAX_VALUE))
@@ -249,9 +250,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCholqij2ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnNahualesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNahualesActionPerformed
+        VentanaInfoNahuales ventanaInfoNahuales = new VentanaInfoNahuales();
+        ventanaInfoNahuales.setVisible(true);
+    }//GEN-LAST:event_btnNahualesActionPerformed
 
     private void btnLineaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLineaActionPerformed
         
@@ -271,9 +273,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnCholqij1;
     private javax.swing.JButton btnCholqij2;
     private javax.swing.JButton btnLinea;
+    private javax.swing.JButton btnNahuales;
     private javax.swing.JButton btnPerfil;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel pnlMenu;
     // End of variables declaration//GEN-END:variables
