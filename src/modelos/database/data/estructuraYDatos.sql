@@ -18,6 +18,7 @@
 --
 -- Table structure for table `calendariocholqij`
 --
+DROP DATABASE calendariomaya;
 CREATE DATABASE `calendariomaya`;
 USE `calendariomaya`;
 
@@ -35,12 +36,12 @@ CREATE TABLE `calendariocholqij` (
   KEY `FK_Id_Energia` (`energia`),
   CONSTRAINT `FK_Id_Energia` FOREIGN KEY (`energia`) REFERENCES `energia` (`id`),
   CONSTRAINT `FK_Id_Nagual` FOREIGN KEY (`nahual`) REFERENCES `nahual` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=261 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `calendariocholqij`
---
+--	
 
 LOCK TABLES `calendariocholqij` WRITE;
 /*!40000 ALTER TABLE `calendariocholqij` DISABLE KEYS */;
@@ -67,7 +68,7 @@ CREATE TABLE `calendariohaab` (
   KEY `FK_Id_Winal` (`winal`),
   CONSTRAINT `FK_Id_Nahual` FOREIGN KEY (`nahual`) REFERENCES `nahual` (`id`),
   CONSTRAINT `FK_Id_Winal` FOREIGN KEY (`winal`) REFERENCES `winal` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=366 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,7 +92,7 @@ CREATE TABLE `cargador` (
   `nombre` varchar(10) NOT NULL,
   `descripcion` varchar(45) NOT NULL,
   PRIMARY KEY (`nombre`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -115,7 +116,7 @@ CREATE TABLE `categoria` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141,7 +142,7 @@ CREATE TABLE `categorizar` (
   KEY `FK_IDHECHO_CATEGORIZAR_HECHOHISTORICO` (`idHechoHistorico`),
   CONSTRAINT `FK_IDCATEGORIA_CATEGORIZAR_CATEGORIA` FOREIGN KEY (`idCategoria`) REFERENCES `categoria` (`id`),
   CONSTRAINT `FK_IDHECHO_CATEGORIZAR_HECHOHISTORICO` FOREIGN KEY (`idHechoHistorico`) REFERENCES `hechohistorico` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -171,7 +172,7 @@ CREATE TABLE `edicion` (
   KEY `FK_ID_USER_R` (`username`),
   CONSTRAINT `FK_ID_TEMA` FOREIGN KEY (`idHechoHistorico`) REFERENCES `hechohistorico` (`id`),
   CONSTRAINT `FK_ID_USER_R` FOREIGN KEY (`username`) REFERENCES `usuario` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -194,7 +195,7 @@ CREATE TABLE `energia` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(15) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -221,7 +222,7 @@ CREATE TABLE `hechohistorico` (
   `titulo` varchar(150) DEFAULT NULL,
   `descripcion` varchar(5000) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -245,7 +246,7 @@ CREATE TABLE `informacion` (
   `titulo` varchar(50) NOT NULL,
   `descripcion` varchar(5000) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -273,7 +274,7 @@ CREATE TABLE `nahual` (
   `significado` varchar(100) DEFAULT NULL,
   `descripcion` varchar(5000) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -297,7 +298,7 @@ CREATE TABLE `rol` (
   `id` int NOT NULL AUTO_INCREMENT,
   `tipo` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -327,7 +328,7 @@ CREATE TABLE `ruedacalendarica` (
   KEY `FK_R2` (`idDiaCholqij`),
   CONSTRAINT `FK_R1` FOREIGN KEY (`idDiaHaab`) REFERENCES `calendariohaab` (`id`),
   CONSTRAINT `FK_R2` FOREIGN KEY (`idDiaCholqij`) REFERENCES `calendariocholqij` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=94901 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -362,7 +363,7 @@ CREATE TABLE `usuario` (
   PRIMARY KEY (`username`),
   KEY `FK_ROL_ROLES` (`rol`),
   CONSTRAINT `FK_ROL_ROLES` FOREIGN KEY (`rol`) REFERENCES `rol` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -387,7 +388,7 @@ CREATE TABLE `winal` (
   `descripcion` varchar(45) NOT NULL,
   `dias` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
