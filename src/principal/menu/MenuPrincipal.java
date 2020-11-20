@@ -254,6 +254,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnLineaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLineaActionPerformed
+        
         LineaDeTiempo linea = new LineaDeTiempo(user);
         linea.setVisible(true);
     }//GEN-LAST:event_btnLineaActionPerformed

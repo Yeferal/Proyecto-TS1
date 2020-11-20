@@ -18,7 +18,7 @@ public class ConexionDb {//Aquí la conexion a la base de datos
     public static Connection conexion = null;
 
     //llenar con credenciales de su DB , datos de ejemplo
-    final static String nombreBaseDatos = "CalendarioMaya";
+    final static String nombreBaseDatos = "calendariomaya";
     final static String usuario = "root";
     final static String password = "1234";
 
@@ -27,7 +27,7 @@ public class ConexionDb {//Aquí la conexion a la base de datos
         if (conexion == null) {
             try {
                 //Buscamos nuestra db por medio de su ubicacion <entorno  local>, mandando el nombre y nuestra password
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 String stringConnection = "jdbc:mysql://localhost/"+nombreBaseDatos+"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
                 conexion = DriverManager.getConnection(stringConnection, usuario, password);
                 

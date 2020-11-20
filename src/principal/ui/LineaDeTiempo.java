@@ -6,6 +6,9 @@
 package principal.ui;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import modelos.database.HechoHistoricoDb;
+import modelos.objetos.HechoHistorico;
 import modelos.objetos.Usuario;
 
 
@@ -16,15 +19,25 @@ import modelos.objetos.Usuario;
 public class LineaDeTiempo extends javax.swing.JFrame {
     private ArrayList<EventoDeTiempo> eventos;
     private Usuario usuario;
+    private int index=0;
     /**
      * Creates new form LineaDeTiempo
      */
     public LineaDeTiempo(Usuario usuario) {
+        HechoHistoricoDb hechoHistoricoDb= new HechoHistoricoDb();
+        LinkedList<HechoHistorico> hechoHistoricos= hechoHistoricoDb.leerHechosHistoricos();
         initComponents();
+        eventos= new ArrayList<>();
+        System.out.println(hechoHistoricos.size());
+        for (int i = 0; i < hechoHistoricos.size(); i++) {
+            System.out.println(hechoHistoricos.get(i));
+            eventos.add(new EventoDeTiempo(hechoHistoricos.get(i)));
+        }
         setLocationRelativeTo(null);
         this.usuario=usuario;
         this.eventos=eventos;
         verificarUsuario();
+        addPrimerHecho();
         
     }
 
@@ -40,13 +53,11 @@ public class LineaDeTiempo extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnSiguiente = new javax.swing.JButton();
         navMenu = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel1.setText("Linea De Tiempo");
@@ -64,12 +75,27 @@ public class LineaDeTiempo extends javax.swing.JFrame {
 
         jButton1.setText("Anterior");
         jButton1.setEnabled(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Siguiente");
+        btnSiguiente.setText("Siguiente");
+        btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSiguienteActionPerformed(evt);
+            }
+        });
 
         jMenu2.setText("Editar");
 
         jMenuItem1.setText("Eliminar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem1);
 
         jMenuItem2.setText("Agregar Evento");
@@ -97,7 +123,7 @@ public class LineaDeTiempo extends javax.swing.JFrame {
                         .addGap(384, 384, 384)
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)))
+                        .addComponent(btnSiguiente)))
                 .addContainerGap(419, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -113,7 +139,7 @@ public class LineaDeTiempo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnSiguiente))
                 .addContainerGap())
         );
 
@@ -125,6 +151,50 @@ public class LineaDeTiempo extends javax.swing.JFrame {
         ae.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
+       index++;
+        jPanel1.add(eventos.get(index));
+        eventos.get(index).setVisible(true);
+        jPanel1.validate();
+        jPanel1.repaint();
+        if (index==eventos.size()-1) {
+            btnSiguiente.setEnabled(false);
+            
+        }else{
+            btnSiguiente.setEnabled(true);
+        }
+        jButton1.setEnabled(true);
+    }//GEN-LAST:event_btnSiguienteActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+          index--;
+        jPanel1.add(eventos.get(index));
+        eventos.get(index).setVisible(true);
+        jPanel1.validate();
+        jPanel1.repaint();
+        if (index==0) {
+            jButton1.setEnabled(false);
+            
+        }else{
+            jButton1.setEnabled(true);
+        }
+        btnSiguiente.setEnabled(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+private void addPrimerHecho(){
+    System.out.println(eventos.size());
+    if (eventos.size()>0) {
+        jPanel1.add(eventos.get(0));
+        eventos.get(0).setVisible(true);
+        jPanel1.validate();
+        jPanel1.repaint();
+    }
+    
+}
+    
     /**
      * @param args the command line arguments
      */
@@ -138,8 +208,8 @@ public class LineaDeTiempo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSiguiente;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuItem jMenuItem1;
