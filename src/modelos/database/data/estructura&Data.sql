@@ -18,8 +18,6 @@
 --
 -- Table structure for table `calendariocholqij`
 --
-CREATE DATABASE `calendariomaya`;
-USE `calendariomaya`;
 
 DROP TABLE IF EXISTS `calendariocholqij`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -221,7 +219,7 @@ CREATE TABLE `hechohistorico` (
   `titulo` varchar(150) DEFAULT NULL,
   `descripcion` varchar(5000) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -230,6 +228,7 @@ CREATE TABLE `hechohistorico` (
 
 LOCK TABLES `hechohistorico` WRITE;
 /*!40000 ALTER TABLE `hechohistorico` DISABLE KEYS */;
+INSERT INTO `hechohistorico` VALUES (1,'1007-04-15','1007-05-15','Fundación de la aldea Uxmal','Al sur de Yucatán emerge con espectacularidad la zona arqueológica de Uxmal, declarada por la UNESCO Patrimonio de la Humanidad. Es una de las zonas arqueológicas de la cultura maya cuya arquitectura es de las más majestuosas de Yucatán. Su belleza se caracteriza por tener palacios bajos y horizontales, colocados alrededor de patios o cuadrángulos, los cuales son ricos en decorados de esculturas muy detalladas elaborados con miles de pequeñas piedras perfectamente pulidas y ajustadas formando mosaicos geométricos de una perfección no igualada en toda la zona maya.'),(2,'1027-05-02','1027-05-03','Comienza la Liga de Mayapán','Con el nombre de Liga de Mayapán se designa una legendaria alianza de estados mayas del período posclásico mesoamericano. La alianza es mencionada por varias crónicas mayas que fueron escritas en los tiempos de la colonia española. Según estas crónicas, la Liga de Mayapán habría surgido de un acuerdo de paz entre los estados mayas centrados en Uxmal, Chichén Itzá y Mayapán.'),(3,'1194-11-22','1194-11-23','Complot de Hunac Ceel','Hunac Ceel Cauich (siglo XII d.C. ​) Jefe de los mayas cocomes de Mayapán. Hunac significa \"el grande o por excelencia\", \"Ceel\" apócope de \"ceelem\" que significa \"joven hermoso\", es decir \"el que es joven y hermoso por excelencia\". Cauich es un apódo o \"coco kaba\" , \"Ca\" significa \"doble\", \"uich\" significa \"cara\", es decir \"el de dos caras\".');
 /*!40000 ALTER TABLE `hechohistorico` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -371,6 +370,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES ('admin','admin','admin@gmail.com','admin','admin','0001-01-01','0',1),('guest','guest','guest@gmail.com','guest','guest','0001-01-01','1',2);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -409,4 +409,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed
+-- Dump completed on 2020-11-19 18:25:59

@@ -9,10 +9,13 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import modelos.database.FechaHaabDb;
 import modelos.objetos.FechaHaab;
+import modelos.objetos.Nahual;
 
 /**
  *
@@ -35,6 +38,7 @@ public class CalendarioHaab extends javax.swing.JFrame {
     public void escribirFecha(){
         diaHaab.setText(fechaActual.getNahual().getNombre());
         mesHaab.setText(fechaActual.getWinal().getNombre());
+        Nahual.setIcon(getIconNahual(fechaActual.getNahual(), Nahual));
     }
     
     public void fechaSiguiente(){
@@ -83,6 +87,12 @@ public class CalendarioHaab extends javax.swing.JFrame {
         escribirFecha();
     }
     
+    private Icon getIconNahual(Nahual nahual, JLabel label){
+        ImageIcon imIcon = new ImageIcon(nahual.getRutaImagen());
+        Icon icono = new ImageIcon(imIcon.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
+        return icono;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -107,6 +117,7 @@ public class CalendarioHaab extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         diaHaab = new javax.swing.JLabel();
+        Nahual = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -231,6 +242,8 @@ public class CalendarioHaab extends javax.swing.JFrame {
 
         diaHaab.setText(".");
 
+        Nahual.setText(" ");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -245,12 +258,18 @@ public class CalendarioHaab extends javax.swing.JFrame {
                         .addComponent(jButton2)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Nahual, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(diaHaab)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Nahual, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -312,6 +331,7 @@ public class CalendarioHaab extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> DiaComboBox;
     private javax.swing.JComboBox<String> MesComboBox;
+    private javax.swing.JLabel Nahual;
     private javax.swing.JLabel diaHaab;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
