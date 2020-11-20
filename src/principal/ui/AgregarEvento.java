@@ -5,6 +5,10 @@
  */
 package principal.ui;
 
+import java.sql.Date;
+import modelos.database.HechoHistoricoDb;
+import modelos.objetos.HechoHistorico;
+
 /**
  *
  * @author sergio
@@ -37,8 +41,6 @@ public class AgregarEvento extends javax.swing.JFrame {
         fechaInicial = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         fechaFinal = new javax.swing.JTextField();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel2.setText("Año Inicial:");
 
@@ -94,12 +96,13 @@ public class AgregarEvento extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(fechaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4)
-                        .addComponent(fechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(fechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(fechaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -113,7 +116,12 @@ public class AgregarEvento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        EventoDeTiempo edt= new EventoDeTiempo(titulo.getText(), fechaInicial.getText(), fechaFinal.getText(), descripcion.getText());
+        Date date1= new Date(1000, 1, 1);
+        Date date2= new Date(1001, 1, 1);
+        HechoHistoricoDb hechoHistoricoDb= new HechoHistoricoDb();
+        
+        HechoHistorico edt= new HechoHistorico(hechoHistoricoDb.leerHechosHistoricos().size()+2, date1, date2,titulo.getText(), descripcion.getText());
+        hechoHistoricoDb.crearHH(edt);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

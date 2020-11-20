@@ -72,7 +72,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnCholqij2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnNahuales" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="btnLinea" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="39" max="32767" attributes="0"/>
@@ -90,7 +90,7 @@
                       <Component id="btnCholqij" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnCholqij1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnCholqij2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnNahuales" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnPerfil" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnLinea" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -165,7 +165,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCholqij2ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="btnNahuales">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -179,7 +179,7 @@
             <Property name="text" type="java.lang.String" value="Nahuales"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNahualesActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnPerfil">
