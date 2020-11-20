@@ -22,7 +22,7 @@ public class VentanaInfoNahuales extends javax.swing.JFrame {
     private int indice = 0;
     
     public VentanaInfoNahuales() {
-        try {
+        
             initComponents();
             this.setLocationRelativeTo(null);
             ImageIcon imIconAnterior = new ImageIcon("./src/gui/imagenes/anterior.png");
@@ -33,14 +33,10 @@ public class VentanaInfoNahuales extends javax.swing.JFrame {
             botonSiguiente.setIcon(iconoSiguiente);
             
             //Levantamos el listado de nahuales en la db y lo agragamos y lista ya estaria fucionando al 100
-            conexionDb.obtenerConexion();
+            //conexionDb.obtenerConexion();
             listaNahuales = (ArrayList<Nahual>) nahualDb.getNahuales();
             pintar();
-        } catch (SQLException ex) {
-            Logger.getLogger(VentanaInfoNahuales.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(VentanaInfoNahuales.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }
     
     private boolean verificarNahuales(){
@@ -70,8 +66,9 @@ public class VentanaInfoNahuales extends javax.swing.JFrame {
             labelPrincipal.setIcon(getIconNahual(listaNahuales.get(indice), labelPrincipal));
             labelDerecha.setIcon(getIconNahual(listaNahuales.get(indice+1), labelDerecha));
         }
-        labelDescripcion.setText(listaNahuales.get(indice).getDescripcion());
-        labelSignificado.setText(listaNahuales.get(indice).getSignificado());
+        textPaneDes.setText(listaNahuales.get(indice).getDescripcion());
+        textPaneSig.setText(listaNahuales.get(indice).getSignificado());
+        labelNombre.setText(listaNahuales.get(indice).getId()+". "+listaNahuales.get(indice).getNombre());
     }
     private void pintar(){
         if(verificarNahuales()){
@@ -81,7 +78,7 @@ public class VentanaInfoNahuales extends javax.swing.JFrame {
     
     private void anterior(){
         if(indice==0)
-            indice = listaNahuales.size();
+            indice = listaNahuales.size()-1;
         else
             indice--;
     }
@@ -105,10 +102,20 @@ public class VentanaInfoNahuales extends javax.swing.JFrame {
         botonAnterior = new javax.swing.JButton();
         labelDescripcion = new javax.swing.JLabel();
         labelSignificado = new javax.swing.JLabel();
-        labelInfoDescripcion = new javax.swing.JLabel();
-        labelInfoSignificado = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textPaneDes = new javax.swing.JTextPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        textPaneSig = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        labelDerecha.setEnabled(false);
+        labelDerecha.setOpaque(true);
+
+        labalIzquierda.setEnabled(false);
+        labalIzquierda.setOpaque(true);
+
+        labelNombre.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
         botonSiguiente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -126,6 +133,12 @@ public class VentanaInfoNahuales extends javax.swing.JFrame {
 
         labelSignificado.setText("Significado");
 
+        textPaneDes.setEditable(false);
+        jScrollPane1.setViewportView(textPaneDes);
+
+        textPaneSig.setEditable(false);
+        jScrollPane2.setViewportView(textPaneSig);
+
         javax.swing.GroupLayout PanelNavLayout = new javax.swing.GroupLayout(PanelNav);
         PanelNav.setLayout(PanelNavLayout);
         PanelNavLayout.setHorizontalGroup(
@@ -139,19 +152,19 @@ public class VentanaInfoNahuales extends javax.swing.JFrame {
                 .addGroup(PanelNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(labelNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
                     .addComponent(labelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(labelDerecha, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(73, 73, 73)
                 .addComponent(botonSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
             .addGroup(PanelNavLayout.createSequentialGroup()
                 .addGap(172, 172, 172)
-                .addGroup(PanelNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(labelInfoDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                .addGroup(PanelNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelDescripcion)
                     .addComponent(labelSignificado)
-                    .addComponent(labelInfoSignificado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(166, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelNavLayout.setVerticalGroup(
             PanelNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,11 +191,11 @@ public class VentanaInfoNahuales extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addComponent(labelSignificado)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelInfoSignificado, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(labelDescripcion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelInfoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
@@ -210,13 +223,15 @@ public class VentanaInfoNahuales extends javax.swing.JFrame {
     private javax.swing.JPanel PanelNav;
     private javax.swing.JButton botonAnterior;
     private javax.swing.JButton botonSiguiente;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labalIzquierda;
     private javax.swing.JLabel labelDerecha;
     private javax.swing.JLabel labelDescripcion;
-    private javax.swing.JLabel labelInfoDescripcion;
-    private javax.swing.JLabel labelInfoSignificado;
     private javax.swing.JLabel labelNombre;
     private javax.swing.JLabel labelPrincipal;
     private javax.swing.JLabel labelSignificado;
+    private javax.swing.JTextPane textPaneDes;
+    private javax.swing.JTextPane textPaneSig;
     // End of variables declaration//GEN-END:variables
 }
