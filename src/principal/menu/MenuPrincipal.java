@@ -224,8 +224,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
         //cambiar el parametro nombre por el indicado
-        Usuario user = info.buscarDatos("nombre");
-        if(user != null){
+        Usuario user2 = info.buscarDatos(user.getUsername());
+        if(user2 != null){
             FramePerfil perfil = new FramePerfil(null, true, user);
             perfil.setVisible(true);
         } 

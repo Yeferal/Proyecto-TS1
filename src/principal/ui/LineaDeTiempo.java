@@ -157,6 +157,7 @@ public class LineaDeTiempo extends javax.swing.JFrame {
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
        index++;
+       jPanel1.removeAll();
         jPanel1.add(eventos.get(index));
         eventos.get(index).setVisible(true);
         jPanel1.validate();
@@ -172,6 +173,7 @@ public class LineaDeTiempo extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
           index--;
+          jPanel1.removeAll();
         jPanel1.add(eventos.get(index));
         eventos.get(index).setVisible(true);
         jPanel1.validate();

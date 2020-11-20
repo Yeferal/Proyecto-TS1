@@ -33,11 +33,9 @@ public class main {
             //INICIAMOS CONECTANDO  DB  
             ConexionDb.obtenerConexion();
             
-            /*SOLO PRUEBAS HASTA QUE SE UNA LOGIN------------------------------------------
-            Usuario user  = new Usuario();
-            MenuPrincipal menu = new MenuPrincipal(user);
-            menu.setVisible(true);
-            --------------------------------------------------------------------*/
+//            Usuario user  = new Usuario();
+//            MenuPrincipal menu = new MenuPrincipal(user);
+//            menu.setVisible(true);
 /*
             Comenté el login dado que entiendo, se usa para realizar ciertas actividades (aceptar hechos
             agregarlos) pero la funcionalidad del sistema en sí es abierto, habría que agregar una opcion
