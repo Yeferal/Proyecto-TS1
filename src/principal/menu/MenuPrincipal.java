@@ -242,7 +242,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
     private void btnCholqij1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCholqij1ActionPerformed
         CalendarioHaab calendario = new CalendarioHaab();
-        this.dispose();
         calendario.setVisible(true);
     }//GEN-LAST:event_btnCholqij1ActionPerformed
 

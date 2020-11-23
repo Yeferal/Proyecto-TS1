@@ -3,19 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/jose_/Desktop/Universidad/Proyecto-TS1/src/modelos/database/NahualDb.java</file>
-            <file>file:/C:/Users/jose_/Desktop/Universidad/Proyecto-TS1/src/modelos/database/CategoriaDb.java</file>
-            <file>file:/C:/Users/jose_/Desktop/Universidad/Proyecto-TS1/src/modelos/database/CargadorDb.java</file>
-            <file>file:/C:/Users/jose_/Desktop/Universidad/Proyecto-TS1/src/modelos/database/CategorizarDB.java</file>
-            <file>file:/C:/Users/jose_/Desktop/Universidad/Proyecto-TS1/src/modelos/database/HechoHistoricoDb.java</file>
-            <file>file:/C:/Users/jose_/Desktop/Universidad/Proyecto-TS1/src/modelos/database/InformacionDb.java</file>
-            <file>file:/C:/Users/jose_/Desktop/Universidad/Proyecto-TS1/src/modelos/database/EnergiaDb.java</file>
-            <file>file:/C:/Users/jose_/Desktop/Universidad/Proyecto-TS1/src/modelos/database/RolDb.java</file>
-            <file>file:/C:/Users/jose_/Desktop/Universidad/Proyecto-TS1/src/modelos/database/FechaCholqijDb.java</file>
-            <file>file:/C:/Users/jose_/Desktop/Universidad/Proyecto-TS1/src/modelos/database/EdicionDb.java</file>
-            <file>file:/C:/Users/jose_/Desktop/Universidad/Proyecto-TS1/src/modelos/database/FechaHaabDb.java</file>
-            <file>file:/C:/Users/jose_/Desktop/Universidad/Proyecto-TS1/src/modelos/database/FechaRuedaCalendaricaDb.java</file>
-            <file>file:/C:/Users/jose_/Desktop/Universidad/Proyecto-TS1/src/modelos/database/UsuarioDb.java</file>
+            <file>file:/C:/Users/jose_/Documents/NetBeansProjects/Proyecto-TS1/src/principal/menu/MenuPrincipal.java</file>
+            <file>file:/C:/Users/jose_/Documents/NetBeansProjects/Proyecto-TS1/src/frontend/gui/CalendarioHaab.java</file>
+            <file>file:/C:/Users/jose_/Documents/NetBeansProjects/Proyecto-TS1/src/modelos/database/FechaHaabDb.java</file>
+            <file>file:/C:/Users/jose_/Documents/NetBeansProjects/Proyecto-TS1/src/modelos/database/Utilidades.java</file>
         </group>
     </open-files>
 </project-private>
