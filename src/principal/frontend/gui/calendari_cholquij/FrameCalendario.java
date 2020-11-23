@@ -5,8 +5,8 @@
  */
 package principal.frontend.gui.calendari_cholquij;
 
-import javax.swing.JOptionPane;
 import principal.backend.calendari_cholquij.calcular_fecha.CalcularFecha;
+import principal.backend.manejadores.ManejadorInformacion;
 import principal.frontend.gui.calendari_cholquij.matriz.matrizCholquijFrame;
 
 /**
@@ -16,6 +16,7 @@ import principal.frontend.gui.calendari_cholquij.matriz.matrizCholquijFrame;
 public class FrameCalendario extends javax.swing.JFrame {
 
     private matrizCholquijFrame frame;
+    private ManejadorInformacion manejadorInformacion = ManejadorInformacion.getInstancia();
     
     /**
      * Creates new form FrameCalendario
@@ -46,7 +47,6 @@ public class FrameCalendario extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -154,64 +154,31 @@ public class FrameCalendario extends javax.swing.JFrame {
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
         // TODO add your handling code here:
-        String mensaje = "Calendario Lunar"
-                + "\nAl Cholq’ij también se le denomina calendario lunar y marca \n"
-                + "nueve lunas llenas, período en el que se gesta un ser humano. \n"
-                + "De acuerdo con la cosmovisión maya, la lectura de los signos\n"
-                + "y numerales mayas descritos en este calendario espiritual y\n"
-                + "material le permite al ajq’ij orientar la vida de \n"
-                + "las personas, según su fecha de nacimiento; y también es \n"
-                + "utilizado por la Iyom para programar el recibimiento de una\n"
-                + "nueva criatura";
-        JOptionPane.showMessageDialog(null, mensaje, "Calendario Lunar", JOptionPane.INFORMATION_MESSAGE, new javax.swing.ImageIcon(getClass().getResource("/principal/frontend/gui/calendari_cholquij/calendario-maya-lunar.png")));
+        //Menu Calendario Lunar
+        manejadorInformacion.mostrarInfCalendarioLunar();
     }//GEN-LAST:event_jMenu1MouseClicked
 
     private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_jMenu4ActionPerformed
 
     private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
         // TODO add your handling code here:
-        String mensaje = "Forma de contar el Cholq’ij\n\n"
-                + "Una manera de contar el Cholq’ij para los maya k’iche’ de la actualidad es iniciar el conteo\n"
-                + "en Waqxaqib’ B’atz’ (8 B’atz’), repitiendo así cada 260 días ese número y fecha \n"
-                + "(Aj Xol Ch’ok, 2008). Cada día del calendario se combina con un numeral que va del 1 al 13, \n"
-                + "hasta completar 260 días. El mismo día en que inicia la cuenta vuelve a repetirse cada \n"
-                + "260 días. En la antigüedad se acostumbraba a empezar el calendario en 1 Imox y se seguía el \n"
-                + "mismo proceso de multiplicación de los numerales con los días para alcanzar el total de 260 \n"
-                + "(Aj Xol Ch’ok, 2008). La construcción del ciclo de 260 días del calendario Cholq’ij tiene \n"
-                + "como base la disciplina vigesimal maya (13X20); “esta relación organiza una frecuencia matemática \n"
-                + "del movimiento natural lunar de 13:20 que se determina en base a las gravitaciones, \n"
-                + "principalmente de la Luna–Tierra, las cualidades del ser en la madre Tierra de acuerdo a su \n"
-                + "día de engendración, día del nacimiento y su proyección o misión en la vida” (García, Curruchiche \n"
-                + "& Taquirá, 2009, p. 234). Los días de este calendario “son representados también en los 10 \n"
-                + "dedos superiores de las manos, más los 10 dedos inferiores de los pies, lo que suma 20, que \n"
-                + "representa los días del Cholq’ij”, pues la construcción matemática del sistema vigesimal \n"
-                + "maya “se fundamenta en el Jun Winaq de 20 dedos”";
-        JOptionPane.showMessageDialog(null, mensaje, "Formas de Contar", JOptionPane.INFORMATION_MESSAGE, new javax.swing.ImageIcon(getClass().getResource("/principal/frontend/gui/calendari_cholquij/300px-Cholq'ij.jpg")));
+        //Menu formas de contar
+        manejadorInformacion.mostarInfFormasDeContar();
     }//GEN-LAST:event_jMenu4MouseClicked
 
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
         // TODO add your handling code here:
-        String mensaje = "Días del Cholq’ij\n"
-                + "En maya k’iche’, los veinte días del Cholq’ij reciben los siguientes \n"
-                + "nombres: B’atz’, E, Aj, I’x, Tz’ikin, Ajmaq, No’j, Tijax, \n"
-                + "Kawoq, Ajpu, Imox, Iq’, Aq’ab’al, K’at, Kan, Kame, Kej, Q’anil, \n"
-                + "Toj, Tz’i’. Estos nombres corresponden al de los 20 nahuales o signos \n"
-                + "de los días del calendario, los cuales simbolizan ciertas \n"
-                + "particularidades que se asocian a las personas según la fecha de su \n"
-                + "nacimiento (Barrios, 2004; León, 1999; Aj Xol Ch’ok, 2008; Rupflin, 1999).";
-        JOptionPane.showMessageDialog(null, mensaje, "Dias del Calendario", JOptionPane.INFORMATION_MESSAGE, new javax.swing.ImageIcon(getClass().getResource("/principal/frontend/gui/calendari_cholquij/dias.jpg")));
+       //Dias del Cholquij
+       manejadorInformacion.mostrarInfDiasCholquij();
     }//GEN-LAST:event_jMenu5MouseClicked
 
     private void jMenu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6MouseClicked
         // TODO add your handling code here:
-        String mensaje = "Calendario Cholquij\n"
-                + "El Cholq’ij (término maya kaqchikel) es un calendario sagrado \n"
-                + "del pueblo Maya, compuesto por 260 días divididos en 13 meses\n"
-                + "También recibe el nombre de calendario ritual o calendario \n"
-                + "sagrado o Tzolkin";
-        JOptionPane.showMessageDialog(null, mensaje, "Calendario", JOptionPane.INFORMATION_MESSAGE, new javax.swing.ImageIcon(getClass().getResource("/principal/frontend/gui/calendari_cholquij/Cholquij.jpg")));
+        //menu mostrar infromacion cholquij
+        manejadorInformacion.mostrarInfCholquij();
     }//GEN-LAST:event_jMenu6MouseClicked
 
     private void btnCalendarioLunarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalendarioLunarActionPerformed
@@ -222,8 +189,10 @@ public class FrameCalendario extends javax.swing.JFrame {
 
     private void btnMatrizCalendarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMatrizCalendarioActionPerformed
         // TODO add your handling code here:
-        matrizCholquijFrame cholquijFrame = new matrizCholquijFrame();
-        cholquijFrame.setVisible(true);
+        if (frame == null) {
+            frame = new matrizCholquijFrame();
+        }
+        frame.setVisible(true);
     }//GEN-LAST:event_btnMatrizCalendarioActionPerformed
 
     private void btnMatrizCalendario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMatrizCalendario2ActionPerformed

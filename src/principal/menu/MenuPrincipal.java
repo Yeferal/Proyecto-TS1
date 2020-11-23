@@ -213,13 +213,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void btnCholqijActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCholqijActionPerformed
    try {
             // TODO code application logic here
-            javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-            JOptionPane.showMessageDialog(null, "No se encuentra el estilo, por lo tanto se utlizara por defecto...");
-        }
-        FrameCalendario calendarioCholquij = new FrameCalendario();
-        calendarioCholquij.setVisible(true);
-
+        javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+   } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+        JOptionPane.showMessageDialog(null, "No se encuentra el estilo, por lo tanto se utlizara por defecto...");
+   }
+    FrameCalendario calendarioCholquij = new FrameCalendario();
+    calendarioCholquij.setVisible(true);
     }//GEN-LAST:event_btnCholqijActionPerformed
 
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed

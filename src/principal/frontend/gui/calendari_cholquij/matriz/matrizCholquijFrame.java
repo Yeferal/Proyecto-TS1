@@ -37,7 +37,6 @@ public class matrizCholquijFrame extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         infoTextArea = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         cuadroPanel.setFont(new java.awt.Font("Waree", 0, 14)); // NOI18N
@@ -61,8 +60,8 @@ public class matrizCholquijFrame extends javax.swing.JFrame {
             panelEnergiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelEnergiaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelEnergia, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(labelEnergia, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panelEnergiaLayout.setVerticalGroup(
             panelEnergiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,8 +108,7 @@ public class matrizCholquijFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(panelNahual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(panelEnergia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(panelEnergia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
                         .addGap(3, 3, 3)))

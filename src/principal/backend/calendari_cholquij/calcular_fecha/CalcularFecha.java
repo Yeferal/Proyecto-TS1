@@ -43,6 +43,8 @@ public class CalcularFecha extends javax.swing.JDialog {
         lblFechaActual1 = new javax.swing.JLabel();
         btnCalcular = new javax.swing.JButton();
         lblImg = new javax.swing.JLabel();
+        lblFechaActual2 = new javax.swing.JLabel();
+        lblImgLVL = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -61,31 +63,46 @@ public class CalcularFecha extends javax.swing.JDialog {
             }
         });
 
-        lblImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/imagenesNahualesMayas/Nahual1.jpg"))); // NOI18N
+        lblFechaActual2.setText("Energia");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(55, 55, 55)
-                            .addComponent(lblFechaActual))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(19, 19, 19)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblTitulop)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(30, 30, 30)
-                                    .addComponent(lblFechaActual1))
-                                .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(63, 63, 63)
-                            .addComponent(lblImg, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(18, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblFechaActual1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(lblImg, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(13, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(lblImgLVL, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(46, 46, 46))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(lblFechaActual2)
+                                .addGap(75, 75, 75))))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(lblFechaActual))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(107, 107, 107)
+                        .addComponent(lblTitulop)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,14 +112,20 @@ public class CalcularFecha extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblFechaActual)
                 .addGap(6, 6, 6)
-                .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(btnCalcular)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCalcular))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblFechaActual1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblImg, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblFechaActual1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblImg, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblFechaActual2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblImgLVL, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -111,8 +134,9 @@ public class CalcularFecha extends javax.swing.JDialog {
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
         // TODO add your handling code here:
         ManejadorCalcular manejadorCalcular = ManejadorCalcular.getInstancia();
-        System.out.println("DATE " + date.getCalendar().getTime());
+//        System.out.println("DATE " + date.getCalendar().getTime());
         lblImg.setIcon(manejadorCalcular.getIcon(nahual(timeCholqij(date.getCalendar().getTime().getTime()))));
+        lblImgLVL.setIcon(manejadorCalcular.getIconLvl(nivel(timeCholqij(date.getCalendar().getTime().getTime()))));
     }//GEN-LAST:event_btnCalcularActionPerformed
 
     public int nahual(int cont){
@@ -138,12 +162,35 @@ public class CalcularFecha extends javax.swing.JDialog {
         
     }
     
+    public int nivel(int cont){
+        System.out.println("Contador " + cont);
+        int contador = cont;
+        int contadorNahual = 4;
+        if (contador < 0) {
+            while (contador != 0) {
+                if (contadorNahual == 13) {
+                    contadorNahual = 1;
+                } else {
+                    contadorNahual++;
+                } contador++;
+            } return contadorNahual;
+        }
+        while (contador != 0) {
+            if (contadorNahual == 1) {
+                contadorNahual = 13;
+            } else {
+                contadorNahual--;
+            } contador--;
+        } return contadorNahual;
+        
+    }
+    
     public int timeCholqij(long date){
         try {
             String string = "Nov 15, 2020 00:00:00 AM";
             SimpleDateFormat sdf = new SimpleDateFormat("MMM d, yyyy h:mm:ss a", Locale.ROOT);
             Date datePivote = sdf.parse(string);
-            System.out.println("DATE PIVOTE " + datePivote);
+//            System.out.println("DATE PIVOTE " + datePivote);
             long regresar = TimeUnit.DAYS.convert(datePivote.getTime() - date, TimeUnit.MILLISECONDS);
             return (int) regresar;
         } catch (ParseException ex) {
@@ -156,7 +203,9 @@ public class CalcularFecha extends javax.swing.JDialog {
     private com.toedter.calendar.JDateChooser date;
     private javax.swing.JLabel lblFechaActual;
     private javax.swing.JLabel lblFechaActual1;
+    private javax.swing.JLabel lblFechaActual2;
     private javax.swing.JLabel lblImg;
+    private javax.swing.JLabel lblImgLVL;
     private javax.swing.JLabel lblTitulop;
     // End of variables declaration//GEN-END:variables
 }

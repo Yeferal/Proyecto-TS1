@@ -5,17 +5,11 @@
  */
 package principal;
 
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.UnsupportedLookAndFeelException;
-import principal.frontend.gui.calendari_cholquij.FrameCalendario;
-import principal.menu.MenuPrincipal;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelos.database.ConexionDb;
 import api.login.Login;
-import modelos.objetos.Usuario;
 
 /**
  *
@@ -46,9 +40,7 @@ public class main {
             logeo.iniciar();
             //logeo.setVisible(true);
             
-        } catch (SQLException ex) {
-            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
