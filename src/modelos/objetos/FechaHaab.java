@@ -18,17 +18,19 @@ public class FechaHaab {
     private Winal winal;
     private String nombre, descripcion;
     private Date fecha;
+    private Cargador cargador;
 
     public FechaHaab() {
     }
 
-    public FechaHaab(int id, Nahual nahual, Winal winal, String nombre, String descripcion, Date fecha) {
+    public FechaHaab(int id, Nahual nahual, Winal winal, String nombre, String descripcion, Date fecha, Cargador cargador) {
         this.id = id;
         this.nahual = nahual;
         this.winal = winal;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fecha = fecha;
+        this.cargador = cargador;
     }
 
     public int getId() {
@@ -77,6 +79,14 @@ public class FechaHaab {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public Cargador getCargador() {
+        return cargador;
+    }
+
+    public void setCargador(Cargador cargador) {
+        this.cargador = cargador;
     }
     
 }

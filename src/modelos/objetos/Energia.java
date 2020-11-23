@@ -12,14 +12,15 @@ package modelos.objetos;
 public class Energia {
 
     private int id;
-    private String nombre;
+    private String nombre, imagen;
 
     public Energia() {
     }
 
-    public Energia(int id, String nombre) {
+    public Energia(int id, String nombre, String imagen) {
         this.id = id;
         this.nombre = nombre;
+        this.imagen = imagen;
     }
 
     public int getId() {
@@ -36,6 +37,14 @@ public class Energia {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
     
 }

@@ -21,9 +21,10 @@ public class WinalDb {
     public void crear(Winal winal){
         try {
             PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO winal "
-                    + "(nombre,descripcion) VALUES (?,?);");
+                    + "(nombre,descripcion,rutaImagen) VALUES (?,?,?);");
             statement.setString(1, winal.getNombre());
             statement.setString(2, winal.getDescripcion());
+            statement.setString(3, winal.getImagen());
             statement.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -33,10 +34,11 @@ public class WinalDb {
     public void modificar(Winal winal){
         try {
             PreparedStatement statement = ConexionDb.conexion.prepareStatement("UPDATE winal "
-                    + "SET nombre=?, descripcion=? WHERE id=?;");
+                    + "SET nombre=?, descripcion=?, rutaImagen=? WHERE id=?;");
             statement.setString(1, winal.getNombre());
             statement.setString(2, winal.getDescripcion());
-            statement.setInt(3, winal.getId());
+            statement.setString(3, winal.getImagen());
+            statement.setInt(4, winal.getId());
             statement.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -81,7 +83,8 @@ public class WinalDb {
         return new Winal(
                 resultado.getInt("id"),
                 resultado.getString("nombre"),
-                resultado.getString("descripcion")
+                resultado.getString("descripcion"),
+                resultado.getString("rutaImagen")
         );
     }
     

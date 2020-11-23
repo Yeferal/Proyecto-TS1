@@ -21,13 +21,15 @@ public class NahualDb {
     public void crear(Nahual nahual){
         try {
             PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO nahual "
-                    + "(nombre,rutaImagen,signficado,descripcion,fechaInicio,fechaFinalizacion) VALUES (?,?,?,?,?,?)");
+                    + "(nombre,rutaImagen,signficado,descripcion,fechaInicio,fechaFinalizacion,nombreYucateco,nombreSp) VALUES (?,?,?,?,?,?,?,?)");
             statement.setString(1, nahual.getNombre());
             statement.setString(2, nahual.getRutaImagen());
             statement.setString(3, nahual.getSignificado());
             statement.setString(4, nahual.getDescripcion());
             statement.setDate(5, nahual.getFechaInicio());
             statement.setDate(6, nahual.getFechaFinalizacion());
+            statement.setString(7, nahual.getNombreYucateco());
+            statement.setString(8, nahual.getNombreEsp());
             statement.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -37,14 +39,17 @@ public class NahualDb {
     public void modificar(Nahual nahual){
         try {
             PreparedStatement statement = ConexionDb.conexion.prepareStatement("UPDATE nahual SET "
-                    + "nombre=?, rutaImagen=?, significado=?, descripcion=?, fechaInicio=?, fechaFinalizacion=? WHERE id=?;");
+                    + "nombre=?, rutaImagen=?, significado=?, descripcion=?, fechaInicio=?, fechaFinalizacion=?,"
+                    + "nombreYucateco=?, nombreSp=? WHERE id=?;");
             statement.setString(1, nahual.getNombre());
             statement.setString(2, nahual.getRutaImagen());
             statement.setString(3, nahual.getSignificado());
             statement.setString(4, nahual.getDescripcion());
             statement.setDate(5, nahual.getFechaInicio());
             statement.setDate(6, nahual.getFechaFinalizacion());
-            statement.setInt(7, nahual.getId());
+            statement.setString(7, nahual.getNombreYucateco());
+            statement.setString(8, nahual.getNombreEsp());
+            statement.setInt(9, nahual.getId());
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -92,7 +97,9 @@ public class NahualDb {
                 resultado.getString("significado"),
                 resultado.getString("descripcion"),
                 resultado.getDate("fechaInicio"),
-                resultado.getDate("fechaFinalizacion")
+                resultado.getDate("fechaFinalizacion"),
+                resultado.getString("nombreYucateco"),
+                resultado.getString("nombreSp")
         );
     }
 }

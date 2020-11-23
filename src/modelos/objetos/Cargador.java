@@ -5,6 +5,11 @@
  */
 package modelos.objetos;
 
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 /**
  *
  * @author jose_
@@ -12,14 +17,15 @@ package modelos.objetos;
 
 public class Cargador {
  
-    private String nombre, descripcion;
+    private String nombre, descripcion, imagen;
 
     public Cargador() {
     }
 
-    public Cargador(String nombre, String descripcion) {
+    public Cargador(String nombre, String descripcion, String imagen) {
         this.nombre = nombre;
         this.descripcion = descripcion;
+        this.imagen = imagen;
     }
 
     public String getNombre() {
@@ -37,5 +43,18 @@ public class Cargador {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
     
+    public void colocarImagen(JLabel label){
+        ImageIcon imIcon = new ImageIcon(this.imagen);
+        Icon icono = new ImageIcon(imIcon.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
+        label.setIcon(icono);
+    }
 }
