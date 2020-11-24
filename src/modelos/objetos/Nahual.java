@@ -18,16 +18,17 @@ import javax.swing.JLabel;
 public class Nahual {
     
     private int id;
-    private String nombre,nombreYucateco,nombreEsp,rutaImagen, significado, descripcion;
+    private String nombre,nombreYucateco,nombreEsp, significado, descripcion;
     private Date fechaInicio, fechaFinalizacion;
+    private Imagen imagen;
 
     public Nahual() {
     }
 
-    public Nahual(int id, String nombre, String rutaImagen, String significado, String descripcion, Date fechaInicio, Date fechaFinalizacion, String nombreEsp, String nombreYucateco) {
+    public Nahual(int id, String nombre, Imagen imagen, String significado, String descripcion, Date fechaInicio, Date fechaFinalizacion, String nombreEsp, String nombreYucateco) {
         this.id = id;
         this.nombre = nombre;
-        this.rutaImagen = rutaImagen;
+        this.imagen = imagen;
         this.significado = significado;
         this.descripcion = descripcion;
         this.fechaInicio = fechaInicio;
@@ -52,12 +53,12 @@ public class Nahual {
         this.nombre = nombre;
     }
 
-    public String getRutaImagen() {
-        return rutaImagen;
+    public Imagen getImagen() {
+        return imagen;
     }
 
-    public void setRutaImagen(String rutaImagen) {
-        this.rutaImagen = rutaImagen;
+    public void setImagen(Imagen imagen) {
+        this.imagen = imagen;
     }
 
     public String getSignificado() {
@@ -106,11 +107,5 @@ public class Nahual {
 
     public void setNombreEsp(String nombreEsp) {
         this.nombreEsp = nombreEsp;
-    }
-    
-    public void colocarImagen(JLabel label){
-        ImageIcon imIcon = new ImageIcon(this.rutaImagen);
-        Icon icono = new ImageIcon(imIcon.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
-        label.setIcon(icono);
     }
 }

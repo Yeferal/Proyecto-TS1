@@ -17,12 +17,13 @@ import javax.swing.JLabel;
 public class Winal {
 
     private int id;
-    private String nombre, descripcion, imagen;
+    private String nombre, descripcion;
+    private Imagen imagen;
 
     public Winal() {
     }
 
-    public Winal(int id, String nombre, String descripcion, String imagen) {
+    public Winal(int id, String nombre, String descripcion, Imagen imagen) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -53,18 +54,12 @@ public class Winal {
         this.descripcion = descripcion;
     }
 
-    public String getImagen() {
+    public Imagen getImagen() {
         return imagen;
     }
 
-    public void setImagen(String imagen) {
+    public void setImagen(Imagen imagen) {
         this.imagen = imagen;
-    }
-    
-    public void colocarImagen(JLabel label){
-        ImageIcon imIcon = new ImageIcon(this.imagen);
-        Icon icono = new ImageIcon(imIcon.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
-        label.setIcon(icono);
     }
     
 }

@@ -21,9 +21,9 @@ public class NahualDb {
     public void crear(Nahual nahual){
         try {
             PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO nahual "
-                    + "(nombre,rutaImagen,signficado,descripcion,fechaInicio,fechaFinalizacion,nombreYucateco,nombreSp) VALUES (?,?,?,?,?,?,?,?)");
+                    + "(nombre,idImagen,signficado,descripcion,fechaInicio,fechaFinalizacion,nombreYucateco,nombreSp) VALUES (?,?,?,?,?,?,?,?)");
             statement.setString(1, nahual.getNombre());
-            statement.setString(2, nahual.getRutaImagen());
+            statement.setInt(2, nahual.getImagen().getId());
             statement.setString(3, nahual.getSignificado());
             statement.setString(4, nahual.getDescripcion());
             statement.setDate(5, nahual.getFechaInicio());
@@ -39,10 +39,10 @@ public class NahualDb {
     public void modificar(Nahual nahual){
         try {
             PreparedStatement statement = ConexionDb.conexion.prepareStatement("UPDATE nahual SET "
-                    + "nombre=?, rutaImagen=?, significado=?, descripcion=?, fechaInicio=?, fechaFinalizacion=?,"
+                    + "nombre=?, idImagen=?, significado=?, descripcion=?, fechaInicio=?, fechaFinalizacion=?,"
                     + "nombreYucateco=?, nombreSp=? WHERE id=?;");
             statement.setString(1, nahual.getNombre());
-            statement.setString(2, nahual.getRutaImagen());
+            statement.setInt(2, nahual.getImagen().getId());
             statement.setString(3, nahual.getSignificado());
             statement.setString(4, nahual.getDescripcion());
             statement.setDate(5, nahual.getFechaInicio());
@@ -90,10 +90,11 @@ public class NahualDb {
     }
     
     private Nahual instanciarDeResultSet(ResultSet resultado) throws SQLException{
+        ImagenDb accesoImagen = new ImagenDb();
         return new Nahual(
                 resultado.getInt("id"),
                 resultado.getString("nombre"),
-                resultado.getString("rutaImagen"),
+                accesoImagen.getImagen(resultado.getInt("idImagen")),
                 resultado.getString("significado"),
                 resultado.getString("descripcion"),
                 resultado.getDate("fechaInicio"),

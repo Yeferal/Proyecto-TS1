@@ -47,7 +47,7 @@ public class VentanaInfoNahuales extends javax.swing.JFrame {
     }
     
     private Icon getIconNahual(Nahual nahual, JLabel label){
-        ImageIcon imIcon = new ImageIcon(nahual.getRutaImagen());
+        ImageIcon imIcon = new ImageIcon(nahual.getImagen().getDirEscritorio());
         Icon icono = new ImageIcon(imIcon.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
         return icono;
     }

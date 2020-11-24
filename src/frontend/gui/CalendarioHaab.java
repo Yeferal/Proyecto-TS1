@@ -7,21 +7,15 @@ package frontend.gui;
 
 import java.awt.Graphics;
 import java.awt.Image;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Month;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
 import java.util.Date;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import modelos.database.FechaHaabDb;
 import modelos.database.InformacionDb;
 import modelos.database.Utilidades;
 import modelos.objetos.FechaHaab;
-import modelos.objetos.Nahual;
 
 /**
  *
@@ -39,9 +33,9 @@ public class CalendarioHaab extends javax.swing.JFrame {
         initComponents();
         InformacionDb accesoInf = new InformacionDb();
         date.setDate(fecha);
-        infHaab.setText(accesoInf.getInformacion("inf_haab_escritorio").getDescripcion());
-        infKinal.setText(accesoInf.getInformacion("inf_kin_haab_escritorio").getDescripcion());
-        infWinal.setText(accesoInf.getInformacion("inf_uinal_haab_escritorio").getDescripcion());
+        infHaab.setText(accesoInf.getInformacion("inf_haab_escritorio").getDescripcionEscritorio());
+        infKinal.setText(accesoInf.getInformacion("inf_kin_haab_escritorio").getDescripcionEscritorio());
+        infWinal.setText(accesoInf.getInformacion("inf_uinal_haab_escritorio").getDescripcionEscritorio());
         escribirFecha();
     }
     
@@ -49,8 +43,8 @@ public class CalendarioHaab extends javax.swing.JFrame {
         FechaHaab fechaActual = acceso.getFechaEspecifica(Utilidades.DateToLocalDate(fecha));
         diaHaab.setText(fechaActual.getNahual().getNombre());
         mesHaab.setText(fechaActual.getWinal().getNombre());
-        fechaActual.getNahual().colocarImagen(Nahual);
-        fechaActual.getWinal().colocarImagen(Winal);
+        fechaActual.getNahual().getImagen().colocarImagen(Nahual);
+        fechaActual.getWinal().getImagen().colocarImagen(Winal);
         fechaActual.getCargador().colocarImagen(Cargador);
     }
     

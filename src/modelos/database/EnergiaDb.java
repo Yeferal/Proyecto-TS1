@@ -21,9 +21,9 @@ public class EnergiaDb {
     public void crear(Energia energia){
         try {
             PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO energia "
-                    + "(nombre,rutaImagen) VALUES (?,?);");
+                    + "(nombre,idImagen) VALUES (?,?);");
             statement.setString(1, energia.getNombre());
-            statement.setString(2, energia.getImagen());
+            statement.setInt(2, energia.getImagen().getId());
             statement.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -33,9 +33,9 @@ public class EnergiaDb {
     public void modificar(Energia energia){
         try {
             PreparedStatement statement = ConexionDb.conexion.prepareStatement("UPDATE energia SET "
-                    + "nombre=?, rutaImagen=? WHERE id=?;");
+                    + "nombre=?, idImagen=? WHERE id=?;");
             statement.setString(1, energia.getNombre());
-            statement.setString(2, energia.getImagen());
+            statement.setInt(2, energia.getImagen().getId());
             statement.setInt(3, energia.getId());
             statement.executeUpdate();
         } catch (SQLException ex) {
@@ -78,10 +78,11 @@ public class EnergiaDb {
     }
     
     private Energia instanciarDeResultSet(ResultSet resultado) throws SQLException{
+        ImagenDb accesoImagen = new ImagenDb();
         return new Energia(
                 resultado.getInt("id"),
                 resultado.getString("nombre"),
-                resultado.getString("rutaImagen")
+                accesoImagen.getImagen(resultado.getInt("idImagen"))
         );
     }
 }
