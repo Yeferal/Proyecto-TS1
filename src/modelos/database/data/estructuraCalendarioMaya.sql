@@ -139,8 +139,10 @@ DROP TABLE IF EXISTS energia;
 CREATE TABLE energia (
   id int NOT NULL AUTO_INCREMENT,
   nombre varchar(15) NOT NULL,
-  rutaImagen varchar(80) DEFAULT NULL,
-  PRIMARY KEY (id)
+  idImagen int DEFAULT NULL,
+  PRIMARY KEY (id),
+  KEY FK_IDIMAGEN_ENERGIA_ID_IMAGEN (idImagen),
+  CONSTRAINT FK_IDIMAGEN_ENERGIA_ID_IMAGEN FOREIGN KEY (idImagen) REFERENCES rutaimagen (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -171,7 +173,8 @@ DROP TABLE IF EXISTS informacion;
 CREATE TABLE informacion (
   id int NOT NULL AUTO_INCREMENT,
   titulo varchar(50) NOT NULL,
-  descripcion varchar(5000) NOT NULL,
+  descripcionEscritorio varchar(5000) DEFAULT NULL,
+  descripcionWeb varchar(5000) DEFAULT NULL,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -188,12 +191,14 @@ CREATE TABLE nahual (
   nombre varchar(35) DEFAULT NULL,
   fechaInicio date NOT NULL,
   fechaFinalizacion date NOT NULL,
-  rutaImagen varchar(80) DEFAULT NULL,
+  idImagen int DEFAULT NULL,
   significado varchar(100) DEFAULT NULL,
   descripcion varchar(5000) DEFAULT NULL,
   nombreSp varchar(35) DEFAULT NULL,
   nombreYucateco varchar(35) DEFAULT NULL,
-  PRIMARY KEY (id)
+  PRIMARY KEY (id),
+  KEY FK_IDIMAGEN_NAHUAL_ID_IMAGEN (idImagen),
+  CONSTRAINT FK_IDIMAGEN_NAHUAL_ID_IMAGEN FOREIGN KEY (idImagen) REFERENCES rutaimagen (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -209,6 +214,22 @@ CREATE TABLE rol (
   tipo varchar(20) NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `rutaimagen`
+--
+
+DROP TABLE IF EXISTS rutaimagen;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE rutaimagen (
+  id int NOT NULL AUTO_INCREMENT,
+  categoria varchar(30) DEFAULT NULL,
+  dirWeb varchar(230) DEFAULT NULL,
+  dirEscritorio varchar(230) DEFAULT NULL,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -245,8 +266,10 @@ CREATE TABLE winal (
   nombre varchar(10) NOT NULL,
   descripcion varchar(45) NOT NULL,
   dias int DEFAULT NULL,
-  rutaImagen varchar(80) DEFAULT NULL,
-  PRIMARY KEY (id)
+  idImagen int DEFAULT NULL,
+  PRIMARY KEY (id),
+  KEY FK_IDIMAGEN_WINAL_ID_IMAGEN (idImagen),
+  CONSTRAINT FK_IDIMAGEN_WINAL_ID_IMAGEN FOREIGN KEY (idImagen) REFERENCES rutaimagen (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
