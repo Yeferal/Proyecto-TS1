@@ -14,12 +14,20 @@ import modelos.objetos.HechoHistorico;
  * @author sergio
  */
 public class AgregarEvento extends javax.swing.JFrame {
-
+private LineaDeTiempo linea;
     /**
      * Creates new form AgregarEvento
      */
     public AgregarEvento() {
         initComponents();
+    }
+        public void setLinea(LineaDeTiempo linea) {
+        this.linea = linea;
+    }
+    
+    
+    public void actualizarHechos(){
+        linea.obtenerHechos();
     }
 
     /**
@@ -122,6 +130,7 @@ public class AgregarEvento extends javax.swing.JFrame {
         
         HechoHistorico edt= new HechoHistorico(hechoHistoricoDb.leerHechosHistoricos().size()+2, date1, date2,titulo.getText(), descripcion.getText());
         hechoHistoricoDb.crearHH(edt);
+        linea.obtenerHechos();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

@@ -24,15 +24,9 @@ public class LineaDeTiempo extends javax.swing.JFrame {
      * Creates new form LineaDeTiempo
      */
     public LineaDeTiempo(Usuario usuario) {
-        HechoHistoricoDb hechoHistoricoDb= new HechoHistoricoDb();
-        LinkedList<HechoHistorico> hechoHistoricos= hechoHistoricoDb.leerHechosHistoricos();
         initComponents();
-        eventos= new ArrayList<>();
-        System.out.println(hechoHistoricos.size());
-        for (int i = 0; i < hechoHistoricos.size(); i++) {
-            System.out.println(hechoHistoricos.get(i));
-            eventos.add(new EventoDeTiempo(hechoHistoricos.get(i)));
-        }
+        HechoHistoricoDb hechoHistoricoDb= new HechoHistoricoDb();
+        obtenerHechos();
         setLocationRelativeTo(null);
         this.usuario=usuario;
         this.eventos=eventos;
@@ -40,6 +34,18 @@ public class LineaDeTiempo extends javax.swing.JFrame {
         addPrimerHecho();
         
     }
+    public void obtenerHechos(){
+    HechoHistoricoDb hechoHistoricoDb= new HechoHistoricoDb();
+        LinkedList<HechoHistorico> hechoHistoricos= hechoHistoricoDb.leerHechosHistoricos();
+        eventos= new ArrayList<>();
+        
+        for (int i = 0; i < hechoHistoricos.size(); i++) {
+            
+            eventos.add(new EventoDeTiempo(hechoHistoricos.get(i)));
+            
+        }
+}
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -148,6 +154,7 @@ public class LineaDeTiempo extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         AgregarEvento ae= new AgregarEvento();
+        ae.setLinea(this);
         ae.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
