@@ -43,20 +43,17 @@ public class EventoDeTiempo extends javax.swing.JPanel {
     private void initComponents() {
 
         lblFecha = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        lblDescripcion = new javax.swing.JTextArea();
         lblTitulo = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        lblDescripcion = new javax.swing.JTextPane();
 
         lblFecha.setText("Año");
-
-        lblDescripcion.setColumns(20);
-        lblDescripcion.setRows(5);
-        lblDescripcion.setText("Descripcion");
-        jScrollPane1.setViewportView(lblDescripcion);
 
         lblTitulo.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Titulo");
+
+        jScrollPane2.setViewportView(lblDescripcion);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -65,13 +62,13 @@ public class EventoDeTiempo extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(89, 89, 89)
                         .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(lblFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)))
+                        .addComponent(lblFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -81,16 +78,16 @@ public class EventoDeTiempo extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTitulo)
                     .addComponent(lblFecha))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea lblDescripcion;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextPane lblDescripcion;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblTitulo;
     // End of variables declaration//GEN-END:variables

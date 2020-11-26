@@ -7,45 +7,61 @@ package principal.ui;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import modelos.database.HechoHistoricoDb;
 import modelos.objetos.HechoHistorico;
 import modelos.objetos.Usuario;
-
 
 /**
  *
  * @author sergio
  */
 public class LineaDeTiempo extends javax.swing.JFrame {
+
     private ArrayList<EventoDeTiempo> eventos;
     private Usuario usuario;
-    private int index=0;
+    public final static ImageIcon BG = new ImageIcon("Imagenes/fondoLineaTiempo.jpg");
+    private int index = 0;
+
     /**
      * Creates new form LineaDeTiempo
      */
     public LineaDeTiempo(Usuario usuario) {
         initComponents();
-        HechoHistoricoDb hechoHistoricoDb= new HechoHistoricoDb();
+        HechoHistoricoDb hechoHistoricoDb = new HechoHistoricoDb();
         obtenerHechos();
         setLocationRelativeTo(null);
-        this.usuario=usuario;
-        this.eventos=eventos;
+        this.usuario = usuario;
+        this.eventos = eventos;
         verificarUsuario();
         addPrimerHecho();
-        
+        setBackground();
+
     }
-    public void obtenerHechos(){
-    HechoHistoricoDb hechoHistoricoDb= new HechoHistoricoDb();
-        LinkedList<HechoHistorico> hechoHistoricos= hechoHistoricoDb.leerHechosHistoricos();
-        eventos= new ArrayList<>();
-        
+
+    public void obtenerHechos() {
+        HechoHistoricoDb hechoHistoricoDb = new HechoHistoricoDb();
+        LinkedList<HechoHistorico> hechoHistoricos = hechoHistoricoDb.leerHechosHistoricos();
+        eventos = new ArrayList<>();
+
         for (int i = 0; i < hechoHistoricos.size(); i++) {
-            
+
             eventos.add(new EventoDeTiempo(hechoHistoricos.get(i)));
-            
+
         }
-}
-    
+    }
+
+    private void setBackground() {
+
+        JLabel backgroundLbl = new JLabel();
+        backgroundLbl.setSize(1001, 411);
+        backgroundLbl.setLocation(0, 0);
+        backgroundLbl.setIcon(BG);
+        this.add(backgroundLbl);
+        backgroundLbl.setVisible(true);
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,11 +84,13 @@ public class LineaDeTiempo extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel1.setText("Linea De Tiempo");
 
+        jPanel1.setPreferredSize(new java.awt.Dimension(735, 300));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 979, Short.MAX_VALUE)
+            .addGap(0, 830, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,19 +148,20 @@ public class LineaDeTiempo extends javax.swing.JFrame {
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnSiguiente)))
-                .addContainerGap(419, Short.MAX_VALUE))
+                .addContainerGap(330, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 830, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(btnSiguiente))
@@ -153,7 +172,7 @@ public class LineaDeTiempo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        AgregarEvento ae= new AgregarEvento();
+        AgregarEvento ae = new AgregarEvento();
         ae.setLinea(this);
         ae.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -163,55 +182,54 @@ public class LineaDeTiempo extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-       index++;
-       jPanel1.removeAll();
+        index++;
+        jPanel1.removeAll();
         jPanel1.add(eventos.get(index));
         eventos.get(index).setVisible(true);
         jPanel1.validate();
         jPanel1.repaint();
-        if (index==eventos.size()-1) {
+        if (index == eventos.size() - 1) {
             btnSiguiente.setEnabled(false);
-            
-        }else{
+
+        } else {
             btnSiguiente.setEnabled(true);
         }
         jButton1.setEnabled(true);
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-          index--;
-          jPanel1.removeAll();
+        index--;
+        jPanel1.removeAll();
         jPanel1.add(eventos.get(index));
         eventos.get(index).setVisible(true);
         jPanel1.validate();
         jPanel1.repaint();
-        if (index==0) {
+        if (index == 0) {
             jButton1.setEnabled(false);
-            
-        }else{
+
+        } else {
             jButton1.setEnabled(true);
         }
         btnSiguiente.setEnabled(true);
     }//GEN-LAST:event_jButton1ActionPerformed
-private void addPrimerHecho(){
-    System.out.println(eventos.size());
-    if (eventos.size()>0) {
-        jPanel1.add(eventos.get(0));
-        eventos.get(0).setVisible(true);
-        jPanel1.validate();
-        jPanel1.repaint();
+    private void addPrimerHecho() {
+        System.out.println(eventos.size());
+        if (eventos.size() > 0) {
+            jPanel1.add(eventos.get(0));
+            eventos.get(0).setVisible(true);
+            jPanel1.validate();
+            jPanel1.repaint();
+        }
+
     }
-    
-}
-    
+
     /**
      * @param args the command line arguments
      */
-
-    private void verificarUsuario(){
+    private void verificarUsuario() {
         if (usuario.getRol() == 1) {
             navMenu.setVisible(true);
-        }else{
+        } else {
             navMenu.setVisible(false);
         }
     }
