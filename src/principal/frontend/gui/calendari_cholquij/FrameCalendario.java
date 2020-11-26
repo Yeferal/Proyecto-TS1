@@ -16,7 +16,7 @@ import principal.frontend.gui.calendari_cholquij.matriz.matrizCholquijFrame;
 public class FrameCalendario extends javax.swing.JFrame {
 
     private matrizCholquijFrame frame;
-    private ManejadorInformacion manejadorInformacion = ManejadorInformacion.getInstancia();
+    private final ManejadorInformacion manejadorInformacion = ManejadorInformacion.getInstancia();
     
     /**
      * Creates new form FrameCalendario
@@ -36,16 +36,15 @@ public class FrameCalendario extends javax.swing.JFrame {
     private void initComponents() {
 
         lblTitulo = new javax.swing.JLabel();
-        btnMatrizCalendario2 = new javax.swing.JButton();
-        btnCalendarioLunar = new javax.swing.JButton();
+        btnCalendarioCalcularFecha = new javax.swing.JButton();
+        btnNahual = new javax.swing.JButton();
         btnMatrizCalendario = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
+        jPanel1 = new javax.swing.JPanel();
+        btnFormasDeContar = new javax.swing.JButton();
+        btnInfCalendarioCholquij = new javax.swing.JButton();
+        btnCalendarioLunar = new javax.swing.JButton();
+        btnDias = new javax.swing.JButton();
 
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -54,138 +53,103 @@ public class FrameCalendario extends javax.swing.JFrame {
         lblTitulo.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo.setText("CALENDARIO CHOLQ'IJ");
-        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 470, 70));
+        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 470, 70));
 
-        btnMatrizCalendario2.setBackground(new java.awt.Color(51, 51, 51));
-        btnMatrizCalendario2.setFont(new java.awt.Font("Waree", 1, 18)); // NOI18N
-        btnMatrizCalendario2.setForeground(new java.awt.Color(204, 204, 204));
-        btnMatrizCalendario2.setText("Nahual - Energia Cholq'ij");
-        btnMatrizCalendario2.addActionListener(new java.awt.event.ActionListener() {
+        btnCalendarioCalcularFecha.setBackground(new java.awt.Color(51, 51, 51));
+        btnCalendarioCalcularFecha.setFont(new java.awt.Font("Waree", 1, 18)); // NOI18N
+        btnCalendarioCalcularFecha.setForeground(new java.awt.Color(204, 204, 204));
+        btnCalendarioCalcularFecha.setText("Calcular Fecha Cholq'ij");
+        btnCalendarioCalcularFecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMatrizCalendario2ActionPerformed(evt);
+                btnCalendarioCalcularFechaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnMatrizCalendario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 290, -1));
+        getContentPane().add(btnCalendarioCalcularFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 330, -1));
 
-        btnCalendarioLunar.setBackground(new java.awt.Color(51, 51, 51));
-        btnCalendarioLunar.setFont(new java.awt.Font("Waree", 1, 18)); // NOI18N
-        btnCalendarioLunar.setForeground(new java.awt.Color(204, 204, 204));
-        btnCalendarioLunar.setText("Calcular Fecha Cholq'ij");
-        btnCalendarioLunar.addActionListener(new java.awt.event.ActionListener() {
+        btnNahual.setBackground(new java.awt.Color(51, 51, 51));
+        btnNahual.setFont(new java.awt.Font("Waree", 1, 18)); // NOI18N
+        btnNahual.setForeground(new java.awt.Color(204, 204, 204));
+        btnNahual.setText("Nahual - Energia Cholq'ij");
+        btnNahual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCalendarioLunarActionPerformed(evt);
+                btnNahualActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCalendarioLunar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 290, -1));
+        getContentPane().add(btnNahual, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 330, -1));
 
         btnMatrizCalendario.setBackground(new java.awt.Color(51, 51, 51));
         btnMatrizCalendario.setFont(new java.awt.Font("Waree", 1, 18)); // NOI18N
         btnMatrizCalendario.setForeground(new java.awt.Color(204, 204, 204));
-        btnMatrizCalendario.setText("Informacion Cholq'ij");
+        btnMatrizCalendario.setText("Informacion Cholq'ij (Matriz)");
         btnMatrizCalendario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMatrizCalendarioActionPerformed(evt);
             }
         });
-        getContentPane().add(btnMatrizCalendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 290, -1));
+        getContentPane().add(btnMatrizCalendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 330, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/principal/frontend/gui/calendari_cholquij/Portada.png"))); // NOI18N
         jLabel1.setText(" ");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 590));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 900, 600));
 
-        jMenuBar1.setBackground(new java.awt.Color(51, 51, 51));
-        jMenuBar1.setForeground(new java.awt.Color(204, 204, 204));
-        jMenuBar1.setFont(new java.awt.Font("DejaVu Serif", 1, 18)); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(51, 153, 255));
+        jPanel1.setForeground(new java.awt.Color(51, 153, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jMenu1.setBackground(new java.awt.Color(51, 51, 51));
-        jMenu1.setForeground(new java.awt.Color(204, 204, 204));
-        jMenu1.setText("Calendario Lunar");
-        jMenu1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu1MouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(jMenu1);
-
-        jMenu3.setBackground(new java.awt.Color(51, 51, 51));
-        jMenu3.setForeground(new java.awt.Color(204, 204, 204));
-        jMenu3.setText("Cholq'ij");
-        jMenu3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-
-        jMenu4.setText("Forma de Contar");
-        jMenu4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu4MouseClicked(evt);
-            }
-        });
-        jMenu4.addActionListener(new java.awt.event.ActionListener() {
+        btnFormasDeContar.setBackground(new java.awt.Color(204, 204, 204));
+        btnFormasDeContar.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btnFormasDeContar.setForeground(new java.awt.Color(0, 0, 0));
+        btnFormasDeContar.setText("Formas de Contar");
+        btnFormasDeContar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu4ActionPerformed(evt);
+                btnFormasDeContarActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenu4);
+        jPanel1.add(btnFormasDeContar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 150, -1));
 
-        jMenu5.setText("Días");
-        jMenu5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu5MouseClicked(evt);
+        btnInfCalendarioCholquij.setBackground(new java.awt.Color(204, 204, 204));
+        btnInfCalendarioCholquij.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btnInfCalendarioCholquij.setForeground(new java.awt.Color(0, 0, 0));
+        btnInfCalendarioCholquij.setText("Calendario Cholq'ij (Informacion)");
+        btnInfCalendarioCholquij.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInfCalendarioCholquijActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenu5);
+        jPanel1.add(btnInfCalendarioCholquij, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, -1, -1));
 
-        jMenu6.setText("Calendario");
-        jMenu6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu6MouseClicked(evt);
+        btnCalendarioLunar.setBackground(new java.awt.Color(204, 204, 204));
+        btnCalendarioLunar.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btnCalendarioLunar.setForeground(new java.awt.Color(0, 0, 0));
+        btnCalendarioLunar.setText("Calendario Lunar");
+        btnCalendarioLunar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalendarioLunarActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenu6);
+        jPanel1.add(btnCalendarioLunar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 140, -1));
 
-        jMenuBar1.add(jMenu3);
+        btnDias.setBackground(new java.awt.Color(204, 204, 204));
+        btnDias.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btnDias.setForeground(new java.awt.Color(0, 0, 0));
+        btnDias.setText("Dias");
+        btnDias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDiasActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnDias, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 130, -1));
 
-        setJMenuBar(jMenuBar1);
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 50));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
-        // TODO add your handling code here:
-        //Menu Calendario Lunar
-        manejadorInformacion.mostrarInfCalendarioLunar();
-    }//GEN-LAST:event_jMenu1MouseClicked
-
-    private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_jMenu4ActionPerformed
-
-    private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
-        // TODO add your handling code here:
-        //Menu formas de contar
-        manejadorInformacion.mostarInfFormasDeContar();
-    }//GEN-LAST:event_jMenu4MouseClicked
-
-    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
-        // TODO add your handling code here:
-       //Dias del Cholquij
-       manejadorInformacion.mostrarInfDiasCholquij();
-    }//GEN-LAST:event_jMenu5MouseClicked
-
-    private void jMenu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6MouseClicked
-        // TODO add your handling code here:
-        //menu mostrar infromacion cholquij
-        manejadorInformacion.mostrarInfCholquij();
-    }//GEN-LAST:event_jMenu6MouseClicked
-
-    private void btnCalendarioLunarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalendarioLunarActionPerformed
+    private void btnCalendarioCalcularFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalendarioCalcularFechaActionPerformed
         // TODO add your handling code here:
         CalcularFecha calcularFecha = new CalcularFecha(this, true);
         calcularFecha.setVisible(true);
-    }//GEN-LAST:event_btnCalendarioLunarActionPerformed
+    }//GEN-LAST:event_btnCalendarioCalcularFechaActionPerformed
 
     private void btnMatrizCalendarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMatrizCalendarioActionPerformed
         // TODO add your handling code here:
@@ -195,24 +159,43 @@ public class FrameCalendario extends javax.swing.JFrame {
         frame.setVisible(true);
     }//GEN-LAST:event_btnMatrizCalendarioActionPerformed
 
-    private void btnMatrizCalendario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMatrizCalendario2ActionPerformed
+    private void btnNahualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNahualActionPerformed
         // TODO add your handling code here:
         CholqijFrame cholqijFrame = new CholqijFrame();
         cholqijFrame.setVisible(true);
-    }//GEN-LAST:event_btnMatrizCalendario2ActionPerformed
+    }//GEN-LAST:event_btnNahualActionPerformed
+
+    private void btnInfCalendarioCholquijActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfCalendarioCholquijActionPerformed
+        // TODO add your handling code here:
+         manejadorInformacion.mostrarInfCholquij();
+    }//GEN-LAST:event_btnInfCalendarioCholquijActionPerformed
+
+    private void btnFormasDeContarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFormasDeContarActionPerformed
+        // TODO add your handling code here:
+         manejadorInformacion.mostarInfFormasDeContar();
+    }//GEN-LAST:event_btnFormasDeContarActionPerformed
+
+    private void btnCalendarioLunarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalendarioLunarActionPerformed
+        // TODO add your handling code here:
+         manejadorInformacion.mostrarInfCalendarioLunar();
+    }//GEN-LAST:event_btnCalendarioLunarActionPerformed
+
+    private void btnDiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiasActionPerformed
+        // TODO add your handling code here:
+         manejadorInformacion.mostrarInfDiasCholquij();
+    }//GEN-LAST:event_btnDiasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCalendarioCalcularFecha;
     private javax.swing.JButton btnCalendarioLunar;
+    private javax.swing.JButton btnDias;
+    private javax.swing.JButton btnFormasDeContar;
+    private javax.swing.JButton btnInfCalendarioCholquij;
     private javax.swing.JButton btnMatrizCalendario;
-    private javax.swing.JButton btnMatrizCalendario2;
+    private javax.swing.JButton btnNahual;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblTitulo;
     // End of variables declaration//GEN-END:variables
 }
