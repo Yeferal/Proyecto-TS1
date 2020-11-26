@@ -1,17 +1,29 @@
 
 package gui.infonahuales;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 import modelos.database.ConexionDb;
 import modelos.database.NahualDb;
 import modelos.objetos.Nahual;
+import principal.backend.calendari_cholquij.calcular_fecha.CalcularFecha;
 
 public class VentanaInfoNahuales extends javax.swing.JFrame {
     
@@ -20,23 +32,63 @@ public class VentanaInfoNahuales extends javax.swing.JFrame {
     private ArrayList<Nahual> listaNahuales = null;
     private ConexionDb conexionDb = new ConexionDb();
     private int indice = 0;
+    private JTextPane textPaneSig = new JTextPane();
+    private JTextPane textPaneDes = new JTextPane();
+    private JLabel labelDescripcion = new JLabel("Descripcion");
+    
+    private FondoPanel fondoPanel = new FondoPanel();
     
     public VentanaInfoNahuales() {
+        this.setContentPane(fondoPanel);
+        initComponents();
+        this.setLocationRelativeTo(null);
         
-            initComponents();
-            this.setLocationRelativeTo(null);
-            ImageIcon imIconAnterior = new ImageIcon("./src/gui/imagenes/anterior.png");
-            Icon iconoAnterior = new ImageIcon(imIconAnterior.getImage().getScaledInstance(botonAnterior.getWidth(), botonAnterior.getHeight(), Image.SCALE_DEFAULT));
-            botonAnterior.setIcon(iconoAnterior);
-            ImageIcon imIconSiguiente = new ImageIcon("./src/gui/imagenes/siguiente.png");
-            Icon iconoSiguiente = new ImageIcon(imIconSiguiente.getImage().getScaledInstance(botonSiguiente.getWidth(), botonSiguiente.getHeight(), Image.SCALE_DEFAULT));
-            botonSiguiente.setIcon(iconoSiguiente);
-            
-            //Levantamos el listado de nahuales en la db y lo agragamos y lista ya estaria fucionando al 100
-            //conexionDb.obtenerConexion();
-            listaNahuales = (ArrayList<Nahual>) nahualDb.getNahuales();
-            pintar();
+        scrollPane.getViewport().setOpaque(false);
+        scrollPane.setBorder(null);
+        //scrollPane.setBackground(new Color(255, 255, 255, 100));
+        //panelInfo.setBackground(new Color(255, 255, 255, 100));
+        textPaneSig.setEditable(false);
+        textPaneDes.setEditable(false);
+        labelDescripcion.setFont(labelSignificado.getFont());
+        labelDescripcion.setBackground(labelSignificado.getBackground());
+        labelDescripcion.setForeground(labelSignificado.getForeground());
         
+//        textPaneSig.setBackground(new Color(255, 255, 255, 100));
+        //textPaneSig.setOpaque(false);
+        
+        panelInfo.add(textPaneSig);
+        panelInfo.add(labelDescripcion);
+        panelInfo.add(textPaneDes);
+        
+        ImageIcon imIconAnterior = new ImageIcon("./src/gui/imagenes/anterior.png");
+        Icon iconoAnterior = new ImageIcon(imIconAnterior.getImage().getScaledInstance(botonAnterior.getWidth(), botonAnterior.getHeight(), Image.SCALE_DEFAULT));
+        botonAnterior.setIcon(iconoAnterior);
+        ImageIcon imIconSiguiente = new ImageIcon("./src/gui/imagenes/siguiente.png");
+        Icon iconoSiguiente = new ImageIcon(imIconSiguiente.getImage().getScaledInstance(botonSiguiente.getWidth(), botonSiguiente.getHeight(), Image.SCALE_DEFAULT));
+        botonSiguiente.setIcon(iconoSiguiente);
+        
+        //Levantamos el listado de nahuales en la db y lo agragamos y lista ya estaria fucionando al 100
+        listaNahuales = (ArrayList<Nahual>) nahualDb.getNahuales();
+        pintar();
+        setPosiciones();
+    }
+    public void setPosiciones(){
+        
+        textPaneSig.setBounds(labelSignificado.getX(), labelSignificado.getHeight()+labelSignificado.getY()+2, panelInfo.getWidth()-40, calcularFilas(textPaneSig.getText())*25);
+        labelDescripcion.setBounds(labelSignificado.getX(), labelSignificado.getHeight()+textPaneSig.getHeight()+20, labelSignificado.getWidth()+10, labelSignificado.getHeight());
+        textPaneDes.setBounds(labelDescripcion.getX(), labelSignificado.getHeight()+textPaneSig.getHeight()+labelDescripcion.getHeight()+25, panelInfo.getWidth()-40, calcularFilas(textPaneDes.getText())*25);
+        
+//        int lineas = textPaneSig.set
+        //String texto = textPaneDes.getText();
+        //System.out.println("Tamanio: "+texto.length());
+        //System.out.println("TamanioM: "+texto.substring(0, 143));
+        
+        //scrollPane.repaint();
+        panelInfo.repaint();
+        panelInfo.updateUI();
+        //scrollPane.repaint();
+        
+        //System.out.println(texto);
     }
     
     private boolean verificarNahuales(){
@@ -46,13 +98,23 @@ public class VentanaInfoNahuales extends javax.swing.JFrame {
         return false;
     }
     
+    public int calcularFilas(String texto){
+        int total = (int) texto.length()/143;
+        if(total>0){
+            total += 1;
+            return total;
+        }
+        
+        return 1;
+    }
+    
     private Icon getIconNahual(Nahual nahual, JLabel label){
         ImageIcon imIcon = new ImageIcon(nahual.getImagen().getDirEscritorio());
         Icon icono = new ImageIcon(imIcon.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
         return icono;
     }
     
-    public void pintarNahueles(){
+    public void pintarNahuales(){
         if(indice == 0){
             labalIzquierda.setIcon(getIconNahual(listaNahuales.get(listaNahuales.size()-1), labalIzquierda));
             labelPrincipal.setIcon(getIconNahual(listaNahuales.get(indice), labelPrincipal));
@@ -72,7 +134,8 @@ public class VentanaInfoNahuales extends javax.swing.JFrame {
     }
     private void pintar(){
         if(verificarNahuales()){
-            pintarNahueles();
+            pintarNahuales();
+            
         }
     }
     
@@ -89,6 +152,51 @@ public class VentanaInfoNahuales extends javax.swing.JFrame {
             indice++;
     }
     
+    
+    public int nahual(int cont){
+        //System.out.println("Contador " + cont);
+        int contador = cont;
+        int contadorNahual = 6;
+        if (contador < 0) {
+            while (contador != 0) {
+                if (contadorNahual == 20) {
+                    contadorNahual = 1;
+                } else {
+                    contadorNahual++;
+                } contador++;
+            } return contadorNahual;
+        }
+        while (contador != 0) {
+            if (contadorNahual == 1) {
+                contadorNahual = 20;
+            } else {
+                contadorNahual--;
+            } contador--;
+        } return contadorNahual;
+        
+    }
+    
+    
+    private void calcularFecha(){
+        int numNahual = nahual(timeCholqij(date.getCalendar().getTime().getTime()));
+        indice = numNahual;
+        pintarNahuales();
+        setPosiciones();
+    }
+    
+    public int timeCholqij(long date){
+        try {
+            String string = "Nov 15, 2020 00:00:00 AM";
+            SimpleDateFormat sdf = new SimpleDateFormat("MMM d, yyyy h:mm:ss a", Locale.ROOT);
+            Date datePivote = sdf.parse(string);
+//            System.out.println("DATE PIVOTE " + datePivote);
+            long regresar = TimeUnit.DAYS.convert(datePivote.getTime() - date, TimeUnit.MILLISECONDS);
+            return (int) regresar;
+        } catch (ParseException ex) {
+            Logger.getLogger(CalcularFecha.class.getName()).log(Level.SEVERE, null, ex);
+        } return 1;
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -100,22 +208,27 @@ public class VentanaInfoNahuales extends javax.swing.JFrame {
         labelNombre = new javax.swing.JLabel();
         botonSiguiente = new javax.swing.JButton();
         botonAnterior = new javax.swing.JButton();
-        labelDescripcion = new javax.swing.JLabel();
+        date = new com.toedter.calendar.JDateChooser();
+        btnCalcular = new javax.swing.JButton();
+        scrollPane = new javax.swing.JScrollPane();
+        panelInfo = new javax.swing.JPanel();
         labelSignificado = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        textPaneDes = new javax.swing.JTextPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        textPaneSig = new javax.swing.JTextPane();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        labelDerecha.setEnabled(false);
+        PanelNav.setOpaque(false);
+
+        labelDerecha.setForeground(new java.awt.Color(204, 204, 204));
         labelDerecha.setOpaque(true);
 
-        labalIzquierda.setEnabled(false);
         labalIzquierda.setOpaque(true);
 
-        labelNombre.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        labelNombre.setBackground(new java.awt.Color(0, 0, 0));
+        labelNombre.setFont(new java.awt.Font("DejaVu Serif", 1, 18)); // NOI18N
+        labelNombre.setForeground(new java.awt.Color(255, 255, 255));
+        labelNombre.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        labelNombre.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        labelNombre.setOpaque(true);
 
         botonSiguiente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -129,42 +242,68 @@ public class VentanaInfoNahuales extends javax.swing.JFrame {
             }
         });
 
-        labelDescripcion.setText("Descripcion");
+        date.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
+        btnCalcular.setText("Calcular Nahual de la Fecha");
+        btnCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalcularActionPerformed(evt);
+            }
+        });
+
+        scrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setToolTipText("");
+
+        labelSignificado.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        labelSignificado.setForeground(new java.awt.Color(0, 0, 255));
         labelSignificado.setText("Significado");
 
-        textPaneDes.setEditable(false);
-        jScrollPane1.setViewportView(textPaneDes);
+        javax.swing.GroupLayout panelInfoLayout = new javax.swing.GroupLayout(panelInfo);
+        panelInfo.setLayout(panelInfoLayout);
+        panelInfoLayout.setHorizontalGroup(
+            panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelInfoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelSignificado)
+                .addContainerGap(732, Short.MAX_VALUE))
+        );
+        panelInfoLayout.setVerticalGroup(
+            panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelInfoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelSignificado)
+                .addContainerGap(319, Short.MAX_VALUE))
+        );
 
-        textPaneSig.setEditable(false);
-        jScrollPane2.setViewportView(textPaneSig);
+        scrollPane.setViewportView(panelInfo);
 
         javax.swing.GroupLayout PanelNavLayout = new javax.swing.GroupLayout(PanelNav);
         PanelNav.setLayout(PanelNavLayout);
         PanelNavLayout.setHorizontalGroup(
             PanelNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelNavLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(botonAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
-                .addComponent(labalIzquierda, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addGroup(PanelNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(labelNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                    .addComponent(labelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                .addComponent(labelDerecha, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73)
-                .addComponent(botonSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
             .addGroup(PanelNavLayout.createSequentialGroup()
-                .addGap(172, 172, 172)
-                .addGroup(PanelNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelDescripcion)
-                    .addComponent(labelSignificado)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(234, 234, 234)
+                .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnCalcular)
+                .addContainerGap(225, Short.MAX_VALUE))
+            .addGroup(PanelNavLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(PanelNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(scrollPane, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelNavLayout.createSequentialGroup()
+                        .addComponent(botonAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(67, 67, 67)
+                        .addComponent(labalIzquierda, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addGroup(PanelNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(labelNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                            .addComponent(labelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelDerecha, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(73, 73, 73)
+                        .addComponent(botonSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18))
         );
         PanelNavLayout.setVerticalGroup(
             PanelNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,15 +327,13 @@ public class VentanaInfoNahuales extends javax.swing.JFrame {
                     .addGroup(PanelNavLayout.createSequentialGroup()
                         .addGap(119, 119, 119)
                         .addComponent(botonSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(27, 27, 27)
-                .addComponent(labelSignificado)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(labelDescripcion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addGroup(PanelNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCalcular))
+                .addGap(49, 49, 49)
+                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         getContentPane().add(PanelNav, java.awt.BorderLayout.CENTER);
@@ -207,31 +344,58 @@ public class VentanaInfoNahuales extends javax.swing.JFrame {
     private void botonAnteriorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnteriorMouseClicked
         if(verificarNahuales()){
             anterior();
-            pintarNahueles();
+            pintarNahuales();
+            setPosiciones();
+            date.setDate(null);
         }
     }//GEN-LAST:event_botonAnteriorMouseClicked
 
     private void botonSiguienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSiguienteMouseClicked
         if(verificarNahuales()){
             siguiente();
-            pintarNahueles();
+            pintarNahuales();
+            setPosiciones();
+            date.setDate(null);
         }
     }//GEN-LAST:event_botonSiguienteMouseClicked
+
+    private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
+        if(date.getDate()!=null){
+            calcularFecha();
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe de seleccionar o ingresar una fecha");
+        }
+        
+        
+        
+    }//GEN-LAST:event_btnCalcularActionPerformed
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelNav;
     private javax.swing.JButton botonAnterior;
     private javax.swing.JButton botonSiguiente;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton btnCalcular;
+    private com.toedter.calendar.JDateChooser date;
     private javax.swing.JLabel labalIzquierda;
     private javax.swing.JLabel labelDerecha;
-    private javax.swing.JLabel labelDescripcion;
     private javax.swing.JLabel labelNombre;
     private javax.swing.JLabel labelPrincipal;
     private javax.swing.JLabel labelSignificado;
-    private javax.swing.JTextPane textPaneDes;
-    private javax.swing.JTextPane textPaneSig;
+    private javax.swing.JPanel panelInfo;
+    private javax.swing.JScrollPane scrollPane;
     // End of variables declaration//GEN-END:variables
+
+    class FondoPanel extends JPanel{
+        
+        private Image imagen;
+        @Override
+        public void paint(Graphics g){
+            imagen = new ImageIcon(getClass().getResource("../imagenes/fondoNahuales.jpg")).getImage();
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+            setOpaque(false);
+            super.paint(g);
+        }
+    }
+    
 }
