@@ -15,7 +15,7 @@
 </head>
 
 <body>
-<?php include "BarradeNavegacion.html" ?>
+<?php include "BarradeNavegacion.php" ?>
 <section id="inicio">
 <div class="inicio-container">
   <div class="container" style="margin-top:150px; ">

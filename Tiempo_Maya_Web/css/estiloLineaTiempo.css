@@ -12,7 +12,8 @@
 #transparencia{
   border-radius: 10px;
   margin-top: 20px;
-  background: rgba(0,0,0,0.8);
+  background: rgba(255, 255, 255, 0.5);
+  color: black;
 }
 
 .titulo{
@@ -40,16 +41,20 @@ hr.hidden {
 }
 
 .padre {
-  border-top:  5px solid rgb(0, 23, 53);
-  background: rgb(164, 252, 252);
-  height: 150px;
+  border-top:  5px solid rgba(0, 23, 53, 0.5);
+  background:rgba(23, 255, 236, 0.8);
+  color: black;
   /*IMPORTANTE*/
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  
   font-size: 4rem;
 }
 
+.fecha{
+  margin-bottom: 10px;
+  margin-bottom: 10px;
+  padding-left: 40%;
+  font-size: 20px;
+}
 .hijo {
-  width: 50%;
+  color: black;
 }

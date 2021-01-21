@@ -35,25 +35,14 @@ $idhecho = -1;
 <body>
     <div>
         <header id="header" style="background-color: #1C1C1C;">
-            <?php include 'BarradeNavegacion.html'; ?>>
+            <?php include 'BarradeNavegacion.php'; ?>>
         </header>
     </div>
 
     <section>
         <div class="container" style="padding-top: 120px; height:100px">
             <div id="myCarousel" class="carousel" data-ride="carousel">
-                <!-- Indicadores -->
-                <ol class="carousel-indicators" style="background-color: black">
-                    <?php for ($i = 0; $i < $numfilas; $i++) {
-                        if ($i == 0) {
-                            echo '<li data-target="#myCarousel" data-slide-to="' . $i . '" class="active"></li>';
-                        } else {
-                            echo '<li data-target="#myCarousel" data-slide-to="' . $i . '"></li>';
-                        }
-                    } ?>
-                </ol>
-
-                <div class="carousel-inner" style="height: 600px; background: url(img/fondo1.png);">
+                <div class="carousel-inner" style="height: 600px; background: url(img/fondo.png);">
                     <?php
                     $num = 0;
                     foreach ($resultado as $hecho) : ?>
@@ -62,6 +51,10 @@ $idhecho = -1;
                             inner JOIN Categoria ON Categorizar.idCategoria = Categoria.idCategoria
                              WHERE Categorizar.idHechoHistorico= " . $hecho['id'];
                         $cat = $conexion->query($sqlCat);
+                        $cat1;
+                        foreach ($cat as $categoria1) :
+                            $cat1 = $categoria1['nombre'];
+                        endforeach;
                         if ($num == 0) {
                             echo '<div class="item active" style="height: 600px;">';
                             $num =  $num + 1;
@@ -79,15 +72,18 @@ $idhecho = -1;
                                         <div class="card-body" style="padding-left: 5%;padding-right:5%">
                                             <h5 class="card-title">Descripcion</h5>
                                             <p class="card-text" style="text-align: justify; "><?php echo $hecho['descripcion'] ?></p>
-                                            <a href="#" class="btn btn-primary">Editar</a>
+                                            <form action="editarLineaTiempo.php" method="post">
+                                                <input  type="hidden"  name="idHecho" value="<?php echo $hecho['id'] ?>" >
+                                                <button type="submit" class="btn btn-primary">Editar</button>
+                                            </form>
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div id="transparencia">
-                                <h1 class='titulo' style="margin-bottom: 10px;"> <?php echo $hecho['titulo']; ?></h1>
-                                <h4 class='titulo' style="margin-bottom: 10px;"> Categoria: <?php echo $cat['nombre']; ?> </h4>
-                                <p style="margin-bottom: 10px; margin-bottom: 10px;"> Fecha: <?php echo date("d/m/Y", strtotime($curso['fechaInicio'])) ?></p>
+                                <h1 class='titulo' style="margin-bottom: 10px; color:black"> <?php echo $hecho['titulo']; ?></h1>
+                                <p class='fecha' style=""> Fecha: <?php echo date("d/m/Y", strtotime($hecho['fechaInicio'])) ?></p>
                                 <button class="btn btn-primary owl-slide-animated owl-slide-cta" style="margin-bottom: 20px; ">
                                     <a class="scrollNavigation" onclick="MostrarDetalles('desc<?php echo $num ?>', 'imagen<?php echo $num ?>');" href="#detalles">Leer Mas</a>
                                 </button>
@@ -99,11 +95,11 @@ $idhecho = -1;
 
             <!-- Controles izquierda-derecha -->
             <a class="left carousel-control" onclick="ocultarDetalles();" href="#myCarousel" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" style="color: black"></span>
+                <span class="glyphicon glyphicon-chevron-left"></span>
                 <span class="sr-only">Anterior</span>
             </a>
             <a class="right carousel-control" onclick="ocultarDetalles();" href="#myCarousel" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" style="color: black"></span>
+                <span class="glyphicon glyphicon-chevron-right"></span>
                 <span class="sr-only">Siguiente</span>
             </a>
         </div>
@@ -113,20 +109,38 @@ $idhecho = -1;
 
     <section style="padding-top: 700px;">
 
-        <div class="padre">
-            <div style="color: black;" class="alert alert-primary" role="alert">
-                <div class="card-header">
-                    Falta un hecho importante?
-                </div>
-                <div>
-                    <h5 class="card-title">AGREGA NUEVOS HECHOS HISTORICOS</h5>
-                    <button class="btn btn-primary owl-slide-animated owl-slide-cta" style="margin-bottom: 20px; ">
-                        <a style="color: black; " class="scrollNavigation" href="insertarLineaTiempo.php">AGREGAR</a>
-                    </button>
+
+    </section>
+
+
+    <footer id="footer">
+        <?php
+        if (isset($_SESSION['nombre'])) {
+            echo '<div class="container">
+            <div class="padre">
+                <div style="color: black; padding-left: 5%;">
+                    <div class="card-header">
+                        Falta un hecho importante?
+                    </div>
+                    <div>
+                        <h5 class="card-title" style="color:black">AGREGA NUEVOS HECHOS HISTORICOS</h5>
+                        <button class="btn btn-primary owl-slide-animated owl-slide-cta" style="margin-bottom: 20px; ">
+                            <a style="color: black; " class="scrollNavigation" href="insertarLineaTiempo.php">AGREGAR</a>
+                        </button>
+                    </div>
                 </div>
             </div>
+        </div>';
+        }
+        ?>
+
+
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong>Teoria de Sistemas</strong>. Derechos Reservados
+            </div>
         </div>
-    </section>
+    </footer>
 
     <script type=" text/javascript">
         var id1;

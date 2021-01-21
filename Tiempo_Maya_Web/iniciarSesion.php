@@ -32,7 +32,7 @@
     </style>
     <div>
         <header id="header">
-            <?php include 'BarradeNavegacion.html'; ?>>
+            <?php include 'BarradeNavegacion.php'; ?>>
         </header>
     </div>
     <div class="main-container">

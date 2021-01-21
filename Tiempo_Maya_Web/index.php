@@ -15,7 +15,7 @@
 
 <body>
 
-<?php include "BarradeNavegacion.html" ?>
+<?php include "BarradeNavegacion.php" ?>
   <section id="inicio">
     <div class="inicio-container">
       <h1>Bienvenido al Tiempo Maya</h1>

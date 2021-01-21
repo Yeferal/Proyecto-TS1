@@ -17,7 +17,7 @@
 <script src="https://kit.fontawesome.com/e51fb510f5.js" crossorigin="anonymous"></script>
 
 </head>
-<?php include "BarradeNavegacion.html" ?>
+<?php include "BarradeNavegacion.php" ?>
 <body>
 
 <section id="inicio">

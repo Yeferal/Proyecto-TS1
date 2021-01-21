@@ -13,7 +13,7 @@
 
 
 </head>
-<?php include "BarradeNavegacion.html" ?>
+<?php include "BarradeNavegacion.php" ?>
 <body>
 <section id="inicio">
 <div class="inicio-container">

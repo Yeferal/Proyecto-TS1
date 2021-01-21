@@ -4,8 +4,14 @@ session_start();
 $conexion = new mysqli("localhost", "administrador", "Admin.123321", "LineaTiempo");
 $sql = "SELECT * FROM Categoria ";
 //$sql .= " ORDER BY nombre";
-$categorias = $conexion->query($sql);
-$cont = 1;
+$sql2 = "CALL mostrarHechosPor(".$_POST['idHecho'].");";
+$resultado = $conexion->query($sql2);
+$conexion2 = new mysqli("localhost", "administrador", "Admin.123321", "LineaTiempo");
+$categorias = $conexion2->query($sql);
+foreach ($resultado as $miHecho) : 
+    $hecho = $miHecho;
+endforeach;
+
 ?>
 
 <!DOCTYPE html>
@@ -34,31 +40,31 @@ $cont = 1;
         <h1 style="text-align: center; color: white;">INSERTAR NUEVO HECHO</h1>
         <div style="margin-left: 20%; margin-right: 20%; margin-top:50px; background-color: rgba(255, 255, 255,0.5); ">
             <div style="padding: 40px; color:black; font-size:20px;">
-                <form action="./backend/insertrarHecho.php" method="post">
+                <form action="./backend/insertrarHecho.php" method="post" >
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-2 col-form-label">Titulo</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="titulo" required>
+                            <input type="text" class="form-control" name="titulo" value="<?php echo $hecho['titulo']; ?>" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-2 col-form-label">Fecha Del </label>
                         <div class="col-sm-10">
-                            <input type="date" name="fechaInicio" id="FInicio" class="form-control" value="<?php echo date("Y-m-d"); ?>">
+                            <input type="date" name="fechaInicio" id="FInicio" class="form-control" value="<?php  echo $hecho['fechaInicio']; ?>">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-2 col-form-label">Al </label>
                         <div class="col-sm-10">
-                            <input type="date" name="fechaFin" id="fechaFin" class="form-control" value="<?php echo date("Y-m-d"); ?>">
+                            <input type="date" name="fechaFin" id="fechaFin" class="form-control" value="<?php  echo $hecho['fechaFinal'];?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Descripcion:</label>
-                        <textarea class="form-control" name="decripcion" rows="3" required></textarea>
+                        <textarea class="form-control" name="decripcion" rows="3" value="" required> <?php echo $hecho['descripcion'] ?></textarea>
                     </div>
 
-                    <div class="input-group is-invalid">
+                    <!--<div class="input-group is-invalid">
                         <div class="input-group-prepend">
                             <label class="input-group-text" for="validatedInputGroupSelect" style="color: black;">CATEGORIA: </label>
                         </div>
@@ -67,8 +73,8 @@ $cont = 1;
                                 <option value="<?php echo $area['idCategoria']; ?>"> <?php echo $area['nombre']; ?> </option>
                             <?php endforeach; ?>
                         </select>
-                    </div>
-                    <!----><div class="input-group" style="padding-top: 40px;">
+                    </div>-->
+                    <div class="input-group" style="padding-top: 40px;">
 
                         <div class="custom-file">
                             <input type="file" accept=".jpg,.png" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" name="imagen">
