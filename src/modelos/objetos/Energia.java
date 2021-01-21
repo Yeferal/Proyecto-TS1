@@ -13,13 +13,15 @@ public class Energia {
 
     private int id;
     private String nombre;
+    private Imagen imagen;
 
     public Energia() {
     }
 
-    public Energia(int id, String nombre) {
+    public Energia(int id, String nombre, Imagen imagen) {
         this.id = id;
         this.nombre = nombre;
+        this.imagen = imagen;
     }
 
     public int getId() {
@@ -36,6 +38,14 @@ public class Energia {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Imagen getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(Imagen imagen) {
+        this.imagen = imagen;
     }
     
 }

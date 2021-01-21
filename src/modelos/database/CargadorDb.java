@@ -22,9 +22,10 @@ public class CargadorDb {
     public void crear(Cargador cargador){
         try {
             PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO cargador "
-                    + "(nombre,descripcion) VALUES (?,?);");
+                    + "(nombre,descripcion,rutaImagen) VALUES (?,?,?);");
             statement.setString(1, cargador.getNombre());
             statement.setString(2, cargador.getDescripcion());
+            statement.setString(3, cargador.getImagen());
             statement.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -34,9 +35,10 @@ public class CargadorDb {
     public void modificar(Cargador cargador){
         try {
             PreparedStatement statement = ConexionDb.conexion.prepareStatement("UPDATE cargador SET "
-                    + "descripcion=? WHERE nombre=?;");
-            statement.setString(1, cargador.getNombre());
-            statement.setString(2, cargador.getDescripcion());
+                    + "descripcion=?, rutaImagen=? WHERE nombre=?;");
+            statement.setString(1, cargador.getDescripcion());
+            statement.setString(2, cargador.getImagen());
+            statement.setString(3, cargador.getNombre());
             statement.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -77,10 +79,23 @@ public class CargadorDb {
         return null;
     }
     
+    public Cargador getCargador(int id){
+        try {
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM cargador WHERE id=?;");
+            statement.setInt(1, id);
+            ResultSet resultado = statement.executeQuery();
+            if(resultado.next()) return instanciarDeResultSet(resultado);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+    
     private Cargador instanciarDeResultSet(ResultSet resultado) throws SQLException{
         return new Cargador(
                 resultado.getString("nombre"),
-                resultado.getString("descripcion")
+                resultado.getString("descripcion"),
+                resultado.getString("rutaImagen")
         );
     }
 }

@@ -5,7 +5,11 @@
  */
 package modelos.objetos;
 
+import java.awt.Image;
 import java.sql.Date;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /**
  *
@@ -14,20 +18,23 @@ import java.sql.Date;
 public class Nahual {
     
     private int id;
-    private String nombre, rutaImagen, significado, descripcion;
+    private String nombre,nombreYucateco,nombreEsp, significado, descripcion;
     private Date fechaInicio, fechaFinalizacion;
+    private Imagen imagen;
 
     public Nahual() {
     }
 
-    public Nahual(int id, String nombre, String rutaImagen, String significado, String descripcion, Date fechaInicio, Date fechaFinalizacion) {
+    public Nahual(int id, String nombre, Imagen imagen, String significado, String descripcion, Date fechaInicio, Date fechaFinalizacion, String nombreEsp, String nombreYucateco) {
         this.id = id;
         this.nombre = nombre;
-        this.rutaImagen = rutaImagen;
+        this.imagen = imagen;
         this.significado = significado;
         this.descripcion = descripcion;
         this.fechaInicio = fechaInicio;
         this.fechaFinalizacion = fechaFinalizacion;
+        this.nombreYucateco = nombreYucateco;
+        this.nombreEsp = nombreEsp;
     }
 
     public int getId() {
@@ -46,12 +53,12 @@ public class Nahual {
         this.nombre = nombre;
     }
 
-    public String getRutaImagen() {
-        return rutaImagen;
+    public Imagen getImagen() {
+        return imagen;
     }
 
-    public void setRutaImagen(String rutaImagen) {
-        this.rutaImagen = rutaImagen;
+    public void setImagen(Imagen imagen) {
+        this.imagen = imagen;
     }
 
     public String getSignificado() {
@@ -85,5 +92,20 @@ public class Nahual {
     public void setFechaFinalizacion(Date fechaFinalizacion) {
         this.fechaFinalizacion = fechaFinalizacion;
     }
-    
+
+    public String getNombreYucateco() {
+        return nombreYucateco;
+    }
+
+    public void setNombreYucateco(String nombreYucateco) {
+        this.nombreYucateco = nombreYucateco;
+    }
+
+    public String getNombreEsp() {
+        return nombreEsp;
+    }
+
+    public void setNombreEsp(String nombreEsp) {
+        this.nombreEsp = nombreEsp;
+    }
 }

@@ -12,15 +12,16 @@ package modelos.objetos;
 public class Informacion {
     
     private int id;
-    private String titulo, descripcion;
+    private String titulo, descripcionEscritorio, descripcionWeb;
 
     public Informacion() {
     }
 
-    public Informacion(int id, String titulo, String descripcion) {
+    public Informacion(int id, String titulo, String descripcionEs, String descripcionWeb) {
         this.id = id;
         this.titulo = titulo;
-        this.descripcion = descripcion;
+        this.descripcionEscritorio = descripcionEs;
+        this.descripcionWeb = descripcionWeb;
     }
 
     public int getId() {
@@ -39,12 +40,20 @@ public class Informacion {
         this.titulo = titulo;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getDescripcionEscritorio() {
+        return descripcionEscritorio;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setDescripcion(String descripcionEscritorio) {
+        this.descripcionEscritorio = descripcionEscritorio;
+    }
+
+    public String getDescripcionWeb() {
+        return descripcionWeb;
+    }
+
+    public void setDescripcionWeb(String descripcionWeb) {
+        this.descripcionWeb = descripcionWeb;
     }
     
 }

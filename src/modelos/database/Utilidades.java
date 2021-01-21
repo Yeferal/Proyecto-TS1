@@ -5,6 +5,11 @@
  */
 package modelos.database;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.util.Date;
+
 /**
  *
  * @author jose_
@@ -27,4 +32,11 @@ public class Utilidades {
         return new java.util.Date(fecha.getTime());
     }
     
+    public static java.util.Date LocalDateToDate(java.time.LocalDate fecha){
+        return Date.from(fecha.atStartOfDay().toInstant(ZoneOffset.UTC));
+    }
+    
+    public static java.time.LocalDate DateToLocalDate(java.util.Date fecha){
+        return fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    }
 }

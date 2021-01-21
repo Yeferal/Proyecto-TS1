@@ -23,9 +23,10 @@ public class InformacionDb {
     public void crear(Informacion informacion){
         try {
             PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO informacion "
-                    + "(titulo,descripcion) VALUES (?,?);");
+                    + "(titulo,descripcionEscritorio,descripcionWeb) VALUES (?,?,?);");
             statement.setString(1, informacion.getTitulo());
-            statement.setString(2, informacion.getDescripcion());
+            statement.setString(2, informacion.getDescripcionEscritorio());
+            statement.setString(3, informacion.getDescripcionWeb());
             statement.executeUpdate();
             mensajes.informacion("Se ha creado la informacion con exito.");
         } catch (SQLException ex) {
@@ -36,10 +37,11 @@ public class InformacionDb {
     public void modificar(Informacion informacion){
         try {
             PreparedStatement statement = ConexionDb.conexion.prepareStatement("UPDATE informacion SET "
-                    + "titulo=?, descripcion=? WHERE id=?;");
+                    + "titulo=?, descripcionEscritorio=?, descripcionWeb=? WHERE id=?;");
             statement.setString(1, informacion.getTitulo());
-            statement.setString(2, informacion.getDescripcion());
-            statement.setInt(3, informacion.getId());
+            statement.setString(2, informacion.getDescripcionEscritorio());
+            statement.setString(3, informacion.getDescripcionWeb());
+            statement.setInt(4, informacion.getId());
             statement.executeUpdate();
             mensajes.informacion("Se ha modificado la informacion con exito.");
         } catch (SQLException ex) {
@@ -98,7 +100,8 @@ public class InformacionDb {
         return new Informacion(
                 resultado.getInt("id"),
                 resultado.getString("titulo"),
-                resultado.getString("descripcion")
+                resultado.getString("descripcionEscritorio"),
+                resultado.getString("descripcionWeb")
         );
     }
 }

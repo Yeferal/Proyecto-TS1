@@ -66,7 +66,7 @@ public class FechaHaabDb {
         try {
             PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM calendariohaab;");
             ResultSet resultado = statement.executeQuery();
-            while(resultado.next()) fechas.add(instanciarDeResultSet(resultado));
+            while(resultado.next()) fechas.add(instanciarDeResultSet(resultado, 1));
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -78,7 +78,7 @@ public class FechaHaabDb {
             PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM calendariohaab WHERE id=?;");
             statement.setInt(1, id);
             ResultSet resultado = statement.executeQuery();
-            if(resultado.next()) return instanciarDeResultSet(resultado);
+            if(resultado.next()) return instanciarDeResultSet(resultado, 1);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -87,26 +87,52 @@ public class FechaHaabDb {
 
     public FechaHaab getFechaEspecifica(LocalDate fecha) {
         try {
+            int cargador = obtenerCargador(fecha);
+            LocalDate fechaBusqueda = LocalDate.of(2020, fecha.getMonthValue(), fecha.getDayOfMonth());
             PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM calendariohaab WHERE fecha=?;");
-            statement.setDate(1, Date.valueOf(fecha));
+            statement.setDate(1, Date.valueOf(fechaBusqueda));
             ResultSet resultado = statement.executeQuery();
-            if(resultado.next()) return instanciarDeResultSet(resultado);
+            if(resultado.next()) return instanciarDeResultSet(resultado, cargador);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return null;
     }   
     
-    private FechaHaab instanciarDeResultSet(ResultSet resultado) throws SQLException{
+    private FechaHaab instanciarDeResultSet(ResultSet resultado, int cargador) throws SQLException{
         NahualDb accesoNahual = new NahualDb();
         WinalDb accesoWinal = new WinalDb();
+        CargadorDb accesoCargador = new CargadorDb();
         return new FechaHaab(
                 resultado.getInt("id"),
                 accesoNahual.getNahual(resultado.getInt("nahual")),
                 accesoWinal.getWinal(resultado.getInt("winal")),
                 resultado.getString("nombre"),
                 resultado.getString("descripcion"),
-                resultado.getDate("fecha")
+                resultado.getDate("fecha"),
+                accesoCargador.getCargador(cargador)
         );
+    }
+    
+    private int obtenerCargador(LocalDate fecha){
+        int cargador = 1;
+        if(fecha.getYear() < 2020){
+            for (int i = 0; i < (2020-fecha.getYear()); i++) {
+                if(cargador==1){
+                    cargador = 4;
+                }else{
+                    cargador--;
+                }
+            }
+        }else if(fecha.getYear() > 2020){
+            for (int i = 0; i < (fecha.getYear()-2020); i++) {
+                if(cargador==4){
+                    cargador = 1;
+                }else{
+                    cargador++;
+                }
+            }
+        }
+        return cargador;
     }
 }
