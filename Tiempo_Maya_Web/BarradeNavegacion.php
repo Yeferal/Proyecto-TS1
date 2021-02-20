@@ -11,7 +11,7 @@
         <li><a href="CalendarioHaab.php">Calendario Haab</a></li>
         <li><a href="CalendarioCholqij.php">Calendario Cholquij</a></li>
         <li><a href="#">Rueda Calendarica</a></li>
-        <li><a href="nahuales.php">Nahuales</a></li>
+        <li><a href="nahuales.php?id_nahual=1">Nahuales</a></li>
         <?php 
         if (isset($_SESSION['nombre'])) {
             echo '<li><a href="cerrarSesion.php">Cerrar Sesion</a></li>';

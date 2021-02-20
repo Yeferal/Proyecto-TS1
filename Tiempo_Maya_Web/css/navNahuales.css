@@ -1,0 +1,39 @@
+
+.navNahuales{
+    /* background: black; */
+    display: flex;
+    justify-content: center;
+    /* width: 1000px; */
+}
+
+.navleft {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border-right-width: 1em;
+  /* border-bottom-width: thick; */
+    border-left-width: 1em;
+}
+.navright {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.nahuales1 {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.nahuales2 {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border-right-width: 110px;
+    border-left-width: 110px
+}
+.nahuales3{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+

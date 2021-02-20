@@ -31,12 +31,12 @@
         }
     </style>
     <div>
-        <header id="header">
-            <?php include 'BarradeNavegacion.php'; ?>>
+        <header id="header" style="background-color: #1C1C1C;">
+            <?php include 'BarradeNavegacion.html'; ?>>
         </header>
     </div>
     <div class="main-container">
-        <form method="POST" action="./backend/sesion/inicioSesion.php">
+        <form method="POST" action="">
             <div class="form-group">
                 <h1 style="text-align: center;">Iniciar Sesion</h1>
             </div>
@@ -64,5 +64,6 @@
   <script src="lib/counterup/counterup.min.js"></script>
   <script src="lib/superfish/hoverIntent.js"></script>
   <script src="lib/superfish/superfish.min.js"></script>
+
 </body>
 </html>
