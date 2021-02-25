@@ -6,8 +6,9 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700" rel="stylesheet">
   <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/e51fb510f5.js" crossorigin="anonymous"></script>
-<link href="lib/animate/animate.min.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/e51fb510f5.js" crossorigin="anonymous"></script>
+  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="lib/animate/animate.min.css" rel="stylesheet">
   <link href="css/Calendarios.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
 

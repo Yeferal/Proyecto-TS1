@@ -1,8 +1,9 @@
 <?php
-session_start();
+//session_start();
 $ir_a = "../LineaDeTiempo.php"; 
 //$conexion = new mysqli("servidor","usuario","clave","bd")
-$conexion = new mysqli("localhost", "administrador", "Admin.123321", "LineaTiempo");
+$conexion; 
+include_once('../sesion/conexionsql.php');
 if ($conexion->connect_error) {
     die("Connection failed: " . $conexion->connect_error);
 }
@@ -15,7 +16,7 @@ $sql1 = "INSERT INTO HechoHistorico (fechaInicio, fechaFinal, titulo, descripcio
     }
 
 //selecciona el id del hecho historico guardado antes
-$rs = mysqli_query($conexion, "SELECT MAX(idHechoHistorico)as id FROM HechoHistorico");
+$rs = mysqli_query($conexion, "SELECT MAX(idHechoHistorico) as id FROM HechoHistorico");
 $id = $rs->fetch_array(MYSQLI_ASSOC);
 
 //asigna la categoria del hecho historico 

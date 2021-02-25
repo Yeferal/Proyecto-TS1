@@ -1,20 +1,12 @@
 <?php
-session_start();
-
-//$conexion = new mysqli("servidor","usuario","clave","bd")
-$conexion = new mysqli("localhost", "administrador", "Admin.123321", "LineaTiempo");
-/*$sql =  "SELECT * FROM (";
-$sql .= "  SELECT MAX(fecha) as fecha, idHechoHistorico as id ";
-$sql .= "  FROM Edicion ";
-$sql .= "  GROUP BY Edicion.idHechoHistorico ";
-$sql .= ") a";
-$sql .= "GROUP BY a.id";
-*/
+//session_start();
+$conexion; include_once('backend/sesion/conexionSql.php');
 $sql = "CALL mostrarHechos";
 $resultado = $conexion->query($sql);
 $numfilas = $resultado->num_rows;
 echo $numfilas;
 $idhecho = -1;
+$cat;
 ?>
 
 <!DOCTYPE html>
@@ -47,14 +39,24 @@ $idhecho = -1;
                     $num = 0;
                     foreach ($resultado as $hecho) : ?>
                         <?php
-                        $sqlCat = "SELECT idHechoHistorico, nombre FROM Categorizar 
-                            inner JOIN Categoria ON Categorizar.idCategoria = Categoria.idCategoria
-                             WHERE Categorizar.idHechoHistorico= " . $hecho['id'];
+                        $sqlCat = "SELECT idHechoHistorico, nombre FROM categorizar ". 
+                            "inner JOIN categoria ON (categorizar.idCategoria = categoria.id) ".
+                             "WHERE categorizar.idHechoHistorico= " . $hecho['id'] .";";
                         $cat = $conexion->query($sqlCat);
+                        //$cat = $cat->fetch_array(MYSQLI_ASSOC);
+                        //$cat = "adad ";
+                        
+                        //$rangoRS = mysqli_query($conexion,$sqlCat);
+                        //$rango = $rangoRS->fetch_array(MYSQLI_ASSOC); 
+                        //echo "<br>----------------------- <br>$cat<br> ----------------------- <br>";
+                        //echo $sqlCat;
                         $cat1;
-                        foreach ($cat as $categoria1) :
-                            $cat1 = $categoria1['nombre'];
-                        endforeach;
+                        if (is_array($cat) || is_object($cat))
+                        {
+                            foreach ($cat as $categoria1):
+                                $cat1 = $categoria1['nombre'];
+                            endforeach;
+                        }
                         if ($num == 0) {
                             echo '<div class="item active" style="height: 600px;">';
                             $num =  $num + 1;

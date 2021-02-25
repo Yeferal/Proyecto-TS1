@@ -1,8 +1,8 @@
 <?php
 session_start();
 //$conexion = new mysqli("servidor","usuario","clave","bd")
-$conexion = new mysqli("localhost", "administrador", "Admin.123321", "LineaTiempo");
-$sql = "SELECT * FROM Categoria ";
+$conexion; include_once('backend/sesion/conexionSql.php');
+$sql = "SELECT * FROM categoria ";
 //$sql .= " ORDER BY nombre";
 $categorias = $conexion->query($sql);
 $cont = 1;
@@ -34,7 +34,7 @@ $cont = 1;
         <h1 style="text-align: center; color: white;">INSERTAR NUEVO HECHO</h1>
         <div style="margin-left: 20%; margin-right: 20%; margin-top:50px; background-color: rgba(255, 255, 255,0.5); ">
             <div style="padding: 40px; color:black; font-size:20px;">
-                <form action="./backend/insertrarHecho.php" method="post">
+                <form action="backend/hecho_historico/insertarHecho.php" method="post">
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-2 col-form-label">Titulo</label>
                         <div class="col-sm-10">
