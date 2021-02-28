@@ -1,4 +1,6 @@
 <?php
+
+session_start();
   $conexion; include_once('backend/sesion/conexionSql.php');
 
   if(!isset($_GET['id_nahual'])){
@@ -57,6 +59,12 @@
 <div>
   <section id="nav_nahuales">
     <?php include_once "backend/nahuales/encabezadoNahuales.php" ?>
+  </section>
+</div>
+
+<div>
+  <section id="fecha_nahuales">
+    <?php include_once "backend/nahuales/fechaNahual.php" ?>
   </section>
 </div>
 

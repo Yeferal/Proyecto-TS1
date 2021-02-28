@@ -55,6 +55,8 @@ public class VentanaInfoNahuales extends javax.swing.JFrame {
         
 //        textPaneSig.setBackground(new Color(255, 255, 255, 100));
         //textPaneSig.setOpaque(false);
+        //textPaneDes.setContentType("text/html");
+        //textPaneSig.setContentType("text/html");
         
         panelInfo.add(textPaneSig);
         panelInfo.add(labelDescripcion);
@@ -71,6 +73,10 @@ public class VentanaInfoNahuales extends javax.swing.JFrame {
         listaNahuales = (ArrayList<Nahual>) nahualDb.getNahuales();
         pintar();
         setPosiciones();
+        
+        
+        
+        
     }
     public void setPosiciones(){
         

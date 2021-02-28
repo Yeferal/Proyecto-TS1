@@ -1,7 +1,7 @@
 <?php
-//session_start();
+session_start();
 $conexion; include_once('backend/sesion/conexionSql.php');
-$sql = "CALL mostrarHechos";
+$sql = "CALL mostrarHechos();";
 $resultado = $conexion->query($sql);
 $numfilas = $resultado->num_rows;
 echo $numfilas;
@@ -42,11 +42,14 @@ $cat;
                         $sqlCat = "SELECT idHechoHistorico, nombre FROM categorizar ". 
                             "inner JOIN categoria ON (categorizar.idCategoria = categoria.id) ".
                              "WHERE categorizar.idHechoHistorico= " . $hecho['id'] .";";
-                        $cat = $conexion->query($sqlCat);
+                            // echo $sqlCat;
+                        $cat = mysqli_query($conexion,$sqlCat);
+                        //echo $sqlCat;
+                        //echo $cat;
                         //$cat = $cat->fetch_array(MYSQLI_ASSOC);
                         //$cat = "adad ";
                         
-                        //$rangoRS = mysqli_query($conexion,$sqlCat);
+                        $rangoRS = mysqli_query($conexion,$sqlCat);
                         //$rango = $rangoRS->fetch_array(MYSQLI_ASSOC); 
                         //echo "<br>----------------------- <br>$cat<br> ----------------------- <br>";
                         //echo $sqlCat;

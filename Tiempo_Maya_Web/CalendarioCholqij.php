@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+$conexion; include_once('backend/sesion/conexionSql.php');
   if (isset($_POST['date'])) {
     $nivel;
     $query;
@@ -29,7 +32,7 @@
 
   <h1>Calendario Cholqij</h1>
     <a href="#information" class="btn-get-started">Descripcion</a>
-    <a href="#sabernahual" class="btn-get-started">¿Que nahual cae en esta fecha?</a>
+    <!-- <a href="#sabernahual" class="btn-get-started">¿Que nahual cae en esta fecha?</a> -->
     <a href="#nahuales" class="btn-get-started">Nahuales</a>
     <a href="#portafolio" class="btn-get-started">Imagenes</a>
 
@@ -164,7 +167,10 @@
   </div>
 </section>
 <hr>
-<section id="sabernahual">
+
+
+
+<!-- <section id="sabernahual">
   <div class="container">
     <div class="row about-container">
       <div class="col-lg-12 ">
@@ -187,7 +193,11 @@
   </div>
   <hr>
   <hr>
-</section>
+</section> -->
+
+
+
+
 <section id="nahuales">
   <div class="container">
     <div class="row about-container">
@@ -195,7 +205,21 @@
         <div class="section-header">
           <h3 class="section-title" style="  color: #2dc997;">NAHUALES</h3>
         </div>
-        <?php include_once "nahuales.php" ?>
+        <?php //include_once "nahuales.php" ?>
+        <?php 
+        
+        $sql1 = "SELECT nombre, texto_web FROM nahual;";
+        $resultado1 = $conexion->query($sql1);
+
+        foreach ($resultado1 as $fila):?>
+          <h3 class="section-title" style="  color: #2dc997;"><?php echo $fila['nombre']; ?></h3>
+          <?php echo $fila['texto_web']; ?>
+
+
+        <?php endforeach;?>
+
+
+
       </div>
     </div>
   </div>

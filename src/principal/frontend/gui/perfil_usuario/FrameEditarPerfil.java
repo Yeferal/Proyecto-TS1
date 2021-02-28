@@ -8,8 +8,11 @@ package principal.frontend.gui.perfil_usuario;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.sql.Date;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import modelos.database.UsuarioDb;
 import modelos.objetos.Usuario;
 import principal.backend.perfil_usuario.Informacion;
 
@@ -23,6 +26,7 @@ public class FrameEditarPerfil extends javax.swing.JFrame {
     private Informacion info = new Informacion();
     private FramePerfil framePerfil;
     private Usuario user;
+    private UsuarioDb usuarioDb;
     
     public FrameEditarPerfil(FramePerfil framePerfil, Usuario user) {
         initComponents();
@@ -39,6 +43,16 @@ public class FrameEditarPerfil extends javax.swing.JFrame {
         //lblApellidos.setText(user.getApellido());
         //if(user.getNacimiento() != null) lblNacimiento.setText(user.getNacimiento().toString());
         //lblTelefono.setText(user.getTelefono());
+    }
+    
+    public void llenarDatos(){
+        jTextFieldEmail.setText(user.getEmail());
+        jTextFieldNombre.setText(user.getNombre());
+        jTextFieldApellido.setText(user.getApellido());
+        jTextFieldTelefono.setText(user.getTelefono());
+        jPasswordFieldPass.setText(user.getPassword());
+        jDateChooserNacimiento.setDate(user.getNacimiento());
+        //System.out.println("Usuario: "+user.getNombre());
     }
 
     
@@ -59,8 +73,8 @@ public class FrameEditarPerfil extends javax.swing.JFrame {
         jTextFieldTelefono = new javax.swing.JTextField();
         jDateChooserNacimiento = new com.toedter.calendar.JDateChooser();
         jPasswordFieldPass = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        botonGuardar = new javax.swing.JButton();
+        botonRegresar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -95,13 +109,23 @@ public class FrameEditarPerfil extends javax.swing.JFrame {
 
         jPasswordFieldPass.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
-        jButton1.setBackground(new java.awt.Color(204, 204, 204));
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("Guardar");
+        botonGuardar.setBackground(new java.awt.Color(204, 204, 204));
+        botonGuardar.setForeground(new java.awt.Color(0, 0, 0));
+        botonGuardar.setText("Guardar");
+        botonGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setBackground(new java.awt.Color(204, 204, 204));
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jButton2.setText("Regresar");
+        botonRegresar.setBackground(new java.awt.Color(204, 204, 204));
+        botonRegresar.setForeground(new java.awt.Color(0, 0, 0));
+        botonRegresar.setText("Regresar");
+        botonRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRegresarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setText("Editar Perfil");
@@ -116,9 +140,9 @@ public class FrameEditarPerfil extends javax.swing.JFrame {
                         .addGap(53, 53, 53)
                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(panel1Layout.createSequentialGroup()
-                                .addComponent(jButton2)
+                                .addComponent(botonRegresar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1))
+                                .addComponent(botonGuardar))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
                                 .addComponent(lbl6, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -140,7 +164,7 @@ public class FrameEditarPerfil extends javax.swing.JFrame {
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addGap(290, 290, 290)
                         .addComponent(jLabel1)))
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,7 +174,7 @@ public class FrameEditarPerfil extends javax.swing.JFrame {
                 .addGap(54, 54, 54)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextFieldEmail)
-                    .addComponent(lbl1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
+                    .addComponent(lbl1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl2, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
@@ -161,7 +185,7 @@ public class FrameEditarPerfil extends javax.swing.JFrame {
                     .addComponent(jTextFieldApellido))
                 .addGap(18, 18, 18)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl4, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(lbl4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jDateChooserNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -169,12 +193,12 @@ public class FrameEditarPerfil extends javax.swing.JFrame {
                     .addComponent(jTextFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl6, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                    .addComponent(lbl6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPasswordFieldPass))
                 .addGap(39, 39, 39)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(botonGuardar)
+                    .addComponent(botonRegresar))
                 .addGap(21, 21, 21))
         );
 
@@ -182,6 +206,22 @@ public class FrameEditarPerfil extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
+        this.setVisible(false);
+        framePerfil.setVisible(true);
+    }//GEN-LAST:event_botonRegresarActionPerformed
+
+    private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
+        Usuario usuario = new Usuario(user.getUsername(), jPasswordFieldPass.getText(), jTextFieldEmail.getText(), jTextFieldNombre.getText(), jTextFieldApellido.getText()
+                , jTextFieldTelefono.getText(), 
+                (Date) jDateChooserNacimiento.getDate(),
+                user.getRol());
+        usuarioDb.actualizarUsuario(usuario, user.getUsername());
+        JOptionPane.showMessageDialog(null, "Se guardaron los cambios");
+        this.setVisible(false);
+        framePerfil.setVisible(true);
+    }//GEN-LAST:event_botonGuardarActionPerformed
 
     
     class FondoPanel extends JPanel {
@@ -198,8 +238,8 @@ public class FrameEditarPerfil extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton botonGuardar;
+    private javax.swing.JButton botonRegresar;
     private com.toedter.calendar.JDateChooser jDateChooserNacimiento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPasswordField jPasswordFieldPass;

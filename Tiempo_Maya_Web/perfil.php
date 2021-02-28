@@ -1,3 +1,20 @@
+<?php
+session_start();
+$conexion; include_once('backend/sesion/conexionSql.php');
+$sql = "SELECT usuario.*,rol.tipo FROM usuario join rol on (usuario.rol=rol.id) WHERE username='".$_SESSION['nombre']."';";
+$resultado = $conexion->query($sql);
+// $usuario;
+// foreach($resultado as $fila):
+//     $usuario = $fila;
+// endforeach;
+ $usuario = $resultado->fetch_array(MYSQLI_ASSOC);  
+
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,33 +47,35 @@
                   <li>
                       <div class="profile-name">
                           <strong>
-                              <a href="#">Luis Ruiz</a>
+                              <a href="#"><?php echo $usuario['username']; ?></a>
                               <a href="#" class="user-status is-online tooltip-primary" data-toggle="tooltip" data-placement="top" data-original-title="Online"></a>
                           </strong>
                           <span>
-                              <a href="#">Nahual Noj</a>
+                          <?php include "backend/nahuales/nahualUser.php" ?>
+                              <a href="#">Nahual <?php echo $usuarioNahual['nombre']; ?></a>
                           </span>
                       </div>
                   </li>
-                  <li>
+                  <!-- <li>
                       <div class="profile-stat">
                           <h3 style="color: white;">643</h3>
                           <span>
                               <a href="#">Publicaciones</a>
                           </span>
                       </div>
-                  </li>
-                  <li>
+                  </li> -->
+                  <!-- <li>
                       <div class="profile-stat">
                           <h3 style="color: white;">108</h3>
                           <span>
                               <a href="#">Me gusta</a>
                           </span>
                       </div>
-                  </li>
+                  </li> -->
               </ul>
           </div>
       </header>
+      <?php echo $sql; ?>
       <section class="profile-info-tabs">
           <div class="row">
               <div class="col-sm-offset-2 col-sm-10">
@@ -64,13 +83,13 @@
                       <li>
 
                               <i class="entypo-location"></i>
-                            <strong>  luisRuiz@tiempoMaya.com </strong>
+                            <strong>  Correo: <?php echo $usuario['email']; ?> </strong>
 
                       </li>
                       <li>
 
                               <i class="entypo-location"></i>
-                              +502 52364178
+                              Telefono: <?php echo $usuario['telefono']; ?>
 
                       </li>
                       <li>

@@ -12,6 +12,7 @@
                     $sql1 = "SELECT n.*,r.*  FROM nahual n join rutaimagen r on (n.idImagen= r.id) WHERE n.id = ($id_nahual-1) LIMIT 1;";
                     $resultado1 = $conexion->query($sql1);
                 }
+                //echo $sql1;
             ?>
             <div class="nahuales1" id = "f111">
             <?php foreach ($resultado1 as $dato1): ?>

@@ -1,3 +1,11 @@
+<?php
+session_start();
+$conexion; include_once('backend/sesion/conexionSql.php');
+$sql = "SELECT usuario.*,rol.tipo FROM usuario join rol on (usuario.rol=rol.id) WHERE username='".$_SESSION['nombre']."';";
+$resultado = $conexion->query($sql);
+$usuario = $resultado->fetch_array(MYSQLI_ASSOC);  
+
+?>
 
 <!DOCTYPE html>
 
@@ -39,21 +47,21 @@
               <div class="row">
                 <div class="col">
                   <div class="card-profile-stats d-flex justify-content-center mt-md-5">
-                    <div>
+                    <!-- <div>
                       <span class="heading">643</span>
                       <span class="description">Publicaciones</span>
-                    </div>
-                    <div>
+                    </div> -->
+                    <!-- <div>
                       <span class="heading">108</span>
                       <span class="description">Me gusta</span>
-                    </div>
+                    </div> -->
 
                   </div>
                 </div>
               </div>
               <div class="text-center">
                 <h3>
-                  Luis Ruiz  <span class="font-weight-light"> <br> Batz</span>
+                  <?php echo $usuario['nombre']; ?>  <span class="font-weight-light"> <br> <?php echo $usuario['apellido']; ?></span>
                 </h3>
                 <div class="h5 mt-4">
                   <i class="ni business_briefcase-24 mr-2"></i>Historiador
@@ -65,8 +73,8 @@
           </div>
         </div>
         <div class="col-xl-6 order-xl-2" style="margin-top: 250px;">
-            <form action="#" method="post">
-              <input type="text" value="../perfil.php" name="direccion" hidden/>
+            <form action="./backend/sesion/actualizarUsuario.php" method="post">
+              <!-- <input type="text" value="../perfil.php" name="direccion" hidden/> -->
           <div class="card bg-secondary shadow">
             <div class="card-header bg-white border-0">
               <div class="row align-items-center">
@@ -86,14 +94,14 @@
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-username">Usuario</label>
-                            <input type="text" name="usuarioAntiguo"  hidden value="<?php echo $usuario['usuario']  ?>" />
-                        <input type="text" name="usuario" class="form-control form-control-alternative" placeholder="Username" value="Luis Ruiz" />
+                            <!-- <input type="text" name="usuarioAntiguo"  hidden value="<?php //echo $usuario['username']  ?>" /> -->
+                        <input type="text" name="usernameR" class="form-control form-control-alternative" placeholder="Username" value="<?php echo $usuario['username']  ?>" required>
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">Correo</label>
-                        <input type="email" name="correo" class="form-control form-control-alternative" placeholder="jesse@example.com"  value=" luisRuiz@tiempoMaya.com "/>
+                        <input type="email" name="emailR" class="form-control form-control-alternative" placeholder="jesse@example.com"  value="<?php echo $usuario['email']  ?>" requirid>
                       </div>
                     </div>
                   </div>
@@ -101,19 +109,19 @@
                     <div class="col-lg-4">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-first-name">Nombre</label>
-                        <input type="text" name="nombre" class="form-control form-control-alternative" placeholder="Nombre"  value="Luis Eduardo"/>
+                        <input type="text" name="nombreR" class="form-control form-control-alternative" placeholder="Nombre"  value="<?php echo $usuario['nombre']  ?>" requirid>
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-last-name">Apellido</label>
-                        <input type="text" name="apellido" class="form-control form-control-alternative" placeholder="Apellido"  value="Guillen Ruiz"/>
+                        <input type="text" name="apellidoR" class="form-control form-control-alternative" placeholder="Apellido"  value="<?php echo $usuario['apellido']  ?>" requirid>
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-last-name">contraseña</label>
-                        <input type="password" name="password" class="form-control form-control-alternative" placeholder="******"  value="Fatima" />
+                        <input type="password" name="passwordR" class="form-control form-control-alternative" placeholder="******"  value="<?php echo $usuario['password']  ?>" requirid>
                       </div>
                     </div>
                   </div>
@@ -126,7 +134,7 @@
                     <div class="col-md-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-address">Telefono</label>
-                        <input name="telefono" class="form-control form-control-alternative" placeholder="Telefono"  value=" +502 52364178 " type="text"/>
+                        <input name="telefonoR" class="form-control form-control-alternative" placeholder="Telefono"  value="<?php echo $usuario['telefono']  ?>" type="text" requirid>
                       </div>
                     </div>
                   </div>

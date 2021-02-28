@@ -15,6 +15,7 @@
         $rangoRS = mysqli_query($conexion, $verRango);
         $rango = $rangoRS->fetch_array(MYSQLI_ASSOC); 
         $usuario =  $result->fetch_array(MYSQLI_ASSOC);
+        $nombreUsuario = $_POST['user'];
         $_SESSION['nombre'] = $nombreUsuario;
         $_SESSION['rango'] = $rango['tipo'];
         // Guardo en la sesión el rango del usuario.
@@ -34,10 +35,10 @@
         <body>
           <div class="alert alert-success" role="alert"  style="margin-left:300px; margin-right:300px;">
               <h4 class="alert-heading">Correo o Contraseña incorrecto</h4>
-              <p> no se encuentra registrado como '.$rango.'</p>
+              <p> no se encuentra registrado como '.$email.'</p>
               <hr>
-              <form class="form-horizontal" action="../iniciarSesion.php" method="post">
-                <input name="tupoUser"  value="'.$rango.'" style="display: none;">
+              <form class="form-horizontal" action="/TIEMPO_MAYA_WEB/iniciarSesion.php" method="post">
+                <input name="tupoUser"  value="'.$email.'" style="display: none;">
                 <button type="submit" class="btn btn-danger btn-lg btn-block" id="boton">regresar</button>
               </form>
           </div> 

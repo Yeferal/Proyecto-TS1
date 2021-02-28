@@ -1,13 +1,12 @@
 <?php
 session_start();
-//$conexion = new mysqli("servidor","usuario","clave","bd")
-$conexion = new mysqli("localhost", "administrador", "Admin.123321", "LineaTiempo");
+$conexion; include_once('backend/sesion/conexionSql.php');
 $sql = "SELECT * FROM Categoria ";
 //$sql .= " ORDER BY nombre";
 $sql2 = "CALL mostrarHechosPor(".$_POST['idHecho'].");";
 $resultado = $conexion->query($sql2);
-$conexion2 = new mysqli("localhost", "administrador", "Admin.123321", "LineaTiempo");
-$categorias = $conexion2->query($sql);
+//$conexion2 = new mysqli("localhost", "administrador", "Admin.123321", "LineaTiempo");
+$categorias = $conexion->query($sql);
 foreach ($resultado as $miHecho) : 
     $hecho = $miHecho;
 endforeach;
@@ -35,12 +34,14 @@ endforeach;
             <?php include 'BarradeNavegacion.html'; ?>>
         </header>
     </div>
-
+    
     <div style="padding-top:200px;">
         <h1 style="text-align: center; color: white;">INSERTAR NUEVO HECHO</h1>
         <div style="margin-left: 20%; margin-right: 20%; margin-top:50px; background-color: rgba(255, 255, 255,0.5); ">
             <div style="padding: 40px; color:black; font-size:20px;">
-                <form action="./backend/insertrarHecho.php" method="post" >
+
+            <?php echo "hola: ".$_POST['idHecho'];?>
+                <form action="./backend/hecho_historico/actualizarHecho.php?idHecho=<?php echo $_POST['idHecho']; ?>" method="post" >
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-2 col-form-label">Titulo</label>
                         <div class="col-sm-10">
@@ -56,7 +57,7 @@ endforeach;
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-2 col-form-label">Al </label>
                         <div class="col-sm-10">
-                            <input type="date" name="fechaFin" id="fechaFin" class="form-control" value="<?php  echo $hecho['fechaFinal'];?>">
+                            <input type="date" name="fechaFin" id="fechaFin" class="form-control" value="<?php  echo $hecho['fechaFinalizacion'];?>">
                         </div>
                     </div>
                     <div class="form-group">
