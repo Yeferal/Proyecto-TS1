@@ -162,7 +162,7 @@ public class VentanaInfoNahuales extends javax.swing.JFrame {
     public int nahual(int cont){
         //System.out.println("Contador " + cont);
         int contador = cont;
-        int contadorNahual = 6;
+        int contadorNahual = -5;
         if (contador < 0) {
             while (contador != 0) {
                 if (contadorNahual == 20) {

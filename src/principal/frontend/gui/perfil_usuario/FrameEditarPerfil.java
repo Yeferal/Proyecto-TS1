@@ -26,7 +26,7 @@ public class FrameEditarPerfil extends javax.swing.JFrame {
     private Informacion info = new Informacion();
     private FramePerfil framePerfil;
     private Usuario user;
-    private UsuarioDb usuarioDb;
+    private UsuarioDb usuarioDb = new UsuarioDb();
     
     public FrameEditarPerfil(FramePerfil framePerfil, Usuario user) {
         initComponents();
@@ -213,14 +213,18 @@ public class FrameEditarPerfil extends javax.swing.JFrame {
     }//GEN-LAST:event_botonRegresarActionPerformed
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-        Usuario usuario = new Usuario(user.getUsername(), jPasswordFieldPass.getText(), jTextFieldEmail.getText(), jTextFieldNombre.getText(), jTextFieldApellido.getText()
+        //System.out.println("Fecha: "+user.getUsername());
+        Usuario usuarioU = new Usuario(user.getUsername(), jPasswordFieldPass.getText(), jTextFieldEmail.getText(), jTextFieldNombre.getText(), jTextFieldApellido.getText()
                 , jTextFieldTelefono.getText(), 
-                (Date) jDateChooserNacimiento.getDate(),
+                new Date(jDateChooserNacimiento.getDate().getYear(), jDateChooserNacimiento.getDate().getMonth(), jDateChooserNacimiento.getDate().getDay()),
                 user.getRol());
-        usuarioDb.actualizarUsuario(usuario, user.getUsername());
-        JOptionPane.showMessageDialog(null, "Se guardaron los cambios");
+        usuarioDb.actualizarUsuario(usuarioU, user.getUsername());
+        //JOptionPane.showMessageDialog(null, "Se guardaron los cambios");
+        user = usuarioU;
+        framePerfil.user = usuarioU;
         this.setVisible(false);
         framePerfil.setVisible(true);
+        framePerfil.acualizarDatos();
     }//GEN-LAST:event_botonGuardarActionPerformed
 
     

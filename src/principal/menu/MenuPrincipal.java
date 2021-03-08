@@ -7,6 +7,7 @@ package principal.menu;
 
 import api.login.ArchivoLogin;
 import frontend.gui.CalendarioHaab;
+import frontend.gui.RuedaCalendarica;
 import gui.infonahuales.VentanaInfoNahuales;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -63,7 +64,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         btnCholqij = new javax.swing.JButton();
         btnCholqij1 = new javax.swing.JButton();
-        btnCholqij2 = new javax.swing.JButton();
+        btnRuedaCal = new javax.swing.JButton();
         btnNahuales = new javax.swing.JButton();
         btnPerfil = new javax.swing.JButton();
         btnLinea = new javax.swing.JButton();
@@ -102,13 +103,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btnCholqij2.setBackground(new java.awt.Color(204, 204, 204));
-        btnCholqij2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        btnCholqij2.setForeground(new java.awt.Color(0, 0, 0));
-        btnCholqij2.setText("Rueda Calendarica");
-        btnCholqij2.addActionListener(new java.awt.event.ActionListener() {
+        btnRuedaCal.setBackground(new java.awt.Color(204, 204, 204));
+        btnRuedaCal.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btnRuedaCal.setForeground(new java.awt.Color(0, 0, 0));
+        btnRuedaCal.setText("Rueda Calendarica");
+        btnRuedaCal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCholqij2ActionPerformed(evt);
+                btnRuedaCalActionPerformed(evt);
             }
         });
 
@@ -154,7 +155,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCholqij1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCholqij2)
+                .addComponent(btnRuedaCal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnNahuales)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -171,7 +172,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     .addComponent(jButton1)
                     .addComponent(btnCholqij)
                     .addComponent(btnCholqij1)
-                    .addComponent(btnCholqij2)
+                    .addComponent(btnRuedaCal)
                     .addComponent(btnNahuales)
                     .addComponent(btnPerfil)
                     .addComponent(btnLinea))
@@ -226,6 +227,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Usuario user2 = info.buscarDatos(user.getUsername());
         if(user2 != null){
             FramePerfil perfil = new FramePerfil(null, true, user);
+            perfil.acualizarDatos();
             perfil.setVisible(true);
         } 
     }//GEN-LAST:event_btnPerfilActionPerformed
@@ -244,9 +246,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         calendario.setVisible(true);
     }//GEN-LAST:event_btnCholqij1ActionPerformed
 
-    private void btnCholqij2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCholqij2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCholqij2ActionPerformed
+    private void btnRuedaCalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRuedaCalActionPerformed
+        RuedaCalendarica ruedaCalendarica = new RuedaCalendarica(this);
+        ruedaCalendarica.setVisible(true);
+    }//GEN-LAST:event_btnRuedaCalActionPerformed
 
     private void btnNahualesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNahualesActionPerformed
         VentanaInfoNahuales ventanaInfoNahuales = new VentanaInfoNahuales();
@@ -269,10 +272,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnCholqij;
     private javax.swing.JButton btnCholqij1;
-    private javax.swing.JButton btnCholqij2;
     private javax.swing.JButton btnLinea;
     private javax.swing.JButton btnNahuales;
     private javax.swing.JButton btnPerfil;
+    private javax.swing.JButton btnRuedaCal;
     private javax.swing.JButton jButton1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel pnlMenu;

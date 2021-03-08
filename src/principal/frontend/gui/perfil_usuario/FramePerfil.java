@@ -21,7 +21,7 @@ public class FramePerfil extends javax.swing.JDialog {
 
     private FondoPanel fondo = new FondoPanel();
     private Informacion info = new Informacion();
-    private Usuario user;
+    public Usuario user;
     
     /**
      * Creates new form FramePerfil
@@ -34,6 +34,10 @@ public class FramePerfil extends javax.swing.JDialog {
         panel1.setBackground(new Color(255, 255, 255, 100));
         panel2.setBackground(new Color(255, 255, 255, 100));
         this.user = user;
+        acualizarDatos();
+    }
+    
+    public void acualizarDatos(){
         lblEmail.setText(user.getEmail());
         lblNombres.setText(user.getNombre());
         lblApellidos.setText(user.getApellido());

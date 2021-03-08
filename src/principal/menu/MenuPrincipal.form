@@ -70,7 +70,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnCholqij1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnCholqij2" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnRuedaCal" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnNahuales" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -89,7 +89,7 @@
                       <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnCholqij" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnCholqij1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnCholqij2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnRuedaCal" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnNahuales" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnPerfil" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnLinea" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -148,7 +148,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCholqij1ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnCholqij2">
+        <Component class="javax.swing.JButton" name="btnRuedaCal">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -162,7 +162,7 @@
             <Property name="text" type="java.lang.String" value="Rueda Calendarica"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCholqij2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRuedaCalActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnNahuales">
