@@ -44,7 +44,7 @@
             </div>
             <div class="navright" >
             <!-- <button onclick="location.href='iniciarSesion.php'?id_nahual=<?php/* echo $_POST['id_nahual']); */?>" name="button">Derecha</button> -->
-            <button onclick="location.href='backend/nahuales/desplazoNahuales.php?id_nahual=<?php echo $id_nahual ?>&tipo=2'" name="buttonDr" class="buttonDr"></button>
+            <button onclick="location.href='backend/nahuales/desplazoNahuales.php?id_nahual=<?php echo $id_nahual ?>&tipo=2'" class="buttonDr"></button>
             </div>
         </div>
     </section>

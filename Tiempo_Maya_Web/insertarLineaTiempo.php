@@ -62,9 +62,9 @@ $cont = 1;
                         <div class="input-group-prepend">
                             <label class="input-group-text" for="validatedInputGroupSelect" style="color: black;">CATEGORIA: </label>
                         </div>
-                        <select class="custom-select" id="validatedInputGroupSelect" required name="categoria">
+                        <select class="custom-select" id="validatedInputGroupSelect" name="categoria" id="categoria" required >
                             <?php foreach ($categorias as $area) : ?>
-                                <option value="<?php echo $area['idCategoria']; ?>"> <?php echo $area['nombre']; ?> </option>
+                                <option value="<?php echo $area['id']; ?>"> <?php echo $area['nombre']; ?> </option>
                             <?php endforeach; ?>
                         </select>
                     </div>

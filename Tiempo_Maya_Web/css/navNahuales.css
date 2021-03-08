@@ -37,7 +37,7 @@
     opacity: 0.2;
 }
 
-.imagen11 {
+/* .imagen11 {*/
 	/*content:'';
 	position: absolute;
         top: 0;
@@ -46,7 +46,7 @@
 	right: 0;
 	background-color: rgba(0,0,0,0.6);*/
     /* opacity: 0.2; */
-}
+/*} */
 
 .nahuales2 {
     display:flex;
@@ -59,11 +59,11 @@
     display:flex;
     justify-content: center;
     align-items: center;
-}z
+}
 
 .buttonDr {
     /*background: #92c7eb;*/
- background-image: url("../img/derecha.png");
+ background-image: url("../img/derechaa.png");
  background-size: cover;
  background-position: center;
  display: inline-block;
@@ -78,7 +78,7 @@
 
 .buttonIz {
     /*background: #92c7eb;*/
- background-image: url("../img/izquierda.png");
+ background-image: url("../img/izquierdaa.png");
  background-size: cover;
  background-position: center;
  display: inline-block;

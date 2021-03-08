@@ -8,9 +8,10 @@ include_once('../sesion/conexionsql.php');
 if ($conexion->connect_error) {
     die("Connection failed: " . $conexion->connect_error);
 }
+$idH = $_GET['idHecho'];
 
 //guarda hecho historico
-$sql1 = "UPDATE HechoHistorico SET fechaInicio = '".$_POST['fechaInicio'] ."', fechaFinalizacion= '". $_POST['fechaFin']."', titulo= '".$_POST['titulo'] ."', descripcion= '" . $_POST['decripcion'] . "'" ;
+$sql1 = "UPDATE HechoHistorico SET fechaInicio = '".$_POST['fechaInicio'] ."', fechaFinalizacion= '". $_POST['fechaFin']."', titulo= '".$_POST['titulo'] ."', descripcion= '" . $_POST['decripcion'] . "' WHERE id=".$idH.";" ;
     if (!$conexion->query($sql1)) {
         echo "Falló 2: (" . $conexion->errno . ") " . $conexion->error;
     }

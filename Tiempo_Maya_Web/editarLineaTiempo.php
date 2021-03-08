@@ -40,7 +40,7 @@ endforeach;
         <div style="margin-left: 20%; margin-right: 20%; margin-top:50px; background-color: rgba(255, 255, 255,0.5); ">
             <div style="padding: 40px; color:black; font-size:20px;">
 
-            <?php echo "hola: ".$_POST['idHecho'];?>
+            <?php //echo "hola: ".$_POST['idHecho'];?>
                 <form action="./backend/hecho_historico/actualizarHecho.php?idHecho=<?php echo $_POST['idHecho']; ?>" method="post" >
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-2 col-form-label">Titulo</label>
@@ -83,6 +83,9 @@ endforeach;
                         </div>
                     </div> 
                     <button type="submit" class="btn btn-primary mb-2" style="margin-left: 45%; margin-top:30px;">Publicar</button>
+                </form>
+                <form action="./backend/hecho_historico/eliminarHecho.php?idHecho=<?php echo $_POST['idHecho']; ?>" method="post" >
+                    <button type="submit" class="btn btn-primary mb-2"" style="margin-right: 45%; margin-top:30px; background:red;">Eliminar Hecho</button>
                 </form>
             </div>
         </div>

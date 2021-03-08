@@ -27,7 +27,7 @@ $cat;
 <body>
     <div>
         <header id="header" style="background-color: #1C1C1C;">
-            <?php include 'BarradeNavegacion.php'; ?>>
+            <?php include 'BarradeNavegacion.php'; ?>
         </header>
     </div>
 
